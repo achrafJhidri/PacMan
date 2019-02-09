@@ -1,3 +1,2 @@
-
 #include "SommetAdjacent.h"
 
