@@ -14,9 +14,12 @@ template <class T>
 bool estPlusPetitOuEgal(const T * a1, const T * a2) {
 	return (*a1) <= (*a2);
 }
-const string boolToString(const bool b) { return b ? "vrai" : "faux"; }
-ostream & operator << (ostream & o, const bool b) { return o << boolToString(b); }
-
+const string boolToString(const bool b) {
+	return b ? "vrai" : "faux";
+}
+ostream & operator << (ostream & o, const bool b) { 
+	return o << boolToString(b); 
+}
 template<class T>
 ostream & operator <<(ostream & os, const PElement<T> * p) {
 	os << PElement<T>::toString(p);
