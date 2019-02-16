@@ -10,6 +10,9 @@
 #include "SommetPartieArete.h"
 using namespace std;
 
+
+
+//hello everyody	
 template <class T>
 bool estPlusPetitOuEgal(const T * a1, const T * a2) {
 	return (*a1) <= (*a2);
