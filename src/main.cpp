@@ -54,8 +54,8 @@ int main()
 	Arete <int, string> *b = g.creeArete(33, s2, s3);
 
 	//
-	//cout << g.getListeSommets() << endl; 
-	//cout <<"nombre de sommet " << g.nombreSommets()<< endl;
+	cout << g.getListeSommets() << endl; 
+	cout <<"nombre de sommet " << g.nombreSommets()<< endl;
 	//cout << g.getListeAretes() << endl;
 	//cout << "nombre d'aretes " << g.nombreAretes()<< endl;
 
