@@ -1,6 +1,9 @@
 # CMake traces
 build/
 
+# LSP
+.ccls-cache/
+
 # Prerequisites
 *.d
 
