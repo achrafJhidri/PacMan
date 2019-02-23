@@ -1,32 +1,48 @@
 #pragma once
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
 #include "GElement.h"
-template < class T> 
-class Sommet :
-	public GElement<T>
+
+using namespace std;
+
+/**
+
+Sommet d'un graphe en général
+
+v est l'information associée au sommet : elle dépend de l'application du graphe
+*/
+template <class T>
+class Sommet : public GElement<T>
 {
-	unsigned int degre;
 public:
-	Sommet(const unsigned int clef, const T & v, const unsigned int d = 0) :GElement<T>(clef,v){
-		setDegre(d);
-	};
-	
+	int degre;		// Rappel : degré = nombre d'arêtes adjacentes à ce sommet
+	/**
 
-	unsigned int getDegre()const {
-		return degre; 
-	}
-	void setDegre(const unsigned int d) {
-		degre = d;
-	}
-	operator string()const {
-		ostringstream os;
-		os <<"Sommet "<<GElement<T>::operator string () << " de degre " << degre;
-		return os.str();
-	}
+	Un sommet est toujours créé isolé (c'est-à-dire qu'il n'y a pas d'arête adjacente à ce sommet)
+	*/
+	Sommet(const int clef, const T & v) :GElement<T>(clef, v), degre(0) {}
 
-	friend ostream & operator << (ostream & f, const Sommet<T> & element)
-	{
-		return f << string(element);
-	}
-	
+	operator string () const;
+
 };
 
+template <class T>
+Sommet<T>::operator string () const
+{
+	ostringstream oss;
+
+	oss << "Sommet(" << endl;
+	oss << GElement<T>::operator string() << endl;
+	oss << "degré = " << degre << endl;
+	oss << ")";
+	return oss.str();
+}
+
+template <class T>
+ostream & operator << (ostream & os, const Sommet<T> & sommet)
+{
+	return os << (string)sommet;
+}
