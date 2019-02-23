@@ -8,6 +8,7 @@ run:
 build cmake build/Makefile:
 	@mkdir -p build
 	@(cd build && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=YES ..)
+	@ln -fs build/compile_commands.json .
 
 rebuild: cleanbuild cmake all
 
