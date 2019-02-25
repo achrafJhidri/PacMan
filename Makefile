@@ -3,8 +3,7 @@ all:
 	make -C build
 
 run:
-	build/pacman || .\build\pacman.exe
-
+	build/pacman 
 build cmake build/Makefile:
 	@mkdir -p build
 	@(cd build && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=YES ..)
