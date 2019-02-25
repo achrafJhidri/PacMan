@@ -3,7 +3,7 @@ all:
 	make -C build
 
 run:
-	build/pacman
+	build/pacman || .\build\pacman.exe
 
 build cmake build/Makefile:
 	@mkdir -p build
