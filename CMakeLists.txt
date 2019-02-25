@@ -3,7 +3,7 @@ set(EXECUTABLE_NAME pacman)
 
 # set(CMAKE_C_COMPILER "/usr/local/opt/llvm/bin/clang")
 # set(CMAKE_CXX_COMPILER "/usr/local/opt/llvm/bin/clang++")
-add_compile_options(-Wall -Wextra -std=c++98 -g)
+add_compile_options(-Wall -Wextra -std=c++11 -g)
 # add_compile_options(-I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1)
 
 project(${EXECUTABLE_NAME})
