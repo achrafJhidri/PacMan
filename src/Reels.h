@@ -1,6 +1,7 @@
 #ifndef REELS_H
 #define REELS_H
 
+#include <cstdlib>
 
 class Reels
 {
@@ -34,7 +35,7 @@ public:
 	 * Pour être placée comme pointeur de fct paramètre d'une fct template
 	 *
 	 * */
-	inline static const double random1(const double & germe, const double & eps) { return Reels::random(germe, eps); }
+	inline static double random1(const double & germe, const double & eps) { return Reels::random(germe, eps); }
 };
 
 
@@ -47,7 +48,7 @@ public:
  * */
 inline /* static */ double Reels::random()
 {
-	return rand() / (double)RAND_MAX;
+    return ::rand() / (double)RAND_MAX;
 }
 
 
