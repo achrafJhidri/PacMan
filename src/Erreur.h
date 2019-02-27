@@ -12,6 +12,7 @@ using namespace std;
 #include <exception>
 
 #pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 class Erreur : public exception
 {
