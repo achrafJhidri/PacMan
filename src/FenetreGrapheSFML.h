@@ -119,6 +119,7 @@ class FenetreGrapheSFML
 {
 public:
 
+
 RenderWindow fenetre;
 const Font & font;
 

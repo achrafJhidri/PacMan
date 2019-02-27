@@ -13,27 +13,21 @@
 using namespace std;
 using namespace sf;
 
-
-
-
 int main() {
+    string titre = "The Seven Kingdoms" ;
+    Font font;
+    font.loadFromFile("Action Man Bold.ttf");
+    FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(300, 0), 760, 800,font);
+    unsigned int magenta = Color::Magenta.toInteger();
+    
+    Graphe<Peinture, VSommet> g1;    // crÃ©ation Ã  vide
 
+    Sommet<VSommet> * s11, *s21, *s31, *s41, *s51;
+    Sommet<VSommet> * s12, *s22, *s32, *s42, *s52;
+    Sommet<VSommet> * s13, *s23, *s33, *s43, *s53;
+    Sommet<VSommet> * s14, *s24, *s34, *s44, *s54;
+    Sommet<VSommet> * s15, *s25, *s35, *s45, *s55;
 
-
-	 string  titre = "The Seven Kingdoms" ;
-	Font font;
-	font.loadFromFile("Action Man Bold.ttf");
-	FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(300, 0), 760, 800,font);
-	unsigned int magenta = Color::Magenta.toInteger();
-	
-	Graphe<Peinture, VSommet> g1;	// création à vide
-
-
-	Sommet<VSommet> * s11, *s21, *s31, *s41, *s51;
-	Sommet<VSommet> * s12, *s22, *s32, *s42, *s52;
-	Sommet<VSommet> * s13, *s23, *s33, *s43, *s53;
-	Sommet<VSommet> * s14, *s24, *s34, *s44, *s54;
-	Sommet<VSommet> * s15, *s25, *s35, *s45, *s55;
 
 
 	s11 = g1.creeSommet(VSommet("11", Vecteur2D(20, 1), magenta));
@@ -43,45 +37,31 @@ int main() {
 	s51 = g1.creeSommet(VSommet("51", Vecteur2D(180, 1), magenta));
 
 
+    // Affichage de la fenetre
+    while (f.fenetre.isOpen()) {
+	// Traitement des evenements
+        Event event;
+        while (f.fenetre.pollEvent(event)) {
+	    // Fermeture
+            if (event.type == event.Closed)
+                f.fenetre.close();
 
-	//a4455 = g1.creeArete(Peinture(Color::Blue.toInteger(), Color::Red.toInteger()), s41, s11);
+	    // Evenements clavier
+            if (event.type == event.KeyPressed) {
+                if (event.key.code == Keyboard::Up)
+                {
+                    PElement <Arete<Peinture, VSommet>> * lA;
+                    for (lA = g1.lAretes; lA; lA = lA->s) lA->v->v.devant -= 50;
+                }
+            }
+        }
 
+	    // Affichage
+	    f.fenetre.clear();
+        g1.dessine(f);
+        f.fenetre.display();
+    }
 
-
-
-
-
-	while (f.fenetre.isOpen()) {
-
-		Event event;
-		while (f.fenetre.pollEvent(event)) {
-			if (event.type == event.Closed)
-				f.fenetre.close();
-
-			if (event.type == event.KeyPressed) {
-				if (event.key.code == Keyboard::Up)
-				{
-					PElement <Arete<Peinture, VSommet>> * lA;
-
-					for (lA = g1.lAretes; lA; lA = lA->s) {
-
-						lA->v->v.devant -= 50;
-					}
-
-
-				}
-
-			}
-		}
-
-
-		g1.dessine(f);
-
-		f.fenetre.display();
-
-	}
-
-
-
-
+    return EXIT_SUCCESS;
 }
+
