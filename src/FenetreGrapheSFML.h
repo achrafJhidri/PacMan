@@ -2,21 +2,23 @@
 #ifndef FENETREGRAPHESFML_H
 #define FENETREGRAPHESFML_H
 
-#include<SFML/Graphics/RenderWindow.hpp>
-#include<SFML/Graphics/VertexArray.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
 //#include <SFML/Graphics/Vertex.hpp>
-#include<SFML/GRAPHICS/CircleShape.hpp>
-#include<SFML/GRAPHICS/ConvexShape.hpp>
+#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/ConvexShape.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
 
 
 #include "Sommet.h"
-#include  "Arete.h"
+#include "VSommet.h"
+#include "Arete.h"
 #include "InfosGrapheDessin.h"
 //#include <InfoSommet.h>
 //#include <InfoArete.h>
 #include "TransfoAffine2D.h"
+#include "Peinture.h"
 
 using namespace sf;
 using namespace std;
