@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "Sommet.h"
 #include "Arete.h"
 #include "TransfoAffine2D.h"
