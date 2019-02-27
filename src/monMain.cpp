@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+#pragma clang diagnostic ignored "-Wunused-variable"
+
 using namespace std;
 using namespace sf;
 
