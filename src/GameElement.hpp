@@ -1,26 +1,25 @@
 #pragma once 
 #include "Vecteur2D.h"
-#include <SFML/graphics.hpp>
+#include "VSommet.h"
+#include "Sommet.h"
+
+#include <SFML/Graphics.hpp>
 
 
-class GameElement {
-    public :
-     Vecteur2D position ;
-    sf::Texture texture ;
+class GameElement
+{
+private:
+    Sommet<VSommet> position;
+    sf::Texture texture;
 
-    GameElement(const Vecteur2D  & position , const Texture  & texture){
+public:
+    GameElement(const Sommet<VSommet> &position, const sf::Texture &texture)
+	: position(position), texture(texture)
+    {};
 
-    };
     ~GameElement();
 
 
-    Vecteur2D getX()const {
-        return position;
-    }
-
-
-
-
-    
-
-}
+    double getX() const;
+    double getY() const;
+};
