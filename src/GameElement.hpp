@@ -1,26 +1,40 @@
 #pragma once 
 #include "Vecteur2D.h"
-#include <SFML/graphics.hpp>
+#include "VSommet.h"
+#include "Sommet.h"
 
+#include <SFML/Graphics.hpp>
 
-class GameElement {
-    public :
-     Vecteur2D position ;
-    sf::Texture texture ;
+enum class Orientation {
+    // Basic
+    NORTH, SOUTH, EAST, WEST,
+    // Composed
+    NORTH_EAST, NORTH_WEST,
+    SOUTH_EAST, SOUTH_WEST
+};
 
-    GameElement(const Vecteur2D  & position , const Texture  & texture){
+class GameElement
+{
+private:
+    Sommet<VSommet> position;
+    sf::Texture texture;
+    Orientation orientation = Orientation::WEST;
 
-    };
-    ~GameElement();
+public:
+    GameElement(const Sommet<VSommet> &, const sf::Texture &);
+    virtual ~GameElement();
 
+    double getX() const;
+    double getY() const;
+    void setX(double);
+    void setY(double);
 
-    Vecteur2D getX()const {
-        return position;
-    }
+    sf::Texture& getTexture();
+    void setTexture(const sf::Texture &);
 
+    Orientation getOrientation() const;
+    void setOrientation(Orientation);
 
-
-
-    
-
-}
+    Sommet<VSommet>& getPosition();
+    void setPosition(Sommet<VSommet> const&);
+};
