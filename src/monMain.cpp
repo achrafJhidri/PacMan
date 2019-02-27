@@ -8,6 +8,7 @@
 #include "Graphe.h"
 #include "FenetreGrapheSFML.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 using namespace sf;
@@ -26,13 +27,6 @@ int main() {
     Sommet<VSommet> * s13, *s23, *s33, *s43, *s53;
     Sommet<VSommet> * s14, *s24, *s34, *s44, *s54;
     Sommet<VSommet> * s15, *s25, *s35, *s45, *s55;
-
-    s11 = g1.creeSommet(VSommet("11", Vecteur2D(100, 100), magenta));
-    s21 = g1.creeSommet(VSommet("21", Vecteur2D(250, 100), magenta));
-    s31 = g1.creeSommet(VSommet("31", Vecteur2D(400, 100), magenta));
-    s41 = g1.creeSommet(VSommet("41", Vecteur2D(550, 100), magenta));
-    s51 = g1.creeSommet(VSommet("51", Vecteur2D(700, 100), magenta));
-
 
     s12 = g1.creeSommet(VSommet("12", Vecteur2D(100, 250), magenta));
     s22 = g1.creeSommet(VSommet("22", Vecteur2D(250, 250), magenta));
