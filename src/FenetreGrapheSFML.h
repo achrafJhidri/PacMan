@@ -8,7 +8,7 @@
 
 /**
 Prend en charge le dessin d'un graphe
-Prend en charge le passage de coordonnÈes monde ---> Ècran
+Prend en charge le passage de coordonn√©es monde ---> √©cran
 */
 using namespace sf ;
 using namespace std ;
@@ -19,19 +19,19 @@ public:
 	const Font & font;
 
 
-	TransfoAffine2D t;	// rÈalise le passage fenÍtre-clÙture
-					// (ou encore monde vers Ècran)
+	TransfoAffine2D t;	// r√©alise le passage fen√™tre-cl√¥ture
+					// (ou encore monde vers √©cran)
 
 	/**
-	CrÈe la fenÍtre qui va contenir le dessin du graphe.
+	Cr√©e la fen√™tre qui va contenir le dessin du graphe.
 
-	DONNEES : titre : titre de la fenÍtre
-			 fondCarte : couleur du fond de la scËne au format RGBA
-			  coinBG : coin Bas Gauche de la scËne en coordonnÈes monde
-			  coinHD : coin Haut Droit de la scËne en coordonnÈes monde
-			  largeur : largeur de la fenÍtre Ècran (en pixels)
-			  hauteur : hauteur de la fenÍtre Ècran (en pixels)
-			  font : police ‡ utiliser pour les annotations sur les sommets
+	DONNEES : titre : titre de la fen√™tre
+			 fondCarte : couleur du fond de la sc√®ne au format RGBA
+			  coinBG : coin Bas Gauche de la sc√®ne en coordonn√©es monde
+			  coinHD : coin Haut Droit de la sc√®ne en coordonn√©es monde
+			  largeur : largeur de la fen√™tre √©cran (en pixels)
+			  hauteur : hauteur de la fen√™tre √©cran (en pixels)
+			  font : police √† utiliser pour les annotations sur les sommets
 
 	*/
 	FenetreGrapheSFML(const string & titre,
@@ -44,32 +44,32 @@ public:
 		fenetre(sf::VideoMode(largeur, hauteur), titre), font(font)
 	{
 		fenetre.clear(Color(fondCarte));
-		// calcul de la transformation affine - changement de repËre : monde ---> Ècran
+		// calcul de la transformation affine - changement de rep√®re : monde ---> √©cran
 		Vecteur2D coinEcranBG(0, hauteur), coinEcranHD(largeur, 0);
 
 		t = TransfoAffine2D::passageMondeEcran(coinBG, coinHD,
 			coinEcranBG, coinEcranHD);
 	}
 	/**
-	Dessine un sommet du graphe. Exemples :  nom, couleur, informations associÈes, etc.
-	renvoie true en cas de succËs, false en cas d'Èchec
-	On suppose que les coordonnÈes du sommet sont dÈfinies par rapport au repËre du monde
+	Dessine un sommet du graphe. Exemples :  nom, couleur, informations associ√©es, etc.
+	renvoie true en cas de succ√®s, false en cas d'√©chec
+	On suppose que les coordonn√©es du sommet sont d√©finies par rapport au rep√®re du monde
 	*/
 	template <class T>
 	bool dessine(const Sommet<T> * sommet);
 
 	/** 
-	Dessine l'arÍte (dÈbut->fin) en utilisant la couleur "couleur"
-	renvoie true en cas de succËs, false en cas d'Èchec
-	On suppose que les coordonnÈes des sommets sont dÈfinies par rapport au repËre du monde
+	Dessine l'ar√™te (d√©but->fin) en utilisant la couleur "couleur"
+	renvoie true en cas de succ√®s, false en cas d'√©chec
+	On suppose que les coordonn√©es des sommets sont d√©finies par rapport au rep√®re du monde
 	*/
 	template <class T>
 	bool dessine(const Sommet<T> * debut, const Sommet<T> * fin, unsigned int couleur);
 
 	/**
-	Dessine un arÍte du graphe. Exemples :  nom, couleur, informations associÈes, etc.
-	renvoie true en cas de succËs, false en cas d'Èchec
-	On suppose que les coordonnÈes des sommets sont dÈfinies par rapport au repËre du monde
+	Dessine un ar√™te du graphe. Exemples :  nom, couleur, informations associ√©es, etc.
+	renvoie true en cas de succ√®s, false en cas d'√©chec
+	On suppose que les coordonn√©es des sommets sont d√©finies par rapport au rep√®re du monde
 	*/
 	template <class S, class T>
 	bool dessine(const Arete<S, T> * arete);

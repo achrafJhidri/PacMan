@@ -9,29 +9,29 @@ public:
 
 	/**
 	 *
-	 * RESULTAT : un nombre aléatoire x tel que 0 <= x < 1
+	 * RESULTAT : un nombre alÃ©atoire x tel que 0 <= x < 1
 	 *
-	 * suppose qu'un appel à srand a été fait au préalable
+	 * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
 	 *
 	 * */
 	inline static double random();
 
 	/**
 	 *
-	 * RESULTAT : un nombre aléatoire x tel que | x - germe | < eps
+	 * RESULTAT : un nombre alÃ©atoire x tel que | x - germe | < eps
 	 *
-	 * suppose qu'un appel à srand a été fait au préalable
+	 * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
 	 *
 	 * */
 	inline static double random(const double & germe, const double & eps);
 
 	/**
 	 *
-	 * RESULTAT : un nombre aléatoire x tel que | x - germe | < eps
+	 * RESULTAT : un nombre alÃ©atoire x tel que | x - germe | < eps
 	 *
-	 * suppose qu'un appel à srand a été fait au préalable
+	 * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
 	 *
-	 * Pour être placée comme pointeur de fct paramètre d'une fct template
+	 * Pour Ãªtre placÃ©e comme pointeur de fct paramÃ¨tre d'une fct template
 	 *
 	 * */
 	inline static const double random1(const double & germe, const double & eps) { return Reels::random(germe, eps); }
@@ -40,9 +40,9 @@ public:
 
 /**
  *
- * RESULTAT : un nombre aléatoire x tel que 0 <= x < 1
+ * RESULTAT : un nombre alÃ©atoire x tel que 0 <= x < 1
  *
- * suppose qu'un appel à srand a été fait au préalable
+ * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
  *
  * */
 inline /* static */ double Reels::random()
@@ -53,9 +53,9 @@ inline /* static */ double Reels::random()
 
 /**
  *
- * RESULTAT : un nombre aléatoire x tel que | x - germe | < eps
+ * RESULTAT : un nombre alÃ©atoire x tel que | x - germe | < eps
  *
- * suppose qu'un appel à srand a été fait au préalable
+ * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
  * */
 /* static */ inline double Reels::random(const double & germe, const double & eps)
 {

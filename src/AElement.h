@@ -9,11 +9,11 @@ using namespace std;
 
 /**
 
-Représente la classe de base des éléments d'un graphe qui peuvent être des sommets ou des arêtes.
+ReprÃ©sente la classe de base des Ã©lÃ©ments d'un graphe qui peuvent Ãªtre des sommets ou des arÃªtes.
 
-A ce niveau, on ne peut que définir que la clef d'un élément inscrite dans cet élément.
+A ce niveau, on ne peut que dÃ©finir que la clef d'un Ã©lÃ©ment inscrite dans cet Ã©lÃ©ment.
 
-En effet tout élément d'un graphe est tout d'abord défini par une clef (c-à-d une valeur non nulle et unique)
+En effet tout Ã©lÃ©ment d'un graphe est tout d'abord dÃ©fini par une clef (c-Ã -d une valeur non nulle et unique)
 
 */
 

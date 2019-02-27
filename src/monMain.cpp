@@ -25,7 +25,7 @@ int main() {
 	FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(300, 0), 760, 800,font);
 	unsigned int magenta = Color::Magenta.toInteger();
 	
-	Graphe<Peinture, VSommet> g1;	// création à vide
+	Graphe<Peinture, VSommet> g1;	// crÃ©ation Ã  vide
 
 
 	Sommet<VSommet> * s11, *s21, *s31, *s41, *s51;

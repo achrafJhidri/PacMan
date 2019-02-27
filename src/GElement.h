@@ -9,12 +9,12 @@ using namespace std;
 
 /**
 
-Représente la classe template de base des éléments d'un graphe qui peuvent être des sommets ou des arêtes.
+ReprÃ©sente la classe template de base des Ã©lÃ©ments d'un graphe qui peuvent Ãªtre des sommets ou des arÃªtes.
 
-A ce niveau, on ne peut que définir que la clef d'un élément et la valeur (c'est-à-dire l'information ) inscrite dans cet élément.
+A ce niveau, on ne peut que dÃ©finir que la clef d'un Ã©lÃ©ment et la valeur (c'est-Ã -dire l'information ) inscrite dans cet Ã©lÃ©ment.
 
-En effet tout élément d'un graphe est défini par une clef (c-à-d une valeur non nulle et unique) et contient  généralement une information,
-qui peut être un nom, une couleur, une position, etc.
+En effet tout Ã©lÃ©ment d'un graphe est dÃ©fini par une clef (c-Ã -d une valeur non nulle et unique) et contient  gÃ©nÃ©ralement une information,
+qui peut Ãªtre un nom, une couleur, une position, etc.
 
 
 

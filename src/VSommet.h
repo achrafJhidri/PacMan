@@ -7,13 +7,13 @@
 using namespace std;
 /**
 
-Classes VSommet et Peinture : elles sont utilisées dans TestDessinGraphe pour dessiner un graphe.
+Classes VSommet et Peinture : elles sont utilisÃ©es dans TestDessinGraphe pour dessiner un graphe.
 
 
-informations associée à un sommet : nom, position, couleur
-sert à tester l'opération "dessiner un graphe"
+informations associÃ©e Ã  un sommet : nom, position, couleur
+sert Ã  tester l'opÃ©ration "dessiner un graphe"
 
-VSommet comme "valeur associée à un sommet"
+VSommet comme "valeur associÃ©e Ã  un sommet"
 
 */
 class VSommet
@@ -27,7 +27,7 @@ public:
 
 
 	/**
-	par défaut, la couleur d'un sommet est rouge opaque
+	par dÃ©faut, la couleur d'un sommet est rouge opaque
 	*/
 	VSommet(const string & nom, const Vecteur2D & p, const unsigned int couleur = 0xFF0000FF) : nom(nom), p(p), couleur(couleur) {}
 

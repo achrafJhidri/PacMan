@@ -3,11 +3,11 @@
 /*
  * Pelement.h
  *
- * liste r�cursive dont les valeurs sont des pointeurs
+ * liste rÃ©cursive dont les valeurs sont des pointeurs
  *
- * Attention : les m�thodes r�cursives qui parcourent les listes doivent syst�matiquement �tre statiques !!!
+ * Attention : les mÃ©thodes rÃ©cursives qui parcourent les listes doivent systÃ©matiquement Ãªtre statiques !!!
  *
- *  Created on: 2 ao�t 2012
+ *  Created on: 2 aoÃ»t 2012
  *      Author: Dominique
  */
 
@@ -31,17 +31,17 @@ public:
 
 	/**
 	 *
-	 * Ne cr�e pas de copie de *v. Pointe donc sur la donn�e originale *v
+	 * Ne crÃ©e pas de copie de *v. Pointe donc sur la donnÃ©e originale *v
 	 *
 	 * */
 	PElement(T * v, PElement<T> * s) :v(v), s(s) {}
 
 
-	// static void ecrit(ostream & os, const PElement<T> * p); // obsol�te
+	// static void ecrit(ostream & os, const PElement<T> * p); // obsolÃ¨te
 
 	/**
 	 * suppose que T est munie de la fct :   const String T::ecrit() const
-	 * Cette m�thode est appel�e pour chaque �l�ment de p. Ainsi, si elle est virtuelle, p peut �tre h�t�rog�ne
+	 * Cette mÃ©thode est appelÃ©e pour chaque Ã©lÃ©ment de p. Ainsi, si elle est virtuelle, p peut Ãªtre hÃ©tÃ©rogÃ¨ne
 	 *
 	 * */
 	 //static const string ecrit(const PElement<T> * p, const char * debut = "(", const char * separateur = ", ", const char * fin = ")");
@@ -54,109 +54,109 @@ public:
 
 	/**
 	 *
-	 * ne recopie pas les donn�es *v. r�alise donc une copie partageant les donn�es v avec l
+	 * ne recopie pas les donnÃ©es *v. rÃ©alise donc une copie partageant les donnÃ©es v avec l
 	 *
 	 * */
 	static  PElement<T> * copie1(PElement<T> * l);
 
 	/**
 	 *
-	 * recopie  toutes les donn�es *v. r�alise donc une copie ne partageant aucune donn�e  avec l
+	 * recopie  toutes les donnÃ©es *v. rÃ©alise donc une copie ne partageant aucune donnÃ©e  avec l
 	 *
 	 * */
 	static  PElement<T> * copie2(const PElement<T> * l);
 
 	/**
 	 *
-	 * recopie  toutes les donn�es *v � l'aide de la m�thode v->copie(). r�alise donc une copie ne partageant aucune donn�e  avec l
+	 * recopie  toutes les donnÃ©es *v Ã  l'aide de la mÃ©thode v->copie(). rÃ©alise donc une copie ne partageant aucune donnÃ©e  avec l
 	 *
-	 * Alors si la classe T poss�de la m�thode virtuelle copie(), l peut �tre h�t�rog�ne.
-	 * Et la m�thode copie3 produit une copie de cette liste h�t�rog�ne.
+	 * Alors si la classe T possÃ¨de la mÃ©thode virtuelle copie(), l peut Ãªtre hÃ©tÃ©rogÃ¨ne.
+	 * Et la mÃ©thode copie3 produit une copie de cette liste hÃ©tÃ©rogÃ¨ne.
 	 *
 	 * */
 
 	static PElement<T> * copie3(const PElement<T> * l);
 
 	/**
-	 * concat�ne l2 � la fin de l1. Ne cr�e aucun maillon.
+	 * concatÃ¨ne l2 Ã  la fin de l1. Ne crÃ©e aucun maillon.
 	 *
-	 * En sortie l1 pointe sur le d�but de la concat�nation
+	 * En sortie l1 pointe sur le dÃ©but de la concatÃ©nation
 	 *
-	 * DONNEES : l1, l2 (peuvent �tre vides toutes les deux)
+	 * DONNEES : l1, l2 (peuvent Ãªtre vides toutes les deux)
 	 *
-	 * RESULTATS : l1 contenant la concat�nation
+	 * RESULTATS : l1 contenant la concatÃ©nation
 	 *
-	 * Exemple 1 : si en entr�e l1 = (2,5,4) et l2 = (7,11) alors en sortie l1 = (2,5,4,7,11) et l2 = (7,11)
-	 * Exemple 2 : si en entr�e l1 = () et l2 = (7,11) alors en sortie l1 = (7,11) et  l2 = (7,11)
-	 * Exemple 3 : si en entr�e l1 = (9,5) et l2 = () alors en sortie l1 = (9,5) et l2 = ()
+	 * Exemple 1 : si en entrÃ©e l1 = (2,5,4) et l2 = (7,11) alors en sortie l1 = (2,5,4,7,11) et l2 = (7,11)
+	 * Exemple 2 : si en entrÃ©e l1 = () et l2 = (7,11) alors en sortie l1 = (7,11) et  l2 = (7,11)
+	 * Exemple 3 : si en entrÃ©e l1 = (9,5) et l2 = () alors en sortie l1 = (9,5) et l2 = ()
 	 *
 	 * */
 	static void concat(PElement<T> * & l1, PElement<T> *  l2);
 
 	/**
 	 * efface toute la liste l
-	 * mais n'efface pas les donn�es *v
+	 * mais n'efface pas les donnÃ©es *v
 	 *
 	 * */
 	static void efface1(PElement<T>* & l);
 
 	/**
 	 * efface toute la liste l
-	 * et efface toutes les donn�es *v
+	 * et efface toutes les donnÃ©es *v
 	 *
 	 * */
 	static void efface2(PElement<T>* & l);
 
 	/**
-	 * recherche si a appartient � l
+	 * recherche si a appartient Ã  l
 	 *
 	 * renvoie un pointeur sur le maillon de l contenant a
-	 * renvoie NULL si a n'appartient pas � l
+	 * renvoie NULL si a n'appartient pas Ã  l
 	 *
 	 * */
 	static  PElement< T > * appartient(const T * a, PElement<T> * l);
 
 	/**
-	 * HYPOTHESES : l'�valuation de condition() produit un bool�en
-	 * condition est suppos�e avoir la signature : bool condition( const T * a)
+	 * HYPOTHESES : l'Ã©valuation de condition() produit un boolÃ©en
+	 * condition est supposÃ©e avoir la signature : bool condition( const T * a)
 	 *
-	 * renvoie un pointeur sur le 1er maillon de l v�rifiant la condition "condition"
-	 * renvoie NULL si aucun maillon ne v�rifie la condition
+	 * renvoie un pointeur sur le 1er maillon de l vÃ©rifiant la condition "condition"
+	 * renvoie NULL si aucun maillon ne vÃ©rifie la condition
 	 *
 	 * */
 	template <class FONCTEUR>
 	static PElement< T > * appartient(PElement<T> * l, const FONCTEUR & condition);
 	/**
-	 * Ins�re * a dans l de telle sorte que l reste ordonn�e par ordre croissant (l'�lement en t�te est le plus petit).
-	 * Ne r�alise pas de copie de *a. En sortie l et a partagent donc physiquement des donn�es.
+	 * InsÃ¨re * a dans l de telle sorte que l reste ordonnÃ©e par ordre croissant (l'Ã©lement en tÃªte est le plus petit).
+	 * Ne rÃ©alise pas de copie de *a. En sortie l et a partagent donc physiquement des donnÃ©es.
 	 *
-	 * A l'instar de la m�thode pr�c�dente (appartient), cette fonction aurait aussi pu �tre �crite avec un argument foncteur
+	 * A l'instar de la mÃ©thode prÃ©cÃ©dente (appartient), cette fonction aurait aussi pu Ãªtre Ã©crite avec un argument foncteur
 	 *
-	 * Donn�es : a (l'�l�ment � ins�rer), l, estPlusPetitOuEgal(la fonction de comparaison))
-	 * R�sultats : l modifi�e par l'insertion
-	 * Hypoth�ses : on suppose l ordonn�e par ordre croissant � l'appel
+	 * DonnÃ©es : a (l'Ã©lÃ©ment Ã  insÃ©rer), l, estPlusPetitOuEgal(la fonction de comparaison))
+	 * RÃ©sultats : l modifiÃ©e par l'insertion
+	 * HypothÃ¨ses : on suppose l ordonnÃ©e par ordre croissant Ã  l'appel
 	 *
 	 * */
 	static void insertionOrdonnee(T * a, PElement<T> * & l, bool(*estPlusPetitOuEgal)(const T * a1, const T * a2));
 
 	/**
-	 * retire la 1�re occurrence de a de l si a est pr�sent dans l, sinon ne fait rien
+	 * retire la 1Ã¨re occurrence de a de l si a est prÃ©sent dans l, sinon ne fait rien
 	 *
-	 * L'�l�ment trouv� n'est pas effac�
+	 * L'Ã©lÃ©ment trouvÃ© n'est pas effacÃ©
 	 *
 	 * La comparaison est faite sur les pointeurs
 	 *
-	 * Donn�es : a, l
-	 * R�sultats : l (�ventuellement modifi�e), par return : true si l'�l�ment a �t� trouv�, false sinon
+	 * DonnÃ©es : a, l
+	 * RÃ©sultats : l (Ã©ventuellement modifiÃ©e), par return : true si l'Ã©lÃ©ment a Ã©tÃ© trouvÃ©, false sinon
 	 * */
 	static bool retire(const T * a, PElement<T> * & l);
 
 
 	/**
-	 * retire l'�l�ment situ� en t�te de l et le renvoie. Le 1er maillon de l est effac�.
+	 * retire l'Ã©lÃ©ment situÃ© en tÃªte de l et le renvoie. Le 1er maillon de l est effacÃ©.
 	 *
-	 * l est donc modifi�e par l'appel. En sortie l compte un �l�ment de moins.
-	 * lance une exception Erreur si l == NULL � l'appel
+	 * l est donc modifiÃ©e par l'appel. En sortie l compte un Ã©lÃ©ment de moins.
+	 * lance une exception Erreur si l == NULL Ã  l'appel
 	 *
 	 * */
 	static T * depiler(PElement<T> * & l);
@@ -170,7 +170,7 @@ ostream& operator <<(ostream & os, const PElement<T> * p) { return os << PElemen
 
 /**
  * suppose que T est munie de la fct :   const String T::ecrit() const
- * Cette m�thode est appel�e pour chaque �l�ment de p. Ainsi, si elle est virtuelle, p peut �tre h�t�rog�ne
+ * Cette mÃ©thode est appelÃ©e pour chaque Ã©lÃ©ment de p. Ainsi, si elle est virtuelle, p peut Ãªtre hÃ©tÃ©rogÃ¨ne
  *
  * */
  //template <class T>
@@ -219,7 +219,7 @@ template <class T>
 
 /**
  *
- * ne recopie pas les donn�es *v. r�alise donc une copie partageant les donn�es v avec l
+ * ne recopie pas les donnÃ©es *v. rÃ©alise donc une copie partageant les donnÃ©es v avec l
  *
  * */
 template <class T>
@@ -233,7 +233,7 @@ template <class T>
 
 /**
  *
- * recopie  toutes les donn�es *v. r�alise donc une copie ne partageant aucune donn�e  avec l
+ * recopie  toutes les donnÃ©es *v. rÃ©alise donc une copie ne partageant aucune donnÃ©e  avec l
  *
  * */
 template <class T>
@@ -247,9 +247,9 @@ template <class T>
 
 /**
  *
- * recopie  toutes les donn�es *v � l'aide de la m�thode v->copie(). r�alise donc une copie ne partageant aucune donn�e  avec l
+ * recopie  toutes les donnÃ©es *v Ã  l'aide de la mÃ©thode v->copie(). rÃ©alise donc une copie ne partageant aucune donnÃ©e  avec l
  *
- * Alors si la classe T poss�de la m�thode virtuelle copie(), l peut �tre h�t�rog�ne. Et la m�thode copie3 produit une copie de cette liste h�t�rog�ne.
+ * Alors si la classe T possÃ¨de la mÃ©thode virtuelle copie(), l peut Ãªtre hÃ©tÃ©rogÃ¨ne. Et la mÃ©thode copie3 produit une copie de cette liste hÃ©tÃ©rogÃ¨ne.
  *
  * */
 template <class T>
@@ -265,7 +265,7 @@ template <class T>
 
 /**
  * efface toute la liste l
- * mais n'efface pas les donn�es *v
+ * mais n'efface pas les donnÃ©es *v
  *
  * */
 template <class T>
@@ -279,7 +279,7 @@ template <class T>
 }
 /**
  * efface toute la liste l
- * et efface toutes les donn�es *v
+ * et efface toutes les donnÃ©es *v
  *
  * */
 template <class T>
@@ -292,10 +292,10 @@ template <class T>
 	}
 }
 /**
- * recherche si a appartient � l
+ * recherche si a appartient Ã  l
  *
  * renvoie un pointeur sur le maillon de l contenant a
- * renvoie NULL si a n'appartient pas � l
+ * renvoie NULL si a n'appartient pas Ã  l
  *
  * */
 template <class T>
@@ -309,11 +309,11 @@ PElement< T > * PElement< T >::appartient(const T * a, PElement<T> * l)
 }
 
 /**
- * HYPOTHESES : l'�valuation de condition() produit un bool�en
- * condition est suppos�e avoir la signature : bool condition( const T * a)
+ * HYPOTHESES : l'Ã©valuation de condition() produit un boolÃ©en
+ * condition est supposÃ©e avoir la signature : bool condition( const T * a)
  *
- * renvoie un pointeur sur le 1er maillon de l v�rifiant la condition "condition"
- * renvoie NULL si aucun maillon ne v�rifie la condition
+ * renvoie un pointeur sur le 1er maillon de l vÃ©rifiant la condition "condition"
+ * renvoie NULL si aucun maillon ne vÃ©rifie la condition
  *
  * */
 template <class T>
@@ -328,14 +328,14 @@ template <class FONCTEUR>
 }
 
 /**
- * Ins�re * a dans l de telle sorte que l reste ordonn�e par ordre croissant (l'�lement en t�te est le plus petit).
- * Ne r�alise pas de copie de *a. En sortie l et a partagent donc physiquement des donn�es.
+ * InsÃ¨re * a dans l de telle sorte que l reste ordonnÃ©e par ordre croissant (l'Ã©lement en tÃªte est le plus petit).
+ * Ne rÃ©alise pas de copie de *a. En sortie l et a partagent donc physiquement des donnÃ©es.
  *
- * A l'instar de la m�thode pr�c�dente (appartient), cette fonction aurait aussi pu �tre �crite avec un argument foncteur
+ * A l'instar de la mÃ©thode prÃ©cÃ©dente (appartient), cette fonction aurait aussi pu Ãªtre Ã©crite avec un argument foncteur
  *
- * Donn�es : a (l'�l�ment � ins�rer), l, estPlusPetitOuEgal(la fonction de comparaison))
- * R�sultats : l modifi�e par l'insertion
- * Hypoth�ses : on suppose l ordonn�e par ordre croissant � l'appel
+ * DonnÃ©es : a (l'Ã©lÃ©ment Ã  insÃ©rer), l, estPlusPetitOuEgal(la fonction de comparaison))
+ * RÃ©sultats : l modifiÃ©e par l'insertion
+ * HypothÃ¨ses : on suppose l ordonnÃ©e par ordre croissant Ã  l'appel
  *
  * */
 template<class T>
@@ -348,14 +348,14 @@ template<class T>
 }
 
 /**
- * retire la 1�re occurrence de a de l si a est pr�sent dans l, sinon ne fait rien
+ * retire la 1Ã¨re occurrence de a de l si a est prÃ©sent dans l, sinon ne fait rien
  *
- * L'�l�ment trouv� n'est pas effac�
+ * L'Ã©lÃ©ment trouvÃ© n'est pas effacÃ©
  *
  * La comparaison est faite sur les pointeurs
  *
- * Donn�es : a, l
- * R�sultats : l (�ventuellement modifi�e), par return : true si l'�l�ment a �t� trouv�, false sinon
+ * DonnÃ©es : a, l
+ * RÃ©sultats : l (Ã©ventuellement modifiÃ©e), par return : true si l'Ã©lÃ©ment a Ã©tÃ© trouvÃ©, false sinon
  * */
 template<class T>
 /*static*/ bool PElement<T>::retire(const T * a, PElement<T> * & l)
@@ -373,16 +373,16 @@ template<class T>
 }
 
 /**
- * retire l'�l�ment situ� en t�te de l et le renvoie. Le 1er maillon de l est effac�.
+ * retire l'Ã©lÃ©ment situÃ© en tÃªte de l et le renvoie. Le 1er maillon de l est effacÃ©.
  *
- * l est donc modifi�e par l'appel. En sortie l compte un �l�ment de moins.
- * lance une exception Erreur si l == NULL � l'appel
+ * l est donc modifiÃ©e par l'appel. En sortie l compte un Ã©lÃ©ment de moins.
+ * lance une exception Erreur si l == NULL Ã  l'appel
  *
  * */
 template <class T>
 /* static */ T * PElement<T>::depiler(PElement<T> * & l)
 {
-	if (!l) throw Erreur("impossible de d�piler une pile vide");
+	if (!l) throw Erreur("impossible de dÃ©piler une pile vide");
 	T * a = l->v;
 	PElement<T> * tete = l;
 
@@ -397,12 +397,12 @@ template <class T>
 
 /**
  *
- * ne recopie pas les donn�es *v. r�alise donc la r�union au sens ensembliste de l1 et l2  partageant les donn�es v avec l1 et l2.
+ * ne recopie pas les donnÃ©es *v. rÃ©alise donc la rÃ©union au sens ensembliste de l1 et l2  partageant les donnÃ©es v avec l1 et l2.
  *
  * Suppose que l1 et l2 sont des ensembles. Elles ne contiennent donc aucun doublon.
  *
- * DONNEES : l1 et l2 (repr�sentant des ensembles)
- * RESULTAT : l1 U l2 au sens ensembliste partageant les donn�es v avec l1 er l2
+ * DONNEES : l1 et l2 (reprÃ©sentant des ensembles)
+ * RESULTAT : l1 U l2 au sens ensembliste partageant les donnÃ©es v avec l1 er l2
  *
  * */
 template <class T>
@@ -421,10 +421,10 @@ PElement<T> * reunion(PElement<T> * l1, PElement<T> * l2)
 
 
 /**
- * partage p en deux listes p et p1 de taille �gale : Laisse dans p les �l�ments de rang impair et place dans p1 les �l�ments de rang pair
+ * partage p en deux listes p et p1 de taille Ã©gale : Laisse dans p les Ã©lÃ©ments de rang impair et place dans p1 les Ã©lÃ©ments de rang pair
  *
  * DONNEES : p
- * RESULTATS : p (modifi�e) et p1
+ * RESULTATS : p (modifiÃ©e) et p1
  *
  * */
 template <class T>
@@ -448,14 +448,14 @@ void partage(PElement<T> * & p, PElement<T> * & p1)
 }
 
 /**
- * r�alise la fusion ordonn�e de p1 et p2 et place le r�sultat dans p1. En sortie p2 est donc vide.
- * Ne cr�e aucun maillon.
+ * rÃ©alise la fusion ordonnÃ©e de p1 et p2 et place le rÃ©sultat dans p1. En sortie p2 est donc vide.
+ * Ne crÃ©e aucun maillon.
  *
- * Suppose que p1 et p2 sont ordonn�es par ordre croissant en entr�e. La liste r�sultante est aussi ordonn�e par ordre croissant.
+ * Suppose que p1 et p2 sont ordonnÃ©es par ordre croissant en entrÃ©e. La liste rÃ©sultante est aussi ordonnÃ©e par ordre croissant.
  *
- * Utilise la fct estPlusPetitOuEgal pour les comparaisons 1 � 1.
+ * Utilise la fct estPlusPetitOuEgal pour les comparaisons 1 Ã  1.
  *
- * On suppose que estPlusPetitOuEgal(a1,a2) renvoie true si a1 <= a2 o� <= est une relation d'ordre sur T et renvoie false si a1 > a2
+ * On suppose que estPlusPetitOuEgal(a1,a2) renvoie true si a1 <= a2 oÃ¹ <= est une relation d'ordre sur T et renvoie false si a1 > a2
  *
  * DONNEES : p1 et p2
  * RESULTATS: P1 et p2
@@ -464,7 +464,7 @@ void partage(PElement<T> * & p, PElement<T> * & p1)
 template <class T>
 void fusion(PElement<T> * & p1, PElement<T> * & p2, bool(*estPlusPetitOuEgal)(const T * a1, const T * a2))
 {
-	if (!p2) return; // p2 est vide, il n'y a rien � faire
+	if (!p2) return; // p2 est vide, il n'y a rien Ã  faire
 
 	if (!p1) // p1 est vide et p2 ne l'est pas
 	{
@@ -472,7 +472,7 @@ void fusion(PElement<T> * & p1, PElement<T> * & p2, bool(*estPlusPetitOuEgal)(co
 		return;
 	}
 
-	// � pr�sent, p1 et p2 sont non vides
+	// Ã  prÃ©sent, p1 et p2 sont non vides
 
 	if (estPlusPetitOuEgal(p1->v, p2->v)) // p1->v <= p2->v
 	{
@@ -494,18 +494,18 @@ void fusion(PElement<T> * & p1, PElement<T> * & p2, bool(*estPlusPetitOuEgal)(co
 
 
 /**
- * trie p par tri r�cursif dichotomique (trifusion)
+ * trie p par tri rÃ©cursif dichotomique (trifusion)
  *
- * ne cr�e pas de nouveau maillon. La liste originale p est modifi�e
+ * ne crÃ©e pas de nouveau maillon. La liste originale p est modifiÃ©e
  *
- * Utilise la fct estPlusPetitOuEgal pour les comparaisons 1 � 1.
+ * Utilise la fct estPlusPetitOuEgal pour les comparaisons 1 Ã  1.
  *
- * range les �l�ments par ordre croissant
+ * range les Ã©lÃ©ments par ordre croissant
  *
- * On suppose que estPlusPetitOuEgal(a1,a2) renvoie true si a1 <= a2 o� <= est une relation d'ordre sur T et renvoie false si a1 > a2
+ * On suppose que estPlusPetitOuEgal(a1,a2) renvoie true si a1 <= a2 oÃ¹ <= est une relation d'ordre sur T et renvoie false si a1 > a2
  *
  * DONNEES : p
- * RESULTATS : p modifi�e
+ * RESULTATS : p modifiÃ©e
  *
  * */
 template <class T>
