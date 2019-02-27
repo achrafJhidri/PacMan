@@ -5,7 +5,7 @@ class DynamicGameElement : public GameElement
 private:
     double speed;
 public:
-    DynamicGameElement(const Sommet<VSommet> &, const sf::Texture &);
+    DynamicGameElement(const Sommet<VSommet> &, const sf::Texture &,double speed );
     virtual ~DynamicGameElement();
 
     double getSpeed() const;

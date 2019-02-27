@@ -24,6 +24,7 @@ public:
 	string nom;
 	Vecteur2D p;		  	// position
 	unsigned int couleur; 	// couleur au format rgba
+	
 
 
 	/**
