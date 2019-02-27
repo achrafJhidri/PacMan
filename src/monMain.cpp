@@ -44,7 +44,7 @@ int main() {
 
 
 
-	a4455 = g1.creeArete(Peinture(Color::Blue.toInteger(), Color::Red.toInteger()), s41, s11);
+	//a4455 = g1.creeArete(Peinture(Color::Blue.toInteger(), Color::Red.toInteger()), s41, s11);
 
 
 
