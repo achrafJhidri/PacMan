@@ -2,7 +2,7 @@
  * Vecteurs2D.h
  *
  *  Created on: 1 juil. 2011
- *      Author: Valérie
+ *      Author: ValÃ©rie
  */
 
 
@@ -32,16 +32,16 @@ public:
 
 	/**
 	 *
-	 * RESULTAT : un vecteur aléatoire x tel que | x - germe | < rayon
+	 * RESULTAT : un vecteur alÃ©atoire x tel que | x - germe | < rayon
 	 *
-	 * suppose qu'un appel à srand a été fait au préalable
+	 * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
 	 *
 	 * */
 	inline static const Vecteur2D random(const Vecteur2D & germe, const double & rayon);
 
 
 	/**
-	 * DONNEES : s respectant le format "(  nombre réel, nombre réel)"
+	 * DONNEES : s respectant le format "(  nombre rÃ©el, nombre rÃ©el)"
 	 *
 	 * */
 	 //inline Vecteur2D(const char * s);
@@ -64,13 +64,13 @@ public:
 
 
 	/**
-	 * crée le vecteur (y,x) à partir du vecteur (x,y)
+	 * crÃ©e le vecteur (y,x) Ã  partir du vecteur (x,y)
 	 * */
 	inline const Vecteur2D swap() const { return Vecteur2D(y, x); }
 
 
 	/**
-	 * déterminant (u1,u2)
+	 * dÃ©terminant (u1,u2)
 	 * */
 	static inline double det(const Vecteur2D & u1, const Vecteur2D & u2);
 
@@ -82,7 +82,7 @@ public:
 	/**
 	 * DONNEE : *this
 	 * RESULTATS : xArrondi, yArrondi
-	 * TACHE : calcule les valeurs arrondies des coordonnées de *this
+	 * TACHE : calcule les valeurs arrondies des coordonnÃ©es de *this
 	 *
 	 * */
 	template <class T>
@@ -91,7 +91,7 @@ public:
 	operator string() const { ostringstream os; os << "( " << x << ", " << y << ")"; return os.str(); }
 
 	/**
-	 * calcule |u|_sup, c-à-d max(|x|,|y|)
+	 * calcule |u|_sup, c-Ã -d max(|x|,|y|)
 	 * */
 	//inline static double normeSup(const Vecteur2D& u) { return max(abs(u.x), abs(u.y)); }
 
@@ -104,17 +104,17 @@ inline ostream & operator << (ostream & os, const Vecteur2D & u) { os << (string
 inline const Vecteur2D operator *(const double & a, const Vecteur2D & u) { return u * a; }
 
 /**
- * calcule |u|_sup, c-à-d max(|x|,|y|)
+ * calcule |u|_sup, c-Ã -d max(|x|,|y|)
  * */
 //inline double normeSup(const Vecteur2D& u) { return Vecteur2D::normeSup(u); }
 
-//----------------------------- implémentation des fonctions inline ----------------------------------
+//----------------------------- implÃ©mentation des fonctions inline ----------------------------------
 
 inline  Vecteur2D::
 Vecteur2D(const double & x, const double & y) : x(x), y(y) {}
 
 /**
- * DONNEES : s respectant le format "(  nombre réel, nombre réel)"
+ * DONNEES : s respectant le format "(  nombre rÃ©el, nombre rÃ©el)"
  *
  * */
  /*inline*/ /*Vecteur2D::Vecteur2D(const char * s)
@@ -124,9 +124,9 @@ Vecteur2D(const double & x, const double & y) : x(x), y(y) {}
 
  /**
   *
-  * RESULTAT : un vecteur aléatoire x tel que | x - germe | < rayon
+  * RESULTAT : un vecteur alÃ©atoire x tel que | x - germe | < rayon
   *
-  * suppose qu'un appel à srand a été fait au préalable
+  * suppose qu'un appel Ã  srand a Ã©tÃ© fait au prÃ©alable
   *
   * */
 inline /*static*/ const Vecteur2D Vecteur2D::random(const Vecteur2D & germe, const double & rayon)
@@ -168,7 +168,7 @@ inline double Vecteur2D::operator * (const Vecteur2D & u) const
 
 /**
  *
- * déterminant(u1,u2)
+ * dÃ©terminant(u1,u2)
  *
  * */
 /*static*/ inline double Vecteur2D::det(const Vecteur2D & u1, const Vecteur2D & u2) { return u1.x * u2.y - u1.y * u2.x; }
@@ -188,9 +188,9 @@ inline const Vecteur2D & Vecteur2D::operator *=(const double & a)
 }
 
 /**
- * Calcule en rad dans l'intervalle ]-PI,PI] la mesure principale de l'angle orienté v1 -> v2
+ * Calcule en rad dans l'intervalle ]-PI,PI] la mesure principale de l'angle orientÃ© v1 -> v2
  *
- * Donne des résultats inexploitables si v1 = 0 ou si v2 = 0
+ * Donne des rÃ©sultats inexploitables si v1 = 0 ou si v2 = 0
  *
  * */
 inline double angleOriente(const Vecteur2D & v1, const Vecteur2D & v2)

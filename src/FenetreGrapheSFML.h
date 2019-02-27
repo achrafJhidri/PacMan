@@ -1,3 +1,4 @@
+
 #ifndef FENETREGRAPHESFML_H
 #define FENETREGRAPHESFML_H
 
@@ -8,6 +9,7 @@
 #include<SFML/GRAPHICS/ConvexShape.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
+
 
 #include "Sommet.h"
 #include  "Arete.h"
@@ -109,11 +111,14 @@ return true;
 
 /**
 Prend en charge le dessin d'un graphe
+
 Prend en charge le passage de coordonn�es monde ---> �cran
+
 */
 class FenetreGrapheSFML
 {
 public:
+<<<<<<< HEAD
 RenderWindow fenetre;
 const Font & font;
 

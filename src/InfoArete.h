@@ -22,7 +22,7 @@ inline InfoArete::operator string() const
 {
 	ostringstream oss;
 
-	oss << "coût = " << cout1 << ", " << couleur;
+	oss << "coÃ»t = " << cout1 << ", " << couleur;
 
 	return oss.str();
 }

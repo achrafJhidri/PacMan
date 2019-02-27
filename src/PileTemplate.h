@@ -3,8 +3,8 @@
 
 using namespace std;
 /**
-Liste générique de type LIFO
-La capacité max de la pile est de L éléments
+Liste gÃ©nÃ©rique de type LIFO
+La capacitÃ© max de la pile est de L Ã©lÃ©ments
 */
 template <class T, int L>
 class Pile
@@ -14,37 +14,37 @@ class Pile
 	// -1 <= d <= L-1. d == -1 <===> la pile est vide. 
 	// d == L-1 <===> la pile est pleine
 
-	T p[L]; // Les éléments utilisés sont p[0], p[1], ..., p[d]
+	T p[L]; // Les Ã©lÃ©ments utilisÃ©s sont p[0], p[1], ..., p[d]
 
 public:
 
 	/**
-	crée une pile vide par défaut
+	crÃ©e une pile vide par dÃ©faut
 	*/
 	Pile() : d(-1) {}
 
 	/**
-	crée une pile contenant un unique élément
+	crÃ©e une pile contenant un unique Ã©lÃ©ment
 	*/
 	Pile(const T & v);
 
 	bool estVide() const { return d == -1; }
 
 	/**
-	retire l'élément de tête. Erreur si la pile est vide.
+	retire l'Ã©lÃ©ment de tÃªte. Erreur si la pile est vide.
 	*/
 	const T depiler() { return p[d--]; }
 
 	/**
-	insère v en tête de l. Erreur si la pile est pleine
+	insÃ¨re v en tÃªte de l. Erreur si la pile est pleine
 	*/
 	void empiler(const T & v) { p[++d] = v; }
 
 	operator string () const;
 
 	/**
-	Exemple de méthode membre template dans une classe
-	Ici elle sert à assurer la compatibilité avec une pile de taille différente
+	Exemple de mÃ©thode membre template dans une classe
+	Ici elle sert Ã  assurer la compatibilitÃ© avec une pile de taille diffÃ©rente
 	*/
 	template <int L1>
 	static const Pile<T, L> copie(const Pile<T, L1> & pile);
@@ -78,8 +78,8 @@ ostream & operator << (ostream & o, const Pile<T, L> & pile)
 
 
 /**
-Exemple de méthode membre template dans une classe
-Ici elle sert à asurer la compatibilité avec une pile de taille différente
+Exemple de mÃ©thode membre template dans une classe
+Ici elle sert Ã  asurer la compatibilitÃ© avec une pile de taille diffÃ©rente
 */
 template <class T, int L>
 template <int L1>

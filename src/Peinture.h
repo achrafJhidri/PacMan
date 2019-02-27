@@ -6,16 +6,16 @@ using namespace std;
 
 
 /**
-Peinture  à 2 couches : informations associées à une arête pour la dessiner avec des dégradés de couleur
-sert à tester l'opération "dessiner un graphe"
+Peinture  Ã  2 couches : informations associÃ©es Ã  une arÃªte pour la dessiner avec des dÃ©gradÃ©s de couleur
+sert Ã  tester l'opÃ©ration "dessiner un graphe"
 
 */
 class Peinture
 {
 public:
 	unsigned int fond;		// couleur du fond (ou sous-couche de peinture)
-	unsigned int devant;	// couleur masquant  la couleur du fond. ou dernière couche de peinture.
-							// Elle masque pas du tout, partiellement ou entièrement la couleur du fond
+	unsigned int devant;	// couleur masquant  la couleur du fond. ou derniÃ¨re couche de peinture.
+							// Elle masque pas du tout, partiellement ou entiÃ¨rement la couleur du fond
 	Peinture(const unsigned int couleurFond, const unsigned int couleurDevant) : fond(couleurFond), devant(couleurDevant) {}
 
 	virtual operator string () const { ostringstream o; o << "( " << fond << ", " << devant << ")"; return o.str(); }

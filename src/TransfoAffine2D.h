@@ -16,7 +16,7 @@ inline const Vecteur2D divisionSpeciale(const Vecteur2D & v1, const Vecteur2D & 
 
 /**
 
-représente la transformation v |---> M*v + B
+reprÃ©sente la transformation v |---> M*v + B
 */
 class TransfoAffine2D
 {
@@ -25,7 +25,7 @@ public:
 	Vecteur2D B;
 
 	/**
-	par défaut la transformation construite est l'application identité : v |---> v
+	par dÃ©faut la transformation construite est l'application identitÃ© : v |---> v
 	*/
 	TransfoAffine2D(const Matrice22 & M = Matrice22(), const Vecteur2D & B = Vecteur2D()) : M(M), B(B) {}
 	const Vecteur2D applique(const Vecteur2D & v) const { return M * v + B; }
@@ -34,24 +34,24 @@ public:
 	/**
 	 * HYPOTHESES :
 	 * Notons
-	 * On suppose que {coinBG1, coinHD1} représente la diagonale d'un rectangle R1. ce sont respectivement les coins bas gauche et haut droit de R1
-	 * R1 est donné dans un certain repère Rep1 (O1,i1,j1),
-	 * R1 n'est pas dégénéré
-	 * On suppose que {coinBG2, coinHD2} représente la diagonale d'un rectangle R2. ce sont respectivement les coins bas gauche et haut droit de R2
-	 * R2 est donné dans un certain repère Rep2 (O2,i2,j2)
-	 * R2 n'est pas dégénéré
+	 * On suppose que {coinBG1, coinHD1} reprÃ©sente la diagonale d'un rectangle R1. ce sont respectivement les coins bas gauche et haut droit de R1
+	 * R1 est donnÃ© dans un certain repÃ¨re Rep1 (O1,i1,j1),
+	 * R1 n'est pas dÃ©gÃ©nÃ©rÃ©
+	 * On suppose que {coinBG2, coinHD2} reprÃ©sente la diagonale d'un rectangle R2. ce sont respectivement les coins bas gauche et haut droit de R2
+	 * R2 est donnÃ© dans un certain repÃ¨re Rep2 (O2,i2,j2)
+	 * R2 n'est pas dÃ©gÃ©nÃ©rÃ©
 	 *
-	 * On suppose qu'on peut transformer  R1 en  R2 sans rotation, c'est-à-dire uniquement par translation et/ou étirement sur l'axe x ou sur l'axe y
+	 * On suppose qu'on peut transformer  R1 en  R2 sans rotation, c'est-Ã -dire uniquement par translation et/ou Ã©tirement sur l'axe x ou sur l'axe y
 	 *
-	 * Autrement dit, on suppose que i1 et i2 sont colinéaires et j1 et j2 sont aussi colinéaires
+	 * Autrement dit, on suppose que i1 et i2 sont colinÃ©aires et j1 et j2 sont aussi colinÃ©aires
 	 *
 	 *
 	 * TACHE :
 	 *
-	 * Le but est de calculer le changement de repère t qui transforme R1 en R2
+	 * Le but est de calculer le changement de repÃ¨re t qui transforme R1 en R2
 	  *
 	 * construit donc la transfo affine 2D t tel que :
-	 * 1) t(R1) ne soit pas déformé par rapport à R1
+	 * 1) t(R1) ne soit pas dÃ©formÃ© par rapport Ã  R1
 	 * 2) t(R1) soit inclus dans R2 et t(R1) le plus grand possible
 	 * 3) t(coinBG1) le plus proche possible de coinBG2
 	 * 4) t(coinHD1) le plus proche possible de coinHDD2
@@ -65,7 +65,7 @@ public:
 	 *
 	 * avec |Eps1|=|Eps2|= 1 et lambda > 0
 	 *
-	 * On construit t telle que que t(C1) = C2 où Ci est le centre respectif de Ri pour i = 1,2
+	 * On construit t telle que que t(C1) = C2 oÃ¹ Ci est le centre respectif de Ri pour i = 1,2
 	 *
 	 *
 	 * DONNEES : coinBG1, coinHD1, coinBG2, coinHD2
@@ -101,7 +101,7 @@ public:
 
 		Vecteur2D B = C2 - M * C1;
 
-		//------------- c'est fini, on crée t -------------------
+		//------------- c'est fini, on crÃ©e t -------------------
 
 		return TransfoAffine2D(M, B);
 	}

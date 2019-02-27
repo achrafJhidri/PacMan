@@ -10,18 +10,18 @@ using namespace std;
 
 /**
 
-Sommet d'un graphe en général
+Sommet d'un graphe en gÃ©nÃ©ral
 
-v est l'information associée au sommet : elle dépend de l'application du graphe
+v est l'information associÃ©e au sommet : elle dÃ©pend de l'application du graphe
 */
 template <class T>
 class Sommet : public GElement<T>
 {
 public:
-	int degre;		// Rappel : degré = nombre d'arêtes adjacentes à ce sommet
+	int degre;		// Rappel : degrÃ© = nombre d'arÃªtes adjacentes Ã  ce sommet
 	/**
 
-	Un sommet est toujours créé isolé (c'est-à-dire qu'il n'y a pas d'arête adjacente à ce sommet)
+	Un sommet est toujours crÃ©Ã© isolÃ© (c'est-Ã -dire qu'il n'y a pas d'arÃªte adjacente Ã  ce sommet)
 	*/
 	Sommet(const int clef, const T & v) :GElement<T>(clef, v), degre(0) {}
 
@@ -36,7 +36,7 @@ Sommet<T>::operator string () const
 
 	oss << "Sommet(" << endl;
 	oss << GElement<T>::operator string() << endl;
-	oss << "degré = " << degre << endl;
+	oss << "degrÃ© = " << degre << endl;
 	oss << ")";
 	return oss.str();
 }

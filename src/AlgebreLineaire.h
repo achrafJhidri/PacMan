@@ -79,7 +79,7 @@ inline bool operator != (const T & u, const T & v)
 }
 
 /*
- * Définit un couple de valeurs où les 2 valeurs ne sont pas forcément de même nature
+ * DÃ©finit un couple de valeurs oÃ¹ les 2 valeurs ne sont pas forcÃ©ment de mÃªme nature
  *
  * */
 template < class S, class T>

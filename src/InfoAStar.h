@@ -31,9 +31,9 @@ public:
 		 if (pere)
 			 oss << pere->clef;
 		 else
-			 oss << "non définie";
+			 oss << "non dÃ©finie";
 
-		 oss << ", état = " << ETATS[etat] << ", coût = " << c << ", h = " << h << ", g = " << g;
+		 oss << ", Ã©tat = " << ETATS[etat] << ", coÃ»t = " << c << ", h = " << h << ", g = " << g;
 
 		 return oss.str();
 			 

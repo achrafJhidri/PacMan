@@ -21,7 +21,7 @@ public:
 		const Vecteur2D& ligneBas) : ligneHaut(ligneHaut), ligneBas(ligneBas) {}
 
 	/**
-	matrice identité par défaut
+	matrice identitÃ© par dÃ©faut
 
 	*/
 	explicit Matrice22(const double & a00 = 1, const double & a01 = 0,
@@ -32,7 +32,7 @@ public:
 	static const Matrice22 creeMatriceDiagonale(const double & a00, const double & a11) { return Matrice22(a00, 0, 0, a11); }
 
 	/**
-	alfa : exprimé en radians
+	alfa : exprimÃ© en radians
 
 	*/
 	static const Matrice22 creeRotation(const double & alfa)
