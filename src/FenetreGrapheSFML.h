@@ -4,7 +4,6 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/VertexArray.hpp>
-//#include <SFML/Graphics/Vertex.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/ConvexShape.hpp>
 #include <SFML/Graphics/Font.hpp>
@@ -15,8 +14,7 @@
 #include "VSommet.h"
 #include "Arete.h"
 #include "InfosGrapheDessin.h"
-//#include <InfoSommet.h>
-//#include <InfoArete.h>
+
 #include "TransfoAffine2D.h"
 #include "Peinture.h"
 
@@ -71,7 +69,7 @@ return true;
 d�but et fin sont en coordonn�es monde
 */
 inline bool dessineSegment( RenderWindow & fenetre, const TransfoAffine2D & t, const unsigned int couleur,
-						const Vecteur2D & debut, const Vecteur2D & fin, const unsigned int epaisseurTraitPixels = 2)
+						const Vecteur2D & debut, const Vecteur2D & fin, const unsigned int epaisseurTraitPixels = 10)
 {
 // on va dessiner un rectangle tr�s fin pour repr�senter l'ar�te
 
