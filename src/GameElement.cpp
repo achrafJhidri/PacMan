@@ -1,5 +1,10 @@
 #include "GameElement.hpp"
 
+GameElement::GameElement(const Sommet<VSommet> &position,
+	    const sf::Texture &texture)
+    : position(position), texture(texture)
+{};
+
 double GameElement::getX() const {
     return position.v.p.x;
 }
@@ -16,7 +21,7 @@ void GameElement::setY(double y) {
     position.v.p.y = y;
 }
 
-sf::Texture &GameElement::getTexture() {
+sf::Texture& GameElement::getTexture() {
     return texture;
 }
 
@@ -32,7 +37,7 @@ void GameElement::setOrientation(Orientation orientation) {
     this->orientation = orientation;
 }
 
-Sommet<VSommet> GameElement::getPosition() {
+Sommet<VSommet>& GameElement::getPosition() {
     return position;
 }
 

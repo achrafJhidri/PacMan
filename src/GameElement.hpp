@@ -21,10 +21,7 @@ private:
     Orientation orientation = Orientation::WEST;
 
 public:
-    GameElement(const Sommet<VSommet> &position,
-                const sf::Texture &texture)
-	: position(position), texture(texture)
-    {};
+    GameElement(const Sommet<VSommet> &, const sf::Texture &);
     virtual ~GameElement();
 
     double getX() const;
@@ -32,12 +29,12 @@ public:
     void setX(double);
     void setY(double);
 
-    sf::Texture &getTexture();
+    sf::Texture& getTexture();
     void setTexture(const sf::Texture &);
 
     Orientation getOrientation() const;
     void setOrientation(Orientation);
 
-    Sommet<VSommet> getPosition();
+    Sommet<VSommet>& getPosition();
     void setPosition(Sommet<VSommet> const&);
 };
