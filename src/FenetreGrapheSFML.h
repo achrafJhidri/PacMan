@@ -118,7 +118,6 @@ Prend en charge le passage de coordonn�es monde ---> �cran
 class FenetreGrapheSFML
 {
 public:
-<<<<<<< HEAD
 RenderWindow fenetre;
 const Font & font;
 
