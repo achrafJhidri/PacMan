@@ -1,7 +1,7 @@
 #ifndef INFOSGRAPHEDESSIN_H_INCLUDED
 #define INFOSGRAPHEDESSIN_H_INCLUDED
 
-#include <SFML\Graphics\Color.hpp>
+#include <SFML/Graphics/Color.hpp>
 #include <iostream>
 #include <sstream>
 #include <string>
