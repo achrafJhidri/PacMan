@@ -6,18 +6,18 @@
 class Ghost : public DynamicGameElement {
 
     private : 
-    bool estOffensif  ;
+    bool offensif  ;
     Ghost(const Sommet<VSommet> & s, const sf::Texture & t ,double speed = 3,bool offensif=true );
 
     ~Ghost();
 
     bool estOffensif() const ;
-    void offensif(bool etat = true );
+    void aPeur(bool etat = false  );
+
 
     
-    
 
 
 
 
-}
+};
