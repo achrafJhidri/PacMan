@@ -1,7 +1,7 @@
 #include "AnimatedSprite.hpp"
 
 
-
+/*
 AnimatedSprite::AnimatedSprite(const sf::Texture & textureSheet,int largeur,int hauteur,int nbTextures)
     :Sprite(),it(cadres.begin())
 {
@@ -9,12 +9,12 @@ AnimatedSprite::AnimatedSprite(const sf::Texture & textureSheet,int largeur,int 
         cadres.push_back(sf::IntRect(i*largeur,0,i*largeur+largeur,hauteur));
     setSprite(textureSheet,sf::IntRect(*it));
 
-}
+}*/
 
-AnimatedSprite::~AnimatedSprite(){};
+//AnimatedSprite::~AnimatedSprite(){};
 // faut petre rajouter un parametre en entré Orientaion (l'enum LEFT.....)
 // comme ça on sais si on doit faire une rotation de la texture
-void AnimatedSprite::update(){
+/*void AnimatedSprite::update(){
     sf::Clock clock;
     if ( clock.getElapsedTime().asSeconds() > 0.5f )
         {
@@ -25,4 +25,4 @@ void AnimatedSprite::update(){
 
             setSprite.setTextureRect(*it);
         }
-}
+}*/

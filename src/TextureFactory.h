@@ -16,12 +16,12 @@ private:
 public:
 	TextureFactory()
 	{
-		if (!pacman.loadFromFile("pacman.jpg"))
-			cout << "pas reussi a charger correcteoemnt" << endl;
-		pomme.loadFromFile("pomme.png");
-		redFantome.loadFromFile("redfantome.jpg");
-		yellowFantome.loadFromFile("yellowfantome.jpg");
-		blueFantome.loadFromFile("bluefantome.jpg");
+		pacman.loadFromFile("src/pacman.jpg");
+			
+		pomme.loadFromFile("src/pomme.png");
+		redFantome.loadFromFile("src/redfantome.jpg");
+		yellowFantome.loadFromFile("src/yellowfantome.jpg");
+		blueFantome.loadFromFile("src/bluefantome.jpg");
 		//piece.loadFromFile("piece.jpg");
 	}
 public:

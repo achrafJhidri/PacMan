@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 #include "TextureFactory.h"
+
+#include "AnimatedSprite.hpp"
 using namespace std;
 using namespace sf;
 
@@ -22,9 +24,14 @@ int main() {
     unsigned int magenta = Color::Magenta.toInteger();
 
     TextureFactory  usine;
+#pragma region testAnimatedSprite
+	AnimatedSprite a(usine.getTextureRedFantome(),16,16,1);
+	a.setPosition(40,100);
+	a.setOrigin(a.getOrigin().x+8,a.getOrigin().y+8);
 	
-    Sprite sprite ;
-    sprite.setTexture(usine.getTextureFantome());
+
+#pragma endregion testAnimatedSprite
+	
 
 #pragma region gestionGraphe
     Graphe<Peinture, VSommet> g1; // creation a vide
@@ -169,8 +176,23 @@ int main() {
             if (event.type == event.KeyPressed) {
                 if (event.key.code == Keyboard::Up)
                 {
-                    PElement <Arete<Peinture, VSommet>> * lA;
-                    for (lA = g1.lAretes; lA; lA = lA->s) lA->v->v.devant -= 50;
+					a.move(0,-5);
+					a.setRotation(-180);
+                }
+				if (event.key.code == Keyboard::Down)
+                {
+					a.move(0,5);
+					a.setRotation(0);
+                }
+				if (event.key.code == Keyboard::Left)
+                {
+					a.move(-5,0);
+					a.setRotation(90);
+                }
+				if (event.key.code == Keyboard::Right)
+                {
+					a.move(5,0);
+					a.setRotation(-90);
                 }
             }
         }
@@ -178,7 +200,9 @@ int main() {
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
-	f.fenetre.draw(sprite);
+		f.fenetre.draw(a);
+		
+
         f.fenetre.display();
     }
 #pragma endregion FentetreMainLoop
