@@ -1,16 +1,48 @@
-#include "TextureFactory.h"
+#include"TextureFactory.h"
 
 
-/*
-static TextureFactory * textureFactory = NULL ;
 
-static * TextureFactory TextureFactory::getInstance() ;
+
+//TextureFactory * TextureFactory::getInstance()
+//{
+//	if (textureFactory == NULL)
+//		textureFactory =new TextureFactory();
+//	
+//		return textureFactory;
+//}
+
+
+
+Texture & TextureFactory::getTexturePacman() 
 {
-		if (textureFactory == NULL)
-			textureFactory =new TextureFactory();
-		
-			return textureFactory;
+	
+		return pacman;
+
 }
-*/
+Texture & TextureFactory::getTextureRedFantome()
+{
+
+	return redFantome;
+
+}
 
 
+Texture & TextureFactory::getTextureYellowFantome() 
+{
+	return yellowFantome;
+
+}
+Texture & TextureFactory::getTextureBlueFantome()
+{
+	return blueFantome;
+
+}
+
+Texture & TextureFactory::getTexturePomme() 
+{
+	return pomme;
+}
+Texture & TextureFactory::getTexturePiece()
+{
+	return piece;
+}

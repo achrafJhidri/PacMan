@@ -1,5 +1,5 @@
 #include "GameElement.hpp"
-
+#include "SFML/Graphics.hpp"
 class DynamicGameElement : public GameElement
 {
 private:
@@ -10,4 +10,5 @@ public:
 
     double getSpeed() const;
     void setSpeed(double);
+    void move(const & Vector2f v);
 };

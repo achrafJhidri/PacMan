@@ -7,30 +7,32 @@ class TextureFactory
 {
 private:
 	Texture pacman;
-	Texture fantome;
+	Texture redFantome;
+	Texture yellowFantome;
+	Texture blueFantome;
 	Texture pomme;
 	Texture piece;
 	//static TextureFactory * textureFactory;
 public:
 	TextureFactory()
 	{
-		if (!pacman.loadFromFile("src/pacman.jpg"))
-			cout << "pas reussi a charger pacman" << endl;
-		if (!pomme.loadFromFile("src/pacman.jpg"))
-			cout << "pas reussi a charger la pomme" << endl;
-		if (!fantome.loadFromFile("src/pacman.jpg"))
-			cout << "pas reussi a charger le fantome" << endl;
-		if (!piece.loadFromFile("src/pacman.jpg"))
-			cout << "pas reussi a charger la piece" << endl;
+		if (!pacman.loadFromFile("pacman.jpg"))
+			cout << "pas reussi a charger correcteoemnt" << endl;
+		pomme.loadFromFile("pomme.png");
+		redFantome.loadFromFile("redfantome.jpg");
+		yellowFantome.loadFromFile("yellowfantome.jpg");
+		blueFantome.loadFromFile("bluefantome.jpg");
+		//piece.loadFromFile("piece.jpg");
 	}
 public:
 
 	//static TextureFactory * getInstance();
-	
-	Texture & getTexturePacman(){return pacman;};
-	Texture&  getTextureFantome(){return fantome;};
-	Texture&  getTexturePomme(){return pomme;};
-	Texture& getTexturePiece(){return piece;};
+	Texture & getTexturePacman();
+	Texture&  getTextureRedFantome();
+	Texture &getTextureYellowFantome();
+	Texture&  getTextureBlueFantome();
+	Texture&  getTexturePomme();
+	Texture& getTexturePiece();
 
 
 
