@@ -3,27 +3,17 @@
 GameElement::GameElement(const Sommet<VSommet> &position,
 	    const sf::Texture &texture)
     : position(position), texture(texture)
-{};
+{}
 
-double GameElement::getX() const {
-    return position.v.p.x;
-}
+GameElement::~GameElement() {}
 
-double GameElement::getY() const {
-    return position.v.p.y;
-}
+double GameElement::getX() const { return position.v.p.x; }
+double GameElement::getY() const {return position.v.p.y;}
 
-void GameElement::setX(double x) {
-    position.v.p.x = x;
-}
+void GameElement::setX(double x) {position.v.p.x = x;}
+void GameElement::setY(double y) {position.v.p.y = y;}
 
-void GameElement::setY(double y) {
-    position.v.p.y = y;
-}
-
-sf::Texture& GameElement::getTexture() {
-    return texture;
-}
+sf::Texture& GameElement::getTexture() {return texture;}
 
 void GameElement::setTexture(const sf::Texture &t) {
     texture = t;
@@ -37,10 +27,10 @@ void GameElement::setOrientation(Orientation orientation) {
     this->orientation = orientation;
 }
 
-Sommet<VSommet>& GameElement::getPosition() {
+Sommet<VSommet>& GameElement::getSommet() {
     return position;
 }
 
-void GameElement::setPosition(Sommet<VSommet> const &pos) {
+void GameElement::setSommet(Sommet<VSommet> const &pos) {
     position = pos;
 }

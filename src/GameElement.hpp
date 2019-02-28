@@ -35,6 +35,6 @@ public:
     Orientation getOrientation() const;
     void setOrientation(Orientation);
 
-    Sommet<VSommet>& getPosition();
-    void setPosition(Sommet<VSommet> const&);
+    Sommet<VSommet>& getSommet();
+    void setSommet(Sommet<VSommet> const&);
 };
