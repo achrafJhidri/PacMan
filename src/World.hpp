@@ -4,24 +4,19 @@
 #include "Graphe.h"
 #include "Sommet.h"
 #include "Arete.h"
-#include "VSommet"
+#include "VSommet.h"
 
 class World
 {
 private:
     // type PacMan ou Dynamic.... ? 
-    DynamicGameElement hero; 
+    DynamicGameElement *hero; 
     DynamicGameElement *ghosts;
     // graphe <Peinture,VSommet>
     
 public:
-    World(){
-    
-    };
-    virtual ~World(){
-        delete ghosts ;
-
-    };
+    World();
+    virtual ~World();
 
     DynamicGameElement const& getHero();
     DynamicGameElement* const& getGhosts();

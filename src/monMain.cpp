@@ -21,10 +21,10 @@ int main() {
     FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(300, 0), 760, 800,font);
     unsigned int magenta = Color::Magenta.toInteger();
 
-	 TextureFactory  usine ;
+    TextureFactory  usine;
 	
-	Sprite sprite ;
-	sprite.setTexture(usine.getTextureFantome());
+    Sprite sprite ;
+    sprite.setTexture(usine.getTextureFantome());
 
 #pragma region gestionGraphe
     Graphe<Peinture, VSommet> g1; // creation a vide
@@ -41,7 +41,7 @@ int main() {
     s41 = g1.creeSommet(VSommet("41", Vecteur2D(140, 1), magenta));
     s51 = g1.creeSommet(VSommet("51", Vecteur2D(180, 1), magenta));
 	
-	s12 = g1.creeSommet(VSommet("12", Vecteur2D(20, 40), magenta));
+    s12 = g1.creeSommet(VSommet("12", Vecteur2D(20, 40), magenta));
     s22 = g1.creeSommet(VSommet("22", Vecteur2D(60, 40), magenta));
     s32 = g1.creeSommet(VSommet("32", Vecteur2D(100, 40), magenta));
     s42 = g1.creeSommet(VSommet("42", Vecteur2D(140, 40), magenta));
@@ -178,7 +178,7 @@ int main() {
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
-		f.fenetre.draw(sprite);
+	f.fenetre.draw(sprite);
         f.fenetre.display();
     }
 #pragma endregion FentetreMainLoop
