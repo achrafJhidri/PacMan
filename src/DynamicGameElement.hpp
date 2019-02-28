@@ -10,5 +10,7 @@ public:
 
     double getSpeed() const;
     void setSpeed(double);
+
     void move(const  sf::Vector2f  & );
+
 };
