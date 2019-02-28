@@ -18,5 +18,5 @@ cleanbuild:
 
 winbuild:
 	@mkdir -p build
-	@cp c:/msys64/mingw64/bin build
+	@cp -r c:/msys64/mingw64/bin build
 	make -C . build
