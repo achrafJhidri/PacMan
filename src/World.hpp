@@ -12,7 +12,7 @@ private:
     // type PacMan ou Dynamic.... ? 
     DynamicGameElement *hero; 
     DynamicGameElement *ghosts;
-    // graphe <Peinture,VSommet>
+    // graphe <S,T>
     
 public:
     World();

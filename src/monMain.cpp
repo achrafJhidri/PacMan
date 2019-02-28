@@ -15,7 +15,7 @@ using namespace sf;
 
 int main() {
 
-    string titre = "The Seven Kingdoms" ;
+    string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("Action Man Bold.ttf");
     FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(300, 0), 760, 800,font);
