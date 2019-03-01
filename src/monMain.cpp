@@ -22,7 +22,6 @@ int main() {
     font.loadFromFile("Action Man Bold.ttf");
     FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
     unsigned int magenta = Color::Magenta.toInteger();
-	//f.fenetre.setFramerateLimit(60);
     TextureFactory  usine;
 #pragma region testAnimatedSprite
 	AnimatedSprite a(usine.getTexturePacman(),16,16,6);

@@ -146,6 +146,7 @@ fenetre.clear(Color(fondCarte));
 // calcul de la transformation affine - changement de rep�re : monde ---> �cran
 Vecteur2D coinEcranBG(0,hauteur), coinEcranHD(largeur,0);
 t = TransfoAffine2D::passageMondeEcran(coinBG,coinHD,coinEcranBG,coinEcranHD);
+fenetre.setFramerateLimit(30);
 }
 /**
 Dessine un sommet du graphe. Exemples :  nom, couleur, informations associ�es, etc.
