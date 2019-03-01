@@ -14,6 +14,7 @@ AnimatedSprite::AnimatedSprite(const sf::Texture & textureSheet,int largeur,int 
     it =cadres.begin();
     setTexture(textureSheet);
     setTextureRect(*it);
+    setOrigin(largeur/2,hauteur/2);
  }
 AnimatedSprite::~AnimatedSprite(){};
 // faut petre rajouter un parametre en entré Orientaion (l'enum LEFT.....)
@@ -21,7 +22,7 @@ AnimatedSprite::~AnimatedSprite(){};
 void AnimatedSprite::update(){
     
     sf::Clock clock;
-    if ( clock.getElapsedTime().asMilliseconds() < 0.05f )
+    if ( clock.getElapsedTime().asSeconds() < 1.0f )
         {
             if (it == cadres.end() )
                 it=cadres.begin();
@@ -30,5 +31,6 @@ void AnimatedSprite::update(){
 
            setTextureRect(*it);
         }
+  //  clock.restart();
         
 }
