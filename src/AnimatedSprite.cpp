@@ -11,7 +11,7 @@ AnimatedSprite::AnimatedSprite(const sf::Texture & textureSheet,int largeur,int 
            cadres.push_back(sf::IntRect(i*largeur,0,largeur,hauteur));
          
       }
-    it =cadres.begin();
+    it = cadres.begin();
     setTexture(textureSheet);
     setTextureRect(*it);
     setOrigin(largeur/2,hauteur/2);
@@ -19,18 +19,14 @@ AnimatedSprite::AnimatedSprite(const sf::Texture & textureSheet,int largeur,int 
 AnimatedSprite::~AnimatedSprite(){};
 // faut petre rajouter un parametre en entré Orientaion (l'enum LEFT.....)
 // comme ça on sais si on doit faire une rotation de la texture
-void AnimatedSprite::update(){
-    
-    sf::Clock clock;
-    if ( clock.getElapsedTime().asSeconds() < 1.0f )
-        {
-            if (it == cadres.end() )
-                it=cadres.begin();
-            else 
-                it++;
 
-           setTextureRect(*it);
-        }
-  //  clock.restart();
-        
+void AnimatedSprite::update() {
+    if (clock.getElapsedTime().asMilliseconds() > 125.f) {
+	if (it == cadres.end())
+	    it = cadres.begin();
+
+	setTextureRect(*it++);
+	clock.restart();
+    }
+
 }

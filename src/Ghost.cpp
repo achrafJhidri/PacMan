@@ -3,8 +3,8 @@
 
 
 
-Ghost::Ghost(const Sommet<VSommet> & s, const sf::Texture & t ,double speed ,bool offensif  )
-:DynamicGameElement(s,t,speed),offensif(offensif)
+Ghost::Ghost(const Sommet<VSommet> & s, const sf::Texture & t ,double speed ,bool offensif,int largeur,int hauteur,int nbTextures )
+:DynamicGameElement(s,t,speed,largeur,hauteur,nbTextures),offensif(offensif)
 {
 
 }

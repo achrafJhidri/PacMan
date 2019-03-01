@@ -4,6 +4,7 @@
 #include "Sommet.h"
 
 #include <SFML/Graphics.hpp>
+#include "AnimatedSprite.hpp"
 
 enum class Orientation {
     // Basic
@@ -19,9 +20,10 @@ private:
     Sommet<VSommet> position;
     sf::Texture texture;
     Orientation orientation = Orientation::WEST;
+    AnimatedSprite sprite;
 
 public:
-    GameElement(const Sommet<VSommet> &, const sf::Texture &);
+    GameElement(const Sommet<VSommet> &, const sf::Texture &,int largeur,int hauteur,int nbTextures);
     virtual ~GameElement();
 
     double getX() const;

@@ -7,7 +7,7 @@ class Ghost : public DynamicGameElement {
 
     private : 
     bool offensif  ;
-    Ghost(const Sommet<VSommet> & s, const sf::Texture & t ,double speed = 3,bool offensif=true );
+    Ghost(const Sommet<VSommet> & s, const sf::Texture & t ,double speed ,bool offensif,int largeur,int hauteur,int nbTextures);
 
     ~Ghost();
 

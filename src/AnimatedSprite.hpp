@@ -6,15 +6,12 @@ using namespace std ;
 
 // a faire
 class AnimatedSprite : public sf::Sprite {
-
-    list <sf::IntRect> cadres ;
-    list <sf::IntRect>::iterator it ;
-  
+    sf::Clock clock;
+    list<sf::IntRect> cadres;
+    list<sf::IntRect>::iterator it;
 public:
-  AnimatedSprite(const sf::Texture & textureSheet,int largeur,int hauteur,int nbTextures);
+    AnimatedSprite(const sf::Texture & textureSheet,int largeur,int hauteur,int nbTextures);
+    ~AnimatedSprite();
 
-  ~AnimatedSprite();
-
-   void update ();
- 
+    void update();
 };

@@ -1,9 +1,10 @@
 #include "GameElement.hpp"
 
-GameElement::GameElement(const Sommet<VSommet> &position,
-	    const sf::Texture &texture)
-    : position(position), texture(texture)
-{}
+GameElement::GameElement(const Sommet<VSommet> &position, const sf::Texture &texture,int largeur,int hauteur,int nbTextures)
+    : position(position), texture(texture),sprite(texture,largeur,hauteur,nbTextures)
+{
+   
+}
 
 GameElement::~GameElement() {}
 

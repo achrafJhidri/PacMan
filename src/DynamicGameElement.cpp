@@ -1,7 +1,7 @@
 #include "DynamicGameElement.hpp"
 
-DynamicGameElement::DynamicGameElement(const Sommet<VSommet> &sommet, const sf::Texture &texture, double speed)
-    : GameElement(sommet, texture), speed(speed)
+DynamicGameElement::DynamicGameElement(const Sommet<VSommet> &sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
+    : GameElement(sommet, texture,largeur,hauteur,nbTextures), speed(speed)
 {}
 
 DynamicGameElement::~DynamicGameElement() {}
