@@ -20,12 +20,12 @@ int main() {
     string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("Action Man Bold.ttf");
-    FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(300, 0), 760, 800,font);
+    FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
     unsigned int magenta = Color::Magenta.toInteger();
-
+	//f.fenetre.setFramerateLimit(60);
     TextureFactory  usine;
 #pragma region testAnimatedSprite
-	AnimatedSprite a(usine.getTextureRedFantome(),16,16,1);
+	AnimatedSprite a(usine.getTexturePacman(),16,16,6);
 	a.setPosition(40,100);
 	a.setOrigin(a.getOrigin().x+8,a.getOrigin().y+8);
 	
@@ -165,9 +165,11 @@ int main() {
 #pragma region FentetreMainLoop
     // Affichage de la fenetre
     while (f.fenetre.isOpen()) {
+		a.update();
 	// Traitement des evenements
         Event event;
         while (f.fenetre.pollEvent(event)) {
+			
 	    // Fermeture
             if (event.type == event.Closed)
                 f.fenetre.close();
@@ -177,32 +179,31 @@ int main() {
                 if (event.key.code == Keyboard::Up)
                 {
 					a.move(0,-5);
-					a.setRotation(-180);
+					a.setRotation(-90);
                 }
 				if (event.key.code == Keyboard::Down)
                 {
 					a.move(0,5);
-					a.setRotation(0);
+					a.setRotation(90);
                 }
 				if (event.key.code == Keyboard::Left)
                 {
 					a.move(-5,0);
-					a.setRotation(90);
+					a.setRotation(-180);
                 }
 				if (event.key.code == Keyboard::Right)
                 {
 					a.move(5,0);
-					a.setRotation(-90);
+					a.setRotation(0);
                 }
             }
         }
-
+		
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
 		f.fenetre.draw(a);
 		
-
         f.fenetre.display();
     }
 #pragma endregion FentetreMainLoop

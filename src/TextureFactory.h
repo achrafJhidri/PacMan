@@ -16,7 +16,7 @@ private:
 public:
 	TextureFactory()
 	{
-		pacman.loadFromFile("src/pacman.jpg");
+		pacman.loadFromFile("src/pacman.png");
 			
 		pomme.loadFromFile("src/pomme.png");
 		redFantome.loadFromFile("src/redfantome.jpg");
