@@ -4,7 +4,6 @@ GameElement::GameElement(const Sommet<VSommet> &position, const sf::Texture &tex
     : position(position), texture(texture),sprite(texture,largeur,hauteur,nbTextures)
 {
    sprite.setPosition(position.v.p.x+10,position.v.p.y+248);
-   cout <<"x="<< position.v.p.x << " y=" << position.v.p.y << endl ;
  }
 
 GameElement::~GameElement() {}

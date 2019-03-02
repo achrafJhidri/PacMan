@@ -21,7 +21,7 @@ int main() {
 
     string titre = "PacMan Demo" ;
     Font font;
-    font.loadFromFile("Action Man Bold.ttf");
+    font.loadFromFile("src/Action Man Bold.ttf");
     FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
     unsigned int magenta = Color::Magenta.toInteger();
 

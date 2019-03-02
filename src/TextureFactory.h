@@ -18,7 +18,7 @@ public:
 	{
 		pacman.loadFromFile("src/pacman.png");
 			
-		pomme.loadFromFile("src/pomme.png");
+		pomme.loadFromFile("src/pomme.jpg");
 		redFantome.loadFromFile("src/redfantome.jpg");
 		yellowFantome.loadFromFile("src/yellowfantome.jpg");
 		blueFantome.loadFromFile("src/bluefantome.jpg");
