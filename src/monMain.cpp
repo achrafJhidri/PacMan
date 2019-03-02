@@ -11,6 +11,8 @@
 #include <vector>
 #include "TextureFactory.h"
 
+
+#include "Pacman.hpp"
 #include "AnimatedSprite.hpp"
 using namespace std;
 using namespace sf;
@@ -23,15 +25,13 @@ int main() {
     FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
     unsigned int magenta = Color::Magenta.toInteger();
 
-    TextureFactory  usine;
-#pragma region testAnimatedSprite
-	AnimatedSprite a(usine.getTexturePacman(),16,16,6);
-	a.setPosition(40,100);
-	
+
+#pragma region testGameElement
 	
 
-#pragma endregion testAnimatedSprite
-	
+#pragma endregion testGameElement
+    TextureFactory  usine;
+
 
 #pragma region gestionGraphe
     Graphe<Peinture, VSommet> g1; // creation a vide
@@ -54,23 +54,23 @@ int main() {
     s42 = g1.creeSommet(VSommet("42", Vecteur2D(140, 40), magenta));
 	s52 = g1.creeSommet(VSommet("52", Vecteur2D(180, 40), magenta));
 
-	s13 = g1.creeSommet(VSommet("12", Vecteur2D(20, 80), magenta));
-    s23 = g1.creeSommet(VSommet("22", Vecteur2D(60, 80), magenta));
-    s33 = g1.creeSommet(VSommet("32", Vecteur2D(100, 80), magenta));
-    s43 = g1.creeSommet(VSommet("42", Vecteur2D(140, 80), magenta));
-	s53 = g1.creeSommet(VSommet("52", Vecteur2D(180, 80), magenta));
+	s13 = g1.creeSommet(VSommet("13", Vecteur2D(20, 80), magenta));
+    s23 = g1.creeSommet(VSommet("23", Vecteur2D(60, 80), magenta));
+    s33 = g1.creeSommet(VSommet("33", Vecteur2D(100, 80), magenta));
+    s43 = g1.creeSommet(VSommet("43", Vecteur2D(140, 80), magenta));
+	s53 = g1.creeSommet(VSommet("53", Vecteur2D(180, 80), magenta));
 
-    s14 = g1.creeSommet(VSommet("12", Vecteur2D(20, 120), magenta));
-    s24 = g1.creeSommet(VSommet("22", Vecteur2D(60, 120), magenta));
-    s34 = g1.creeSommet(VSommet("32", Vecteur2D(100, 120), magenta));
-    s44 = g1.creeSommet(VSommet("42", Vecteur2D(140, 120), magenta));
-	s54 = g1.creeSommet(VSommet("52", Vecteur2D(180, 120), magenta));
+    s14 = g1.creeSommet(VSommet("14", Vecteur2D(20, 120), magenta));
+    s24 = g1.creeSommet(VSommet("24", Vecteur2D(60, 120), magenta));
+    s34 = g1.creeSommet(VSommet("34", Vecteur2D(100, 120), magenta));
+    s44 = g1.creeSommet(VSommet("44", Vecteur2D(140, 120), magenta));
+	s54 = g1.creeSommet(VSommet("54", Vecteur2D(180, 120), magenta));
 
-    s15 = g1.creeSommet(VSommet("12", Vecteur2D(20, 160), magenta));
-    s25 = g1.creeSommet(VSommet("22", Vecteur2D(60, 160), magenta));
-    s35 = g1.creeSommet(VSommet("32", Vecteur2D(100, 160), magenta));
-    s45 = g1.creeSommet(VSommet("42", Vecteur2D(140, 160), magenta));
-	s55 = g1.creeSommet(VSommet("52", Vecteur2D(180, 160), magenta));
+    s15 = g1.creeSommet(VSommet("15", Vecteur2D(20, 160), magenta));
+    s25 = g1.creeSommet(VSommet("25", Vecteur2D(60, 160), magenta));
+    s35 = g1.creeSommet(VSommet("35", Vecteur2D(100, 160), magenta));
+    s45 = g1.creeSommet(VSommet("45", Vecteur2D(140, 160), magenta));
+	s55 = g1.creeSommet(VSommet("55", Vecteur2D(180, 160), magenta));
 #pragma endregion creeSommet
 #pragma region créationAretes
 
@@ -161,11 +161,17 @@ int main() {
 	a5544 = g1.creeArete(Peinture(222244444,1111111),s55,s44);
 
 #pragma endregion créationAretes
+
+
+g1.majSommets() ;
+
+Pacman p = Pacman(*s11,usine.getTexturePacman(),1,16,16,6);
+
 #pragma endregion gestionGraphe
 #pragma region FentetreMainLoop
     // Affichage de la fenetre
     while (f.fenetre.isOpen()) {
-		a.update();
+		
 	// Traitement des evenements
         Event event;
         while (f.fenetre.pollEvent(event)) {
@@ -178,23 +184,24 @@ int main() {
             if (event.type == event.KeyPressed) {
                 if (event.key.code == Keyboard::Up)
                 {
-					a.move(0,-5);
-					a.setRotation(-90);
+					p.move(Orientation::NORTH );
                 }
 				if (event.key.code == Keyboard::Down)
                 {
-					a.move(0,5);
-					a.setRotation(90);
+					p.move(Orientation::SOUTH );
+					
                 }
 				if (event.key.code == Keyboard::Left)
                 {
-					a.move(-5,0);
-					a.setRotation(-180);
+					p.move(Orientation::WEST );
                 }
 				if (event.key.code == Keyboard::Right)
                 {
-					a.move(5,0);
-					a.setRotation(0);
+					p.move(Orientation::EAST );
+                }
+				if (event.key.code == Keyboard::A)
+                {
+					p.move(Orientation::NORTH_EAST );
                 }
             }
         }
@@ -202,7 +209,7 @@ int main() {
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
-		f.fenetre.draw(a);
+		f.fenetre.draw(p.sprite);
 		
         f.fenetre.display();
     }

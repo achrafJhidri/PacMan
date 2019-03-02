@@ -1,18 +1,5 @@
 #pragma once
 
-/**
-Motivations qui ont conduit ï¿½ cette solution pour reprï¿½senter un graphe :
-
-hypothï¿½ses : Un graphe est non orientï¿½. Dans le cas gï¿½nï¿½ral, une information est associï¿½e ï¿½ chaque sommet, ï¿½ chaque arï¿½te : un nom, un nï¿½, une couleur, etc.
-
-J'ignore totalement la nature de cette information, d'oï¿½ template <S,T>.
-S : info associï¿½e ï¿½ une arï¿½te
-T : info associï¿½e ï¿½ un sommet
-
-chaque ï¿½lï¿½ment du graphe est identifiï¿½ par une clef unique. Celle-ci est gï¿½nï¿½rï¿½e automatiquement par l'attribut prochaineClef du graphe.
-Celle-ci dï¿½finit ï¿½ tout instant la clef qui sera attribuï¿½e au prochain ï¿½lï¿½ment crï¿½ï¿½ dans le graphe.
-
-*/
 
 #include <utility>
 #include "PElement.h"
@@ -31,9 +18,7 @@ class Graphe
 {
 protected:
 
-	/** la  clef qui sera attribuï¿½e au prochain ï¿½lï¿½ment (sommet ou arï¿½te) crï¿½ï¿½ dans le graphe par les mï¿½thodes creeSommet(info)
-	ou creeArete(info,debut,fin) fonctionne comme auto-increment d'une base de donnï¿½es */
-
+	
 	int prochaineClef;
 
 public:
@@ -45,67 +30,40 @@ public:
 
 private:
 
-	/**
-	 * crï¿½e un sommet isolï¿½.
-	 * Attention : on suppose que clef est valide (c'est-ï¿½-dire qu'elle
-	 *											n'est pas dï¿½jï¿½ utilisï¿½e par un ï¿½lï¿½ment (sommet ou arï¿½te) prï¿½sent dans le graphe)
-	 *
-	 * Ne met pas ï¿½ jour prochaineClef
-	 * */
+
 	Sommet<T> * creeSommet1(const int clef, const T & info);
 
-	/**
-	 * utilisï¿½e par les mï¿½thodes qui crï¿½ent des ï¿½lï¿½ments (Sommet ou Arï¿½te) en utilisant une clef imposï¿½e ï¿½ l'appel, c'est-ï¿½-dire les mï¿½thodes
-	 * creeSommet(clef,info) et creeArete(clef, info, debut, fin)
-	 *
-	 * met  ï¿½ jour prochaineClef
-	 * */
 
 	void majProchaineClef(const int clef) {
 		 prochaineClef = max(1 + clef, prochaineClef);
 	 }
 
-	/**
-	 * crï¿½e un sommet isolï¿½
-	 *
-	 * Attention : on suppose que clef est valide (c'est-ï¿½-dire qu'elle
-	 *											n'est pas dï¿½jï¿½ utilisï¿½e par un ï¿½lï¿½ment (sommet ou arï¿½te) prï¿½sent dans le graphe)
-	 * Utilisï¿½e dans la mï¿½thode copie()
-	 *
-	 * met ï¿½ jour prochaineClef
-	 * */
+	
 	Sommet<T> * creeSommet(const int clef, const T & info) { majProchaineClef(clef); return creeSommet1(clef, info); }
 
 public:
-	/**
-	 * crï¿½e un sommet isolï¿½
-	 * met ï¿½ jour prochaineClef
-	 * */
+	
 	Sommet<T> * creeSommet(const T & info) { return creeSommet1(prochaineClef++, info); }
+
+	
+	void stockVoisinageSommet( Sommet<T> * sommet);
+	
+	void majSommets(){
+		PElement<Sommet<T>> * copieListeSommets = PElement<Sommet<T>>::copie1(lSommets);
+		while(copieListeSommets){
+			
+			stockVoisinageSommet(copieListeSommets->v);
+
+			copieListeSommets=copieListeSommets->s;
+		}
+	}
+	
 
 private:
 
-	/**
-	 * crï¿½e une arï¿½te joignant les 2 sommets debut et fin
-	 *
-	 * met ï¿½ jour les champs degre de debut et de fin
-	 *
-	 * Ne met pas ï¿½ jour prochaineClef
-	 *
-	 * */
-
 	Arete<S, T> * creeArete1(const int clef, const S & info, Sommet<T> * debut, Sommet<T> * fin);
 
-	/**
-	 * crï¿½e une arï¿½te joignant les 2 sommets debut et fin
-	 *
-	 * met ï¿½ jour les champs degre de debut et de fin
-	 *
-	 * Attention : on suppose que clef est valide (c'est-ï¿½-dire qu'elle
-	 *											n'est pas dï¿½jï¿½ utilisï¿½e par un ï¿½lï¿½ment (sommet ou arï¿½te) prï¿½sent dans le graphe)
-	 *
-	 * met ï¿½ jour prochaineClef
-	 * */
+	
 
 	Arete<S, T> * creeArete(const int clef, const S & info, Sommet<T> * debut, Sommet<T> * fin)
 	{
@@ -114,38 +72,19 @@ private:
 	}
 
 public:
-	/**
-	 * crï¿½e une arï¿½te joignant les 2 sommets debut et fin
-	 *
-	 * met ï¿½ jour les champs degre de debut et de fin
-	 *
-	 * met ï¿½ jour prochaineClef
-	 *
-	 * */
 
 	Arete<S, T> * creeArete(const S & info, Sommet<T> * debut, Sommet<T> * fin) { return creeArete1(prochaineClef++, info, debut, fin); }
 
 private:
-	/*
-	* Recopie graphe dans *this : utilisï¿½ par le constructeur de copie et par l'opï¿½rateur =
-	*
-	* Attention : suppose que *this est VIDE avant l'appel, c'est-ï¿½-dire que lSommets == lAretes == NULL et que prochaineClef == 0
-	*
-	*/
 
 	void copie(const Graphe<S, T> & graphe);
 
-	/*
-	* utilisï¿½ par l'opï¿½rateur = et par le destructeur
-	*/
+
 	void effaceTout();
 
 public:
 
-	/**
-	 * crï¿½e un graphe vide
-	 *
-	 * */
+
 	Graphe() : prochaineClef(0), lSommets(NULL), lAretes(NULL) {}
 
 	Graphe(const Graphe<S, T> & graphe) : Graphe() { this->copie(graphe); }
@@ -164,57 +103,24 @@ public:
 	int nombreAretes() const { return PElement< Arete<S, T> >::taille(lAretes); }
 
 
-	/**
 
-	recherche la liste des paires (voisin, arï¿½te) adjacentes de sommet dans le graphe
-
-	*/
 	PElement< pair< Sommet<T> *, Arete<S, T>* > >  *  adjacences(const Sommet<T> * sommet) const;
 	PElement< Arete<S, T> > *  aretesAdjacentes(const Sommet<T> * sommet) const;
 	PElement< Sommet<T> > *  voisins(const Sommet<T> * sommet) const;
 
-	/**
-	 * cherche l'arï¿½te s1 - s2 ou l'arï¿½te s2 - s1 si elle existe
-	 *
-	 * DONNEES : s1 et s2 deux sommets quelconques du graphe
-	 * RESULTATS : l'arï¿½te s'appuyant sur s1 et s2 si elle existe, NULL sinon
-	 *
-	 * */
+	
 	Arete<S, T> * getAreteParSommets(const Sommet<T> * s1, const Sommet<T> * s2) const;
 
 	operator string() const;
 
-	/**
-	dessine toutes les arï¿½tes du graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
-
-	Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie de la mï¿½thode appelï¿½e.
-	On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-	Cette solution est plus gï¿½nï¿½rale
-	renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-	*/
+	
 	template< class FENETRE>
 	bool dessineToutesAretes(FENETRE & fenetre) const;
 
-	/**
-	dessine tous les sommets du graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
-
-	Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie de la mï¿½thode appelï¿½e.
-	On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-	Cette solution est plus gï¿½nï¿½rale
-	renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-	*/
 
 	template< class FENETRE>
 	bool dessineTousSommets(FENETRE & fenetre) const;
 
-	/**
-	dessine le graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
-
-	Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie des 2 mï¿½thodes appelï¿½es.
-	On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-	Cette solution est plus gï¿½nï¿½rale
-	renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-	*/
 	template  <class FENETRE>
 	bool dessine(FENETRE & fenetre) const;
 
@@ -224,13 +130,7 @@ public:
 template <class S, class T>
 ostream & operator << (ostream & os, const Graphe<S, T> & gr) { return os << (string)gr; }
 
-/**
- * crï¿½e un sommet isolï¿½.
- * Attention : on suppose que clef est valide (c'est-ï¿½-dire qu'elle
- *											n'est pas dï¿½jï¿½ utilisï¿½e par un ï¿½lï¿½ment (sommet ou arï¿½te) prï¿½sent dans le graphe)
- *
- * Ne met pas ï¿½ jour prochaineClef
- * */
+
 template <class S, class T>
 Sommet<T> * Graphe<S, T>::creeSommet1(const int clef, const T & info)
 {
@@ -240,14 +140,7 @@ Sommet<T> * Graphe<S, T>::creeSommet1(const int clef, const T & info)
 	return sommetCree;
 }
 
-/**
- * crï¿½e une arï¿½te joignant les 2 sommets debut et fin
- *
- * met ï¿½ jour les champs degre de debut et de fin
- *
- * Ne gï¿½re pas prochaineClef
- *
- * */
+
 template <class S, class T>
 Arete<S, T> * Graphe<S, T>::creeArete1(const int clef, const S & info, Sommet<T> * debut, Sommet<T> * fin)
 {
@@ -258,33 +151,14 @@ Arete<S, T> * Graphe<S, T>::creeArete1(const int clef, const S & info, Sommet<T>
 
 	Arete<S, T> *  nouvelleArete = new Arete<S, T>(clef, info, debut, fin);
 
+	
+
 	lAretes = new PElement< Arete<S, T> >(nouvelleArete, lAretes);
 
 	return nouvelleArete;
 }
 
-/**
- * crï¿½e une arï¿½te joignant les 2 sommets debut et fin
- *
- * met ï¿½ jour les champs degre de debut et de fin
- *
- * Attention : on suppose que clef est valide (c'est-ï¿½-dire qu'elle
- *											n'est pas dï¿½jï¿½ utilisï¿½e par un ï¿½lï¿½ment (sommet ou arï¿½te) prï¿½sent dans le graphe)
- *
- * met ï¿½ jour prochaineClef
- *
- * */
- /*template <class S, class T>
- Arete<S,T> * Graphe<S,T>::creeArete( const int clef, const S & info, Sommet<T> * debut, Sommet<T> * fin)
- {
- majProchaineClef(clef);
- return creeArete1(clef,info,debut,fin);
- }
- */
 
- /**
- utile pour les opï¿½rations de copie d'un graphe
- */
 template <class T>
 class SommetDejaPresentDansLaCopie
 {
@@ -294,12 +168,7 @@ public:
 	bool operator () (const Sommet<T> * sommet) const { return sommet->clef == s->clef; }
 };
 
-/*
-* Recopie graphe dans *this : utilisï¿½ par le constructeur de copie et par l'opï¿½rateur =
-*
-* Attention : suppose que *this est VIDE avant l'appel, c'est-ï¿½-dire que lSommets == lAretes == NULL et que prochaineClef == 0
-*
-*/
+
 template <class S, class T>
 void Graphe<S, T>::copie(const Graphe<S, T> & graphe)
 {
@@ -351,52 +220,7 @@ void Graphe<S, T>::effaceTout()
 	this->prochaineClef = 0;
 }
 
-/**
- * crï¿½e un sommet isolï¿½.
- *
- * ancienne version qui ne prend pas en compte le ctor de copie ni l'opï¿½rateur =
- * Gï¿½re prochaineClef
- *
- * */
- /*template <class S, class T>
- Sommet<T> * Graphe<S,T>::creeSommet( const T & info)
- {
- Sommet<T> * sommetCree = new Sommet<T>( prochaineClef++,info);
- lSommets = new PElement< Sommet<T> >( sommetCree, lSommets);
 
- return sommetCree;
- }
- */
-
-
- /**
-  * crï¿½e une arï¿½te joignant les 2 sommets debut et fin
-  *
-  * met ï¿½ jour les champs degre de debut et de fin
-  *
-  * ancienne version qui ne prend pas en compte le ctor de copie ni l'opï¿½rateur =
-  * */
-  /*template <class S, class T>
-  Arete<S,T> * Graphe<S,T>::creeArete( const S & info, Sommet<T> * debut, Sommet<T> * fin)
-  {
-
-  // ici tester que les 2 sommets sont bien existants dans le graphe
-  if (! PElement< Sommet<T> >::appartient(debut,lSommets) ) throw Erreur("dï¿½but d'arï¿½te non dï¿½fini");
-  if (! PElement< Sommet<T> >::appartient(fin,lSommets)) throw Erreur("fin d'arï¿½te non dï¿½finie");
-
-  Arete<S,T> * nouvelleArete = new Arete<S,T>( prochaineClef++, debut, fin,  info);
-
-  lAretes = new PElement< Arete<S,T> >( nouvelleArete, lAretes);
-
-  return nouvelleArete;
-  }
-  */
-
-  /**
-
-  recherche la liste des paires (voisin, arï¿½te) adjacentes de sommet dans le graphe
-
-  */
 template <class S, class T>
 PElement< pair< Sommet<T> *, Arete<S, T>* > >  *  Graphe<S, T>::adjacences(const Sommet<T> * sommet) const
 {
@@ -448,13 +272,6 @@ PElement< Sommet<T> > *  Graphe<S, T>::voisins(const Sommet<T> * sommet) const
 	return r;
 }
 
-/**
- * cherche l'arï¿½te s1 - s2 ou l'arï¿½te s2 - s1 si elle existe
- *
- * DONNEES : s1 et s2 deux sommets quelconques du graphe
- * RESULTATS : l'arï¿½te s'appuyant sur s1 et s2 si elle existe, NULL sinon
- *
- * */
 template <class S, class T>
 Arete<S, T> * Graphe<S, T>::getAreteParSommets(const Sommet<T> * s1, const Sommet<T> * s2) const
 {
@@ -485,14 +302,6 @@ Graphe<S, T>::operator string() const
 	return oss.str();
 }
 
-/**
-dessine toutes les arï¿½tes du graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
-
-Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie de la mï¿½thode appelï¿½e.
-On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-Cette solution est plus gï¿½nï¿½rale
-renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-*/
 template <class S, class T>
 template< class FENETRE>
 bool Graphe<S, T>::dessineToutesAretes(FENETRE & fenetre) const
@@ -507,14 +316,7 @@ bool Graphe<S, T>::dessineToutesAretes(FENETRE & fenetre) const
 	return true;
 }
 
-/**
-dessine tous les sommets du graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
 
-Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie de la mï¿½thode appelï¿½e.
-On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-Cette solution est plus gï¿½nï¿½rale
-renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-*/
 template <class S, class T>
 template< class FENETRE>
 bool Graphe<S, T>::dessineTousSommets(FENETRE & fenetre) const
@@ -529,14 +331,7 @@ bool Graphe<S, T>::dessineTousSommets(FENETRE & fenetre) const
 	return true;
 }
 
-/**
-dessine le graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
 
-Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie des 2 mï¿½thodes appelï¿½es.
-On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-Cette solution est plus gï¿½nï¿½rale
-renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-*/
 template <class S, class T>
 template< class FENETRE>
 bool Graphe<S, T>::dessine(FENETRE & fenetre) const
@@ -551,16 +346,6 @@ bool Graphe<S, T>::dessine(FENETRE & fenetre) const
 	return this->dessineTousSommets(fenetre);
 }
 
-/**
-dessine le chemin "chemin" sur la fenï¿½tre "fenï¿½tre" en utilisant la couleur "couleur"
-et de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e.
-Suppose que les coordonnï¿½es des sommets sont dï¿½finies par rapport au repï¿½re monde
-
-Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie de la mï¿½thode appelï¿½e.
-On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-Cette solution est plus gï¿½nï¿½rale
-renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-*/
 template <class T, class FENETRE>
 bool dessine(const PElement<Sommet<T>> * chemin, FENETRE & fenetre, const unsigned int couleur)
 {
@@ -578,60 +363,10 @@ bool dessine(const PElement<Sommet<T>> * chemin, FENETRE & fenetre, const unsign
 }
 
 
-/**
-dessine le graphe de maniï¿½re indï¿½pendante de la librairie graphique utilisï¿½e
 
-Attention ! ici, FENETRE reprï¿½sente n'importe quelle classe munie des 2 mï¿½thodes appelï¿½es.
-On n'a pas forcï¿½ment FENETRE == Fenetre<S,T> !
-Cette solution est plus gï¿½nï¿½rale
-renvoie true en cas de succï¿½s complet, false en cas d'ï¿½chec partiel
-* /
-template <class S, class T>
-template< class FENETRE>
-bool Graphe<S,T>::dessine( FENETRE & fenetre) const
-{
-
-// ------------------------ on dessine les arï¿½tes --------------------------
-
-PElement< Arete<S,T>> * pA;
-for ( pA = this->lAretes; pA; pA = pA->s)
-	if (!fenetre.dessine(pA->v)) return false; // tente de dessiner puis retourne false en cas d'ï¿½chec
-
-// ------------------------ on dessine les sommets --------------------------
-
-PElement< Sommet<T>> * pS;
-for ( pS = this->lSommets; pS; pS = pS->s)
-	if (!fenetre.dessine(pS->v)) return false;	// tente de dessiner puis retourne false en cas d'ï¿½chec
-
-return true;
-}*/
-
-
-/*template <class S, class T>
-template< class FENETRE>
-bool Graphe<S,T>::dessine( const FENETRE & fenetre) const
-{
-// ------------------- on initialise le dessin : axes du repï¿½re, lï¿½gende, etc . -----------------
-
-if (!fenetre.initDessin(*this, largeur, hauteur)) return false;	// tente de dessiner puis retourne false en cas d'ï¿½chec
-
-// ------------------------ on dessine les arï¿½tes --------------------------
-
-PElement< Arete<S,T>> * pA;
-for ( pA = this->lAretes; pA; pA = pA->s)
-	if (!fenetre.dessine(pA->v)) return false; // tente de dessiner puis retourne false en cas d'ï¿½chec
-
-// ------------------------ on dessine les sommets --------------------------
-
-PElement< Sommet<T>> * pS;
-for ( pS = this->lSommets; pS; pS = pS->s)
-	if (!fenetre.dessine(pS->v)) return false;	// tente de dessiner puis retourne false en cas d'ï¿½chec
-
-// ---------------------------- on dessine la finition : un chemin, un circuit ï¿½ surligner, etc. --------------------
-
-return fenetre.finitDessin(*this);
-}*/
-
-
-
+template <class S,class T>
+void Graphe<S, T>::stockVoisinageSommet( Sommet<T> * sommet) {
+	PElement< Sommet<T> > * voisinsDuSommet = voisins(sommet);
+	sommet->listVoisin=voisinsDuSommet;
+}
 

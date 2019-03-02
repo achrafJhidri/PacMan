@@ -1,4 +1,6 @@
 #include "GameElement.hpp"
+#include "PElement.h"
+
 using namespace sf ;
 class DynamicGameElement : public GameElement
 {
@@ -11,6 +13,6 @@ public:
     double getSpeed() const;
     void setSpeed(double);
 
-    void move(const  sf::Vector2f  & );
+    void move( Orientation orientation );
 
 };

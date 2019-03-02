@@ -5,6 +5,7 @@
 #include <string>
 
 #include "GElement.h"
+#include "PElement.h"
 
 using namespace std;
 
@@ -23,7 +24,8 @@ public:
 
 	Un sommet est toujours créé isolé (c'est-à-dire qu'il n'y a pas d'arête adjacente à ce sommet)
 	*/
-	Sommet(const int clef, const T & v) :GElement<T>(clef, v), degre(0) {}
+	PElement<Sommet > * listVoisin ;
+	Sommet(const int clef, const T & v) :GElement<T>(clef, v), degre(0) ,listVoisin(NULL){}
 
 	operator string () const;
 
