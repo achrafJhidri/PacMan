@@ -15,15 +15,14 @@ enum class Orientation {
 };
 
 class GameElement
-{
-protected:
+{ 
+public:
     Sommet<VSommet> position;
     sf::Texture texture;
     Orientation orientation = Orientation::WEST;
     
 
-public:
-AnimatedSprite sprite;
+    AnimatedSprite sprite;
     GameElement(const Sommet<VSommet> &, const sf::Texture &,int largeur,int hauteur,int nbTextures);
     virtual ~GameElement();
 
@@ -40,4 +39,10 @@ AnimatedSprite sprite;
 
     Sommet<VSommet>& getSommet();
     void setSommet(Sommet<VSommet> const&);
+
+    void animate();
+    template <class Fenetre>
+    bool dessine( Fenetre & f ) {
+      return   f.dessine(this);
+    }
 };

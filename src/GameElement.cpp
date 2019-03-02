@@ -3,7 +3,7 @@
 GameElement::GameElement(const Sommet<VSommet> &position, const sf::Texture &texture,int largeur,int hauteur,int nbTextures)
     : position(position), texture(texture),sprite(texture,largeur,hauteur,nbTextures)
 {
-   sprite.setPosition(position.v.p.x+10,position.v.p.y+248);
+   sprite.setPosition(position.v.p.x,position.v.p.y);
  }
 
 GameElement::~GameElement() {}
@@ -21,11 +21,13 @@ void GameElement::setTexture(const sf::Texture &t) {
 }
 
 Orientation GameElement::getOrientation() const {
+    cout << "dans getOrientation" << endl ;
     return orientation;
 }
 
 void GameElement::setOrientation(Orientation orientation) {
     this->orientation = orientation;
+    cout << "dans setOrientation" << endl ;
 }
 
 Sommet<VSommet>& GameElement::getSommet() {
@@ -34,4 +36,7 @@ Sommet<VSommet>& GameElement::getSommet() {
 
 void GameElement::setSommet(Sommet<VSommet> const &pos) {
     position = pos;
+}
+void GameElement::animate(){
+    sprite.update();
 }

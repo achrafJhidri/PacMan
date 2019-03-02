@@ -17,6 +17,7 @@
 
 #include "TransfoAffine2D.h"
 #include "Peinture.h"
+#include "GameElement.hpp"
 
 using namespace sf;
 using namespace std;
@@ -29,6 +30,7 @@ Prend en charge le passage fenï¿½tre-clï¿½ture
 
 
 inline const Vector2f vecteur2DToVector2f( const Vecteur2D & v) { float x,y; v.arrondit(x,y); return Vector2f(x,y);}
+
 
 
 /**
@@ -64,6 +66,9 @@ texte.setPosition(vecteur2DToVector2f(position2));
 fenetre.draw(texte);
 return true;
 }
+
+
+
 
 /**
 dï¿½but et fin sont en coordonnï¿½es monde
@@ -172,7 +177,21 @@ On suppose que les coordonnï¿½es des sommets sont dï¿½finies par rapport au repï
 template <class S, class T>
 bool dessine(const Arete<S,T> * arete) ;
 
+bool dessine( GameElement * gameElement);
 };
+
+bool FenetreGrapheSFML::dessine( GameElement * gameElement){
+	gameElement->animate();
+	Vecteur2D position = t.applique(gameElement->position.v.p);
+	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
+	Vector2f p1 =  vecteur2DToVector2f(position1);
+
+	gameElement->sprite.setPosition(p1);
+	
+	fenetre.draw(gameElement->sprite);
+	return true ;	
+}
+
 
 template <>
 bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> * sommet)

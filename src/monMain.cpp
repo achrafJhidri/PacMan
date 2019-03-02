@@ -26,10 +26,7 @@ int main() {
     unsigned int magenta = Color::Magenta.toInteger();
 
 
-#pragma region testGameElement
-	
 
-#pragma endregion testGameElement
     TextureFactory  usine;
 
 
@@ -165,13 +162,13 @@ int main() {
 
 g1.majSommets() ;
 
-Pacman p = Pacman(*s11,usine.getTexturePacman(),1,16,16,6);
+Pacman p = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
 
 #pragma endregion gestionGraphe
 #pragma region FentetreMainLoop
     // Affichage de la fenetre
     while (f.fenetre.isOpen()) {
-		
+		//p.animate();
 	// Traitement des evenements
         Event event;
         while (f.fenetre.pollEvent(event)) {
@@ -199,9 +196,21 @@ Pacman p = Pacman(*s11,usine.getTexturePacman(),1,16,16,6);
                 {
 					p.move(Orientation::EAST );
                 }
-				if (event.key.code == Keyboard::A)
+				if (event.key.code == Keyboard::E)
                 {
 					p.move(Orientation::NORTH_EAST );
+                }
+				if (event.key.code == Keyboard::A)
+                {
+					p.move(Orientation::NORTH_WEST );
+                }
+					if (event.key.code == Keyboard::C)
+                {
+					p.move(Orientation::SOUTH_EAST );
+                }
+					if (event.key.code == Keyboard::W)
+                {
+					p.move(Orientation::SOUTH_WEST );
                 }
             }
         }
@@ -209,8 +218,8 @@ Pacman p = Pacman(*s11,usine.getTexturePacman(),1,16,16,6);
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
-		f.fenetre.draw(p.sprite);
-		
+		//f.fenetre.draw(p.sprite);
+		p.dessine(f);
         f.fenetre.display();
     }
 #pragma endregion FentetreMainLoop
