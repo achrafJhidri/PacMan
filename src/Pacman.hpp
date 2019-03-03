@@ -1,3 +1,4 @@
+#pragma once
 #include "DynamicGameElement.hpp"
 
 class Pacman : public DynamicGameElement

@@ -55,7 +55,7 @@ disque.setOutlineColor(Color(VSommet::couleurBord));
 Vector2f p1 = vecteur2DToVector2f(position1);
 
 disque.setPosition(p1);
-
+//disque.setOrigin( VSommet::rayonDisquePixels, VSommet::rayonDisquePixels);
 fenetre.draw(disque);
 
 Vecteur2D position2 = position - deltaTextePixels;
