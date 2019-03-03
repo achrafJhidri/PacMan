@@ -175,7 +175,7 @@ Pacman p = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
     // Affichage de la fenetre
     while (f.fenetre.isOpen()) {
 		
-	// Traitement des evenements
+	    // Traitement des evenements
         Event event;
         while (f.fenetre.pollEvent(event)) {
 			
