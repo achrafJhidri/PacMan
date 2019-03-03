@@ -12,6 +12,7 @@
 #include "TextureFactory.h"
 
 //#include "Ghost.hpp"
+#include "Coin.hpp"
 #include "Pacman.hpp"
 #include "AnimatedSprite.hpp"
 using namespace std;
@@ -155,16 +156,25 @@ int main() {
 #pragma endregion créationAretes
 
 
+
+RectangleShape  rectangle(Vector2f(16,16));
+rectangle.setPosition(Vector2f(50,50));
+rectangle.setTexture(&usine.getTexturePomme());
+
+
+
+
 g1.majSommets() ;
 
 Pacman p = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
-//Ghost rouge = Ghost(*s44,usine.getTextureRedFantome(),1,true,16,16,1);
+
+//Coin c = Coin(*s14,usine.getTexturePomme());
 
 #pragma endregion gestionGraphe
 #pragma region FentetreMainLoop
     // Affichage de la fenetre
     while (f.fenetre.isOpen()) {
-		//p.animate();
+		
 	// Traitement des evenements
         Event event;
         while (f.fenetre.pollEvent(event)) {
@@ -212,8 +222,9 @@ Pacman p = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
 		
         // Affichage
         f.fenetre.clear();
+		f.fenetre.draw(rectangle);
         g1.dessine(f);
-		
+		//c.dessine(f);
 		p.dessine(f);
         f.fenetre.display();
     }

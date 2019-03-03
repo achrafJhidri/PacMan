@@ -46,6 +46,7 @@ void DynamicGameElement::positionRelative( DynamicGameElement & element,const do
             while(copieListVoisin ){    
                 if ( checkOrientationFunction(*(copieListVoisin->v),position) ){
                     position=*(copieListVoisin->v);
+                    //sprite.move()
                     sprite.setRotation(deg);
                     copieListVoisin = NULL;
                 }else 

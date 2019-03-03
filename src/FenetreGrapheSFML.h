@@ -55,7 +55,7 @@ disque.setOutlineColor(Color(VSommet::couleurBord));
 Vector2f p1 = vecteur2DToVector2f(position1);
 
 disque.setPosition(p1);
-//disque.setOrigin( VSommet::rayonDisquePixels, VSommet::rayonDisquePixels);
+disque.setOrigin( VSommet::rayonDisquePixels, VSommet::rayonDisquePixels);
 fenetre.draw(disque);
 
 Vecteur2D position2 = position - deltaTextePixels;
@@ -74,7 +74,7 @@ return true;
 d�but et fin sont en coordonn�es monde
 */
 inline bool dessineSegment( RenderWindow & fenetre, const TransfoAffine2D & t, const unsigned int couleur,
-						const Vecteur2D & debut, const Vecteur2D & fin, const unsigned int epaisseurTraitPixels = 10)
+						const Vecteur2D & debut, const Vecteur2D & fin, const unsigned int epaisseurTraitPixels = 1)
 {
 // on va dessiner un rectangle tr�s fin pour repr�senter l'ar�te
 
@@ -108,6 +108,7 @@ rectangle.setPoint(2,F2);
 rectangle.setPoint(3,F3);
 
 rectangle.setFillColor(Color(couleur));
+
 fenetre.draw(rectangle);
 
 return true;

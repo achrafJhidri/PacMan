@@ -28,11 +28,11 @@ public:
 
 	//static TextureFactory * getInstance();
 	Texture & getTexturePacman();
-	Texture&  getTextureRedFantome();
-	Texture &getTextureYellowFantome();
-	Texture&  getTextureBlueFantome();
-	Texture&  getTexturePomme();
-	Texture& getTexturePiece();
+	Texture & getTextureRedFantome();
+	Texture & getTextureYellowFantome();
+	Texture & getTextureBlueFantome();
+	Texture & getTexturePomme();
+	Texture & getTexturePiece();
 
 
 

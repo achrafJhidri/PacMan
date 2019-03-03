@@ -23,6 +23,7 @@ public:
     
 
     AnimatedSprite sprite;
+    
     GameElement(const Sommet<VSommet> &, const sf::Texture &,int largeur,int hauteur,int nbTextures);
     virtual ~GameElement();
 
