@@ -7,6 +7,8 @@
 #include "GElement.h"
 #include "PElement.h"
 
+
+
 using namespace std;
 
 /**
@@ -19,13 +21,10 @@ template <class T>
 class Sommet : public GElement<T>
 {
 public:
-	int degre;		// Rappel : degré = nombre d'arêtes adjacentes à ce sommet
-	/**
-
-	Un sommet est toujours créé isolé (c'est-à-dire qu'il n'y a pas d'arête adjacente à ce sommet)
-	*/
+	int degre;
 	PElement<Sommet > * listVoisin ;
-	Sommet(const int clef, const T & v) :GElement<T>(clef, v), degre(0) ,listVoisin(NULL){}
+	bool pacGomme ; 
+	Sommet(const int clef, const T & v,bool aGomme = false ) :GElement<T>(clef, v), degre(0) ,listVoisin(NULL),pacGomme(aGomme){}
 
 	operator string () const;
 

@@ -11,7 +11,7 @@
 #include <vector>
 #include "TextureFactory.h"
 
-//#include "Ghost.hpp"
+#include "Ghost.hpp"
 #include "Coin.hpp"
 #include "Pacman.hpp"
 #include "AnimatedSprite.hpp"
@@ -23,11 +23,10 @@ int main() {
     string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("src/Action Man Bold.ttf");
-    FenetreGrapheSFML f(titre, 10000000,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
-    unsigned int magenta = Color::Magenta.toInteger();
-
-
-
+    FenetreGrapheSFML f(titre, 99999999,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
+    unsigned int magenta = Color::Black.toInteger();
+	
+	
     TextureFactory  usine;
 
 
@@ -36,6 +35,7 @@ int main() {
 #pragma region créationSommet
 
     Sommet<VSommet> * s11 = g1.creeSommet(VSommet("11", Vecteur2D(20, 1), magenta));
+	s11->pacGomme = true ;
     Sommet<VSommet> * s21 = g1.creeSommet(VSommet("21", Vecteur2D(60, 1), magenta));
     Sommet<VSommet> * s31 = g1.creeSommet(VSommet("31", Vecteur2D(100, 1), magenta));
     Sommet<VSommet> * s41 = g1.creeSommet(VSommet("41", Vecteur2D(140, 1), magenta));
@@ -157,18 +157,16 @@ int main() {
 
 
 
-RectangleShape  rectangle(Vector2f(16,16));
-rectangle.setPosition(Vector2f(50,50));
-rectangle.setTexture(&usine.getTexturePomme());
 
 
 
 
 g1.majSommets() ;
 
-Pacman p = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
+Pacman pacman = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
+Ghost ghost = Ghost(*s44,usine.getTextureRedFantome(),1,true,16,16,1);
 
-//Coin c = Coin(*s14,usine.getTexturePomme());
+Coin coin = Coin(*s14,usine.getTextureCoin());
 
 #pragma endregion gestionGraphe
 #pragma region FentetreMainLoop
@@ -187,45 +185,45 @@ Pacman p = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
             if (event.type == event.KeyPressed) {
                 if (event.key.code == Keyboard::Up)
                 {
-					p.move(Orientation::NORTH );
+					pacman.move(Orientation::NORTH );
                 }
 				if (event.key.code == Keyboard::Down)
                 {
-					p.move(Orientation::SOUTH );
+					pacman.move(Orientation::SOUTH );
                 }
 				if (event.key.code == Keyboard::Left)
                 {
-					p.move(Orientation::WEST );
+					pacman.move(Orientation::WEST );
                 }
 				if (event.key.code == Keyboard::Right)
                 {
-					p.move(Orientation::EAST );
+					pacman.move(Orientation::EAST );
                 }
 				if (event.key.code == Keyboard::E)
                 {
-					p.move(Orientation::NORTH_EAST );
+					pacman.move(Orientation::NORTH_EAST );
                 }
 				if (event.key.code == Keyboard::A)
                 {
-					p.move(Orientation::NORTH_WEST );
+					pacman.move(Orientation::NORTH_WEST );
                 }
 				if (event.key.code == Keyboard::C)
                 {
-					p.move(Orientation::SOUTH_EAST );
+					pacman.move(Orientation::SOUTH_EAST );
                 }
 				if (event.key.code == Keyboard::W)
                 {
-					p.move(Orientation::SOUTH_WEST );
+					pacman.move(Orientation::SOUTH_WEST );
                 }
             }
         }
 		
         // Affichage
         f.fenetre.clear();
-		f.fenetre.draw(rectangle);
         g1.dessine(f);
-		//c.dessine(f);
-		p.dessine(f);
+		 coin.dessine(f);
+		 pacman.dessine(f);
+		 ghost.dessine(f);
         f.fenetre.display();
     }
 #pragma endregion FentetreMainLoop

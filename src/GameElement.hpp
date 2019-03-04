@@ -42,6 +42,8 @@ public:
     void setSommet(Sommet<VSommet> const&);
 
     void animate();
+
+    
     template <class Fenetre>
     bool dessine( Fenetre & f ) {
       return   f.dessine(this);

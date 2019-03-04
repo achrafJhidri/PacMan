@@ -1,3 +1,4 @@
+#pragma once
 #include "GameElement.hpp"
 #include "PElement.h"
 
@@ -14,7 +15,7 @@ public:
     double getSpeed() const;
     void setSpeed(double);
 
-    void move( Orientation orientation );
+    virtual void move( Orientation orientation );
 
     void positionRelative( DynamicGameElement & element,const double deg,bool (*checkOrientationFunction)(const Sommet<VSommet> & a,const Sommet<VSommet> & voisin));
 

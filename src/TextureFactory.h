@@ -18,11 +18,11 @@ public:
 	{
 		pacman.loadFromFile("src/pacman.png");
 			
-		pomme.loadFromFile("src/pomme.jpg");
-		redFantome.loadFromFile("src/redfantome.jpg");
-		yellowFantome.loadFromFile("src/yellowfantome.jpg");
-		blueFantome.loadFromFile("src/bluefantome.jpg");
-		//piece.loadFromFile("piece.jpg");
+		pomme.loadFromFile("src/pomme.png");
+		redFantome.loadFromFile("src/redfantome.png");
+		yellowFantome.loadFromFile("src/yellowfantome.png");
+		blueFantome.loadFromFile("src/bluefantome.png");
+		piece.loadFromFile("src/coin.png");
 	}
 public:
 
@@ -32,7 +32,7 @@ public:
 	Texture & getTextureYellowFantome();
 	Texture & getTextureBlueFantome();
 	Texture & getTexturePomme();
-	Texture & getTexturePiece();
+	Texture & getTextureCoin();
 
 
 

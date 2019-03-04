@@ -42,7 +42,7 @@ Texture & TextureFactory::getTexturePomme()
 {
 	return pomme;
 }
-Texture & TextureFactory::getTexturePiece()
+Texture & TextureFactory::getTextureCoin()
 {
 	return piece;
 }

@@ -18,7 +18,7 @@
 #include "TransfoAffine2D.h"
 #include "Peinture.h"
 #include "GameElement.hpp"
-
+#include "TextureFactory.h"
 using namespace sf;
 using namespace std;
 
@@ -182,6 +182,7 @@ bool dessine( GameElement * gameElement);
 };
 
 bool FenetreGrapheSFML::dessine( GameElement * gameElement){
+	
 	gameElement->animate();
 	Vecteur2D position = t.applique(gameElement->position.v.p);
 	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
@@ -196,8 +197,27 @@ bool FenetreGrapheSFML::dessine( GameElement * gameElement){
 
 template <>
 bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> * sommet)
-{
-return dessinePetitRond(this->fenetre,this->t, sommet->v, this->font);	// m�thode ordinaire. cf. d�but de ce fichier
+{ dessinePetitRond(this->fenetre,this->t, sommet->v, this->font);	// m�thode ordinaire. cf. d�but de ce fichier
+	if( sommet->pacGomme ){
+	TextureFactory usine ;
+	sf::Texture texture = usine.getTextureCoin();
+	sf::RectangleShape rect(sf::Vector2f(16,16));
+	rect.setTexture(&texture);
+
+	Vecteur2D position = t.applique(sommet->v.p);
+	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
+	Vector2f p1 =  vecteur2DToVector2f(position1);
+
+	rect.setPosition(p1);
+	rect.setOrigin(VSommet::rayonDisquePixels,VSommet::rayonDisquePixels);
+
+
+
+
+
+	fenetre.draw(rect);
+}
+return true;
 }
 
 /*
