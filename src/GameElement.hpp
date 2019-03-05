@@ -19,7 +19,7 @@ class GameElement
 public:
     Sommet<VSommet>  * position;
     sf::Texture texture;
-    Orientation orientation = Orientation::WEST;
+    // Orientation orientation = Orientation::WEST;
     AnimatedSprite sprite;
     
     GameElement( Sommet<VSommet> *, const sf::Texture &,int largeur,int hauteur,int nbTextures);
@@ -33,8 +33,8 @@ public:
     sf::Texture& getTexture();
     void setTexture(const sf::Texture &);
 
-    Orientation getOrientation() const;
-    void setOrientation(Orientation);
+    // Orientation getOrientation() const;
+    // void setOrientation(Orientation);
 
     Sommet<VSommet>* getSommet();
     void setSommet(Sommet<VSommet> *);
