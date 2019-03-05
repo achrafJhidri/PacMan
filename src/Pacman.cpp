@@ -7,10 +7,10 @@ Pacman::Pacman( Sommet<VSommet> *s, const sf::Texture &t, double speed,int large
 Pacman::~Pacman() {}
 
 void Pacman::move(Orientation orientation){
-    DynamicGameElement::move(orientation);
     if( position->pacGomme ){
         nbPieceGagnee++;
         cout << nbPieceGagnee << endl ;
         position->pacGomme=false ;
     }
+    DynamicGameElement::move(orientation);
 }
