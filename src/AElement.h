@@ -13,6 +13,7 @@ Représente la classe de base des éléments d'un graphe qui peuvent être des s
 
 A ce niveau, on ne peut que définir que la clef d'un élément inscrite dans cet élément.
 
+
 En effet tout élément d'un graphe est tout d'abord défini par une clef (c-à-d une valeur non nulle et unique)
 
 */

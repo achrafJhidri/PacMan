@@ -18,6 +18,8 @@
 #include "Orientation.hpp"
 
 #include <functional>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>   
 
 using namespace std;
 using namespace sf;
@@ -28,6 +30,7 @@ using namespace sf;
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
 int main() {
+	srand(time(NULL));
     string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("src/Action Man Bold.ttf");
@@ -95,6 +98,7 @@ int main() {
 		    C(A); K(NORTH_WEST);
 		    C(W); K(SOUTH_WEST);
 		    C(C); K(SOUTH_EAST);
+		default: break;
 		}
 		pacman.move(o);
 #undef C

@@ -1,6 +1,7 @@
 #include "DynamicGameElement.hpp"
+#include "Pacman.hpp"
 
-DynamicGameElement::DynamicGameElement(Sommet<VSommet> &sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
+DynamicGameElement::DynamicGameElement( Sommet<VSommet> *sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
     : GameElement(sommet, texture,largeur,hauteur,nbTextures), speed(speed)
 {}
 
@@ -34,11 +35,11 @@ void DynamicGameElement::move(Orientation orientation) {
     // Iterate through neighbours
     PElement<Sommet<VSommet> > *ns;
     Sommet<VSommet> *neighbour;
-    for (ns = this->position.listVoisin; ns != nullptr; ns = ns->s) {
+    for (ns = this->position->listVoisin; ns != nullptr; ns = ns->s) {
 	neighbour = ns->v;
 	// Move if neighbour is in the right orientation
         if (checkAlignement(orientation, *neighbour)) {
-	    position = *neighbour;
+	    position = neighbour;
 	    break;
         }
     }
