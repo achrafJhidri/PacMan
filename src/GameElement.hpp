@@ -2,29 +2,22 @@
 #include "Vecteur2D.h"
 #include "VSommet.h"
 #include "Sommet.h"
+#include "Orientation.hpp"
 
 #include <SFML/Graphics.hpp>
 #include "AnimatedSprite.hpp"
 
-enum class Orientation {
-    // Basic
-    NORTH, SOUTH, EAST, WEST,
-    // Composed
-    NORTH_EAST, NORTH_WEST,
-    SOUTH_EAST, SOUTH_WEST
-};
-
 class GameElement
 { 
 public:
-    Sommet<VSommet> position;
+    Sommet<VSommet> &position;
     sf::Texture texture;
     Orientation orientation = Orientation::WEST;
     
 
     AnimatedSprite sprite;
     
-    GameElement(const Sommet<VSommet> &, const sf::Texture &,int largeur,int hauteur,int nbTextures);
+    GameElement(Sommet<VSommet> &, const sf::Texture &,int largeur,int hauteur,int nbTextures);
     virtual ~GameElement();
 
     double getX() const;
@@ -43,6 +36,7 @@ public:
 
     void animate();
 
+    bool checkAlignement(Orientation, Sommet<VSommet> const&);
     
     template <class Fenetre>
     bool dessine( Fenetre & f ) {

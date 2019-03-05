@@ -15,218 +15,101 @@
 #include "Coin.hpp"
 #include "Pacman.hpp"
 #include "AnimatedSprite.hpp"
+#include "Orientation.hpp"
+
+#include <functional>
+
 using namespace std;
 using namespace sf;
 
-int main() {
+#define GRAPH_W 5
+#define GRAPH_H 5
+#define GRAPH_SPACE_W 50
+#define GRAPH_SPACE_H GRAPH_SPACE_W
 
+int main() {
     string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("src/Action Man Bold.ttf");
     FenetreGrapheSFML f(titre, 99999999,  Vecteur2D(0, 200),  Vecteur2D(500, 0), 760, 800,font);
     unsigned int magenta = Color::Black.toInteger();
-	
-	
     TextureFactory  usine;
 
+    Graphe<Peinture, VSommet> g1;
+    Sommet<VSommet> *graphMatrix[GRAPH_H][GRAPH_W];
+    for (int i = 0; i < GRAPH_H; ++i) {
+	for (int j = 0; j < GRAPH_W; ++j) {
+	    std::stringstream s;
+	    int a = GRAPH_SPACE_W * (j + 1), b = GRAPH_SPACE_H * (i + 1);
+	    s << i << j;
+	    graphMatrix[i][j] = g1.creeSommet(VSommet(s.str(), Vecteur2D(a, b), magenta));
+	}
+    }
+    graphMatrix[0][0]->pacGomme = true;
 
-#pragma region gestionGraphe
-    Graphe<Peinture, VSommet> g1; // creation a vide
-#pragma region créationSommet
+    // Fill map
+    Peinture paint(222244444,1111111);
+    int i_offset, j_offset;
+    for (int i = 0; i < GRAPH_H; ++i) {
+	for (int j = 0; j < GRAPH_W; ++j) {
+	    // Create horizontal vertex
+	    if (j < GRAPH_H - 1) {
+		g1.creeArete(paint, graphMatrix[i][j], graphMatrix[i][j + 1]);
+	    }
+	    // Create vertical vertex
+	    if (i < GRAPH_W - 1) {
+		g1.creeArete(paint, graphMatrix[i][j], graphMatrix[i + 1][j]);
+            }
+	    // Diagonals
+            if (i != (GRAPH_H - 1) / 2.f && j != (GRAPH_W - 1) / 2.f) {
+		i_offset = (i <= GRAPH_H / 2) ? +1 : -1;
+		j_offset = (j <= GRAPH_W / 2) ? +1 : -1;
+		g1.creeArete(paint, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
+            }
+        }
+    }
+    g1.majSommets();
 
-    Sommet<VSommet> * s11 = g1.creeSommet(VSommet("11", Vecteur2D(20, 1), magenta));
-	s11->pacGomme = true ;
-    Sommet<VSommet> * s21 = g1.creeSommet(VSommet("21", Vecteur2D(60, 1), magenta));
-    Sommet<VSommet> * s31 = g1.creeSommet(VSommet("31", Vecteur2D(100, 1), magenta));
-    Sommet<VSommet> * s41 = g1.creeSommet(VSommet("41", Vecteur2D(140, 1), magenta));
-    Sommet<VSommet> * s51 = g1.creeSommet(VSommet("51", Vecteur2D(180, 1), magenta));
-	
-    Sommet<VSommet> * s12 = g1.creeSommet(VSommet("12", Vecteur2D(20, 40), magenta));
-    Sommet<VSommet> * s22 = g1.creeSommet(VSommet("22", Vecteur2D(60, 40), magenta));
-    Sommet<VSommet> * s32 = g1.creeSommet(VSommet("32", Vecteur2D(100, 40), magenta));
-    Sommet<VSommet> * s42 = g1.creeSommet(VSommet("42", Vecteur2D(140, 40), magenta));
-	Sommet<VSommet> * s52 = g1.creeSommet(VSommet("52", Vecteur2D(180, 40), magenta));
+    Pacman pacman = Pacman(*graphMatrix[1][1],usine.getTexturePacman(),1,16,16,6);
+    Ghost ghost = Ghost(*graphMatrix[3][3],usine.getTextureRedFantome(),1,true,16,16,1);
+    Coin coin = Coin(*graphMatrix[3][0],usine.getTextureCoin());
 
-	Sommet<VSommet> * s13 = g1.creeSommet(VSommet("13", Vecteur2D(20, 80), magenta));
-    Sommet<VSommet> * s23 = g1.creeSommet(VSommet("23", Vecteur2D(60, 80), magenta));
-    Sommet<VSommet> * s33 = g1.creeSommet(VSommet("33", Vecteur2D(100, 80), magenta));
-    Sommet<VSommet> * s43 = g1.creeSommet(VSommet("43", Vecteur2D(140, 80), magenta));
-	Sommet<VSommet> * s53 = g1.creeSommet(VSommet("53", Vecteur2D(180, 80), magenta));
-
-    Sommet<VSommet> * s14 = g1.creeSommet(VSommet("14", Vecteur2D(20, 120), magenta));
-    Sommet<VSommet> * s24 = g1.creeSommet(VSommet("24", Vecteur2D(60, 120), magenta));
-    Sommet<VSommet> * s34 = g1.creeSommet(VSommet("34", Vecteur2D(100, 120), magenta));
-    Sommet<VSommet> * s44 = g1.creeSommet(VSommet("44", Vecteur2D(140, 120), magenta));
-	Sommet<VSommet> * s54 = g1.creeSommet(VSommet("54", Vecteur2D(180, 120), magenta));
-
-    Sommet<VSommet> * s15 = g1.creeSommet(VSommet("15", Vecteur2D(20, 160), magenta));
-    Sommet<VSommet> * s25 = g1.creeSommet(VSommet("25", Vecteur2D(60, 160), magenta));
-    Sommet<VSommet> * s35 = g1.creeSommet(VSommet("35", Vecteur2D(100, 160), magenta));
-    Sommet<VSommet> * s45 = g1.creeSommet(VSommet("45", Vecteur2D(140, 160), magenta));
-	Sommet<VSommet> * s55 = g1.creeSommet(VSommet("55", Vecteur2D(180, 160), magenta));
-#pragma endregion creeSommet
-#pragma region créationAretes
-
-	// ligne 1
-	g1.creeArete(Peinture(222244444,1111111),s11,s21);
-	g1.creeArete(Peinture(222244444,1111111),s21,s31);
-	g1.creeArete(Peinture(222244444,1111111),s31,s41);
-	g1.creeArete(Peinture(222244444,1111111),s41,s51);
-
-	// Colone ligne 1 ligne 2
-	g1.creeArete(Peinture(222244444,1111111),s11,s12);
-	g1.creeArete(Peinture(222244444,1111111),s21,s22);
-	g1.creeArete(Peinture(222244444,1111111),s31,s32);
-	g1.creeArete(Peinture(222244444,1111111),s41,s42);
-	g1.creeArete(Peinture(222244444,1111111),s51,s52);
-
-	// DIAGONALE entre ligne 1 et 2
-	g1.creeArete(Peinture(222244444,1111111),s11,s22);
-	g1.creeArete(Peinture(222244444,1111111),s21,s32);
-	g1.creeArete(Peinture(222244444,1111111),s41,s32);
-	g1.creeArete(Peinture(222244444,1111111),s51,s42);
-
-	// ligne 2
-	g1.creeArete(Peinture(222244444,1111111),s12,s22);
-	g1.creeArete(Peinture(222244444,1111111),s22,s32);
-	g1.creeArete(Peinture(222244444,1111111),s32,s42);
-	g1.creeArete(Peinture(222244444,1111111),s42,s52);
-
-	// ligne 3
-	g1.creeArete(Peinture(222244444,1111111),s13,s23);
-	g1.creeArete(Peinture(222244444,1111111),s23,s33);
-	g1.creeArete(Peinture(222244444,1111111),s33,s43);
-	g1.creeArete(Peinture(222244444,1111111),s43,s53);
-
-	// Colone ligne 2 ligne 3
-	g1.creeArete(Peinture(222244444,1111111),s12,s13);
-	g1.creeArete(Peinture(222244444,1111111),s22,s23);
-	g1.creeArete(Peinture(222244444,1111111),s32,s33);
-	g1.creeArete(Peinture(222244444,1111111),s42,s43);
-	g1.creeArete(Peinture(222244444,1111111),s52,s53);
-
-	// DIAGONALE entre ligne 2 et 3
-	g1.creeArete(Peinture(222244444,1111111),s12,s23);
-	g1.creeArete(Peinture(222244444,1111111),s22,s33);
-	g1.creeArete(Peinture(222244444,1111111),s42,s33);
-	g1.creeArete(Peinture(222244444,1111111),s52,s43);
-
-	// ligne 4
-	g1.creeArete(Peinture(222244444,1111111),s14,s24);
-	g1.creeArete(Peinture(222244444,1111111),s24,s34);
-	g1.creeArete(Peinture(222244444,1111111),s34,s44);
-	g1.creeArete(Peinture(222244444,1111111),s44,s54);
-
-	// Colone ligne 1 ligne 2
-	g1.creeArete(Peinture(222244444,1111111),s13,s14);
-	g1.creeArete(Peinture(222244444,1111111),s23,s24);
-	g1.creeArete(Peinture(222244444,1111111),s33,s34);
-	g1.creeArete(Peinture(222244444,1111111),s43,s44);
-	g1.creeArete(Peinture(222244444,1111111),s53,s54);
-
-
-	// DIAGONALE entre ligne 3 et 4
-	g1.creeArete(Peinture(222244444,1111111),s14,s23);
-	g1.creeArete(Peinture(222244444,1111111),s24,s33);
-    g1.creeArete(Peinture(222244444,1111111),s44,s33);
-	g1.creeArete(Peinture(222244444,1111111),s54,s43);
-
-
-	// ligne 5
-	g1.creeArete(Peinture(222244444,1111111),s15,s25);
-	g1.creeArete(Peinture(222244444,1111111),s25,s35);
-	g1.creeArete(Peinture(222244444,1111111),s35,s45);
-	g1.creeArete(Peinture(222244444,1111111),s45,s55);
-
-
-	 // Colone ligne 4 ligne 5
-	g1.creeArete(Peinture(222244444,1111111),s14,s15);
-	g1.creeArete(Peinture(222244444,1111111),s24,s25);
-	g1.creeArete(Peinture(222244444,1111111),s34,s35);
-	g1.creeArete(Peinture(222244444,1111111),s44,s45);
-	g1.creeArete(Peinture(222244444,1111111),s54,s55);
-
-
-	// DIAGONALE entre ligne 4 et 5
-	g1.creeArete(Peinture(222244444,1111111),s15,s24);
-	g1.creeArete(Peinture(222244444,1111111),s25,s34);
-	g1.creeArete(Peinture(222244444,1111111),s45,s34);
-	g1.creeArete(Peinture(222244444,1111111),s55,s44);
-
-#pragma endregion créationAretes
-
-
-
-
-
-
-
-g1.majSommets() ;
-
-Pacman pacman = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
-Ghost ghost = Ghost(*s44,usine.getTextureRedFantome(),1,true,16,16,1);
-
-Coin coin = Coin(*s14,usine.getTextureCoin());
-
-#pragma endregion gestionGraphe
-#pragma region FentetreMainLoop
-    // Affichage de la fenetre
+    // Main loop
     while (f.fenetre.isOpen()) {
-		
-	    // Traitement des evenements
         Event event;
         while (f.fenetre.pollEvent(event)) {
-			
-	    // Fermeture
-            if (event.type == event.Closed)
-                f.fenetre.close();
+	    switch (event.type) {
+	    case event.Closed:
+		f.fenetre.close(); break;
+	    case event.KeyPressed:
+#define C(a) case Keyboard::a:
+#define K(a)    o = Orientation::a; break;
+		Orientation o;
+		switch (event.key.code) {
+		    C(Up); C(Z);    K(NORTH);
+		    C(Down); C(X);  K(SOUTH);
+		    C(Left); C(Q);  K(WEST);
+		    C(Right); C(D); K(EAST);
 
-	    // Evenements clavier
-            if (event.type == event.KeyPressed) {
-                if (event.key.code == Keyboard::Up)
-                {
-					pacman.move(Orientation::NORTH );
-                }
-				if (event.key.code == Keyboard::Down)
-                {
-					pacman.move(Orientation::SOUTH );
-                }
-				if (event.key.code == Keyboard::Left)
-                {
-					pacman.move(Orientation::WEST );
-                }
-				if (event.key.code == Keyboard::Right)
-                {
-					pacman.move(Orientation::EAST );
-                }
-				if (event.key.code == Keyboard::E)
-                {
-					pacman.move(Orientation::NORTH_EAST );
-                }
-				if (event.key.code == Keyboard::A)
-                {
-					pacman.move(Orientation::NORTH_WEST );
-                }
-				if (event.key.code == Keyboard::C)
-                {
-					pacman.move(Orientation::SOUTH_EAST );
-                }
-				if (event.key.code == Keyboard::W)
-                {
-					pacman.move(Orientation::SOUTH_WEST );
-                }
-            }
+		    C(E); K(NORTH_EAST);
+		    C(A); K(NORTH_WEST);
+		    C(W); K(SOUTH_WEST);
+		    C(C); K(SOUTH_EAST);
+		}
+		pacman.move(o);
+#undef C
+#undef K
+	    }
         }
 		
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
-		 coin.dessine(f);
-		 pacman.dessine(f);
-		 ghost.dessine(f);
+	coin.dessine(f);
+	pacman.dessine(f);
+	ghost.dessine(f);
         f.fenetre.display();
     }
-#pragma endregion FentetreMainLoop
 
     return EXIT_SUCCESS;
 }
