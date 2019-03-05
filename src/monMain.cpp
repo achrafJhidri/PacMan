@@ -26,11 +26,11 @@ using namespace sf;
 
 #define GRAPH_W 5
 #define GRAPH_H 5
-#define GRAPH_SPACE_W 50
+#define GRAPH_SPACE_W 70
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
 int main() {
-	srand(time(NULL));
+    srand(time(NULL));
     string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("src/Action Man Bold.ttf");
@@ -73,34 +73,35 @@ int main() {
     }
     g1.majSommets();
 
-    Pacman pacman = Pacman(*graphMatrix[1][1],usine.getTexturePacman(),1,16,16,6);
-    Ghost ghost = Ghost(*graphMatrix[3][3],usine.getTextureRedFantome(),1,true,16,16,1);
-    Coin coin = Coin(*graphMatrix[3][0],usine.getTextureCoin());
+    Pacman pacman = Pacman(graphMatrix[1][1],usine.getTexturePacman(),1,32,32,6);
+    Ghost ghost = Ghost(graphMatrix[3][3],usine.getTextureRedFantome(),1,true,32,32,1);
+    Coin coin = Coin(graphMatrix[3][0],usine.getTextureCoin());
 
     // Main loop
     while (f.fenetre.isOpen()) {
         Event event;
         while (f.fenetre.pollEvent(event)) {
 	    switch (event.type) {
+	    default: break;
 	    case event.Closed:
 		f.fenetre.close(); break;
 	    case event.KeyPressed:
+		ghost.move();
 #define C(a) case Keyboard::a:
-#define K(a)    o = Orientation::a; break;
-		Orientation o;
-		switch (event.key.code) {
-		    C(Up); C(Z);    K(NORTH);
-		    C(Down); C(X);  K(SOUTH);
-		    C(Left); C(Q);  K(WEST);
-		    C(Right); C(D); K(EAST);
+#define K(a) { pacman.move(Orientation::a); break; }
+              switch (event.key.code) {
+                C(Up); C(Z); K(NORTH);
+                C(Down); C(X); K(SOUTH);
+                C(Left); C(Q); K(WEST);
+                C(Right); C(D); K(EAST);
 
-		    C(E); K(NORTH_EAST);
-		    C(A); K(NORTH_WEST);
-		    C(W); K(SOUTH_WEST);
-		    C(C); K(SOUTH_EAST);
-		default: break;
-		}
-		pacman.move(o);
+                C(E); K(NORTH_EAST);
+                C(A); K(NORTH_WEST);
+                C(W); K(SOUTH_WEST);
+                C(C); K(SOUTH_EAST);
+              default:
+                break;
+              }
 #undef C
 #undef K
 	    }

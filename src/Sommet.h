@@ -24,7 +24,7 @@ public:
 	int degre;
 	PElement<Sommet > * listVoisin ;
 	bool pacGomme ; 
-	Sommet(const int clef, const T & v,bool aGomme = false ) :GElement<T>(clef, v), degre(0) ,listVoisin(NULL),pacGomme(aGomme){}
+	Sommet(const int clef, const T & v,bool aGomme = true ) :GElement<T>(clef, v), degre(0) ,listVoisin(NULL),pacGomme(aGomme){}
 
 	operator string () const;
 
