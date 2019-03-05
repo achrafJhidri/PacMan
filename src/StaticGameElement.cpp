@@ -1,6 +1,6 @@
 #include "StaticGameElement.hpp"
 
-StaticGameElement::StaticGameElement(const Sommet<VSommet> &pos, const sf::Texture &tex, int pts,int largeur,int hauteur,int nbTextures)
+StaticGameElement::StaticGameElement( Sommet<VSommet> *pos, const sf::Texture &tex, int pts,int largeur,int hauteur,int nbTextures)
     : GameElement(pos, tex,largeur,hauteur,nbTextures), points(pts)
 {}
 

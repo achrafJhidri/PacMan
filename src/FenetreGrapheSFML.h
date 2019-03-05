@@ -22,11 +22,7 @@
 using namespace sf;
 using namespace std;
 
-/**
-Prend en charge le dessin d'un graphe.
-Suppose que les coordonn�es des sommets sont d�finies par rapport au rep�re Monde.
-Prend en charge le passage fen�tre-cl�ture
-*/
+
 
 
 inline const Vector2f vecteur2DToVector2f( const Vecteur2D & v) { float x,y; v.arrondit(x,y); return Vector2f(x,y);}
@@ -131,18 +127,7 @@ const Font & font;
 
 
 TransfoAffine2D t;	// r�alise le passage fen�tre-cl�ture (ou encore monde vers �cran)
-/**
-Cr�e la fen�tre qui va contenir le dessin du graphe.
 
-DONNEES : titre : titre de la fen�tre
-		  fondCarte : couleur du fond de la sc�ne au formar RGBA
-          coinBG : coin Bas Gauche de la sc�ne en coordonn�es monde
-          coinHD : coin Haut Droit de la sc�ne en coordonn�es monde
-          largeur : largeur de la fen�tre �cran (en pixels)
-          hauteur : hauteur de la fen�tre �cran (en pixels)
-          font : police � utiliser pour les annotations sur les sommets
-
-*/
 FenetreGrapheSFML( const string & titre, const unsigned int fondCarte,
 				const Vecteur2D & coinBG, const Vecteur2D & coinHD,
 								  const int largeur, const int hauteur, const Font & font):
@@ -184,7 +169,7 @@ bool dessine( GameElement * gameElement);
 bool FenetreGrapheSFML::dessine( GameElement * gameElement){
 	
 	gameElement->animate();
-	Vecteur2D position = t.applique(gameElement->position.v.p);
+	Vecteur2D position = t.applique(gameElement->position->v.p);
 	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
 	Vector2f p1 =  vecteur2DToVector2f(position1);
 
@@ -210,43 +195,12 @@ bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> * sommet)
 
 	rect.setPosition(p1);
 	rect.setOrigin(VSommet::rayonDisquePixels,VSommet::rayonDisquePixels);
-
-
-
-
-
 	fenetre.draw(rect);
 }
 return true;
 }
 
-/*
-{
-Vecteur2D position = t.applique(sommet->v.p)-VSommet::rayonDisquePixels*Vecteur2D(1,1);
 
-// si on appliquait la transfo t globalement � tout le graphe avant de commencer � dessiner, on optimiserait
-// bcp de calculs !!!!
-
-CircleShape disque((float)VSommet::rayonDisquePixels);
-disque.setFillColor(Color(sommet->v.couleur));
-float epaisseurBord = (float)(0.15*VSommet::rayonDisquePixels);
-disque.setOutlineThickness(epaisseurBord);
-disque.setOutlineColor(Color(VSommet::couleurBord));
-float x,y;
-position.arrondit(x,y);
-
-disque.setPosition(x, y);
-
-fenetre.draw(disque);
-
-unsigned int tailleEnPixels = 15;
-Text texte(sommet->v.nom, font,tailleEnPixels);
-texte.setFillColor(Color::Black);
-texte.setPosition(x,y);
-fenetre.draw(texte);
-return true;
-}
-*/
 
 template <>
 bool FenetreGrapheSFML::dessine<Peinture,VSommet>(const Arete<Peinture,VSommet> * arete)
@@ -255,93 +209,14 @@ bool FenetreGrapheSFML::dessine<Peinture,VSommet>(const Arete<Peinture,VSommet> 
 return dessineSegment( this->fenetre, this->t, arete->v.devant, arete->debut->v.p, arete->fin->v.p);
 }
 
-/*{
-// on va dessiner un rectangle tr�s fin pour repr�senter l'ar�te
 
-Vecteur2D A(arete->debut->v.p), B(arete->fin->v.p);	// {AB] est l'ar�te � repr�senter
-
-A = t.applique(A); B = t.applique(B);		// on passe des coordonn�es monde aux coordonn�es �cran
-
-Vecteur2D u = B-A;
-
-double nU = norme(u);
-u /=nU;
-Vecteur2D  n = u.rotationDirecteQuartDeTour();
-
-double e = 1;	// �paisseur du rectangle = 2*e. longueur du rectangle == AB
-
-Vecteur2D v = e*n;
-
-Vecteur2D A0= A-v,A1 = B-v, A2 = B+v,A3 = A+v; // on calcule les 4 sommets du rectangle dont l'ar�te [AB] est un axe de sym�trie
-
-Vector2f F0 = vecteur2DToVector2f(A0);
-Vector2f F1 = vecteur2DToVector2f(A1);
-Vector2f F2 = vecteur2DToVector2f(A2);
-Vector2f F3 = vecteur2DToVector2f(A3);
-
-ConvexShape rectangle(4);
-rectangle.setPoint(0,F0);
-rectangle.setPoint(1,F1);
-rectangle.setPoint(2,F2);
-rectangle.setPoint(3,F3);
-
-rectangle.setFillColor(Color(arete->v.fond));
-fenetre.draw(rectangle);
-rectangle.setFillColor(Color(arete->v.devant));
-fenetre.draw(rectangle);
-
-return true;
-}*/
-
-//---------------------------------------dessine le cas particulier de InfoSommet et InfoArete ------------------------------
-
-/* *
-Dessine un sommet du graphe. Exemples :  nom, couleur, informations associ�es, etc.
-renvoie true en cas de succ�s, false en cas d'�chec
-On suppose que les coordonn�es du sommet sont d�finies par rapport au rep�re du monde
-* /
-template <>
-bool FenetreGrapheSFML::dessine<InfoSommet>(const Sommet<InfoSommet> * sommet)
-{
-return dessinePetitRond(this->fenetre, this->t, sommet->v.vSommet, this->font);
-}
-
-/ **
-Dessine un ar�te du graphe. Exemples :  nom, couleur, informations associ�es, etc.
-renvoie true en cas de succ�s, false en cas d'�chec
-On suppose que les coordonn�es des sommets sont d�finies par rapport au rep�re du monde
-* /
-template <>
-bool FenetreGrapheSFML::dessine<InfoArete,InfoSommet>(const Arete<InfoArete,InfoSommet> * arete)
-{
-return dessineSegment( this->fenetre, this->t, arete->v.couleur, arete->debut->v.vSommet.p, arete->fin->v.vSommet.p);
-}
-*/
-
-
-//----------------------------------------------------------------------------------
-/**
-par rapport � la classe de base, cette fen�tre dessine en plus les axes du rep�re monde
-
-*/
 class FenetreGrapheSFMLAvecAxesRepereMonde : public FenetreGrapheSFML
 {
 const Font & font2;
 
 public:
 
-/**
-Cr�e la fen�tre qui va contenir le dessin du graphe.
 
-DONNEES : titre : titre de la fen�tre
-		  fondCarte : couleur du fond de la sc�ne au formar RGBA
-          coinBG : coin Bas Gauche de la sc�ne en coordonn�es monde
-          coinHD : coin Haut Droit de la sc�ne en coordonn�es monde
-          largeur : largeur de la fen�tre �cran (en pixels)
-          hauteur : hauteur de la fen�tre �cran (en pixels)
-          font1 : police � utiliser pour les annotations sur les sommets
-		  font2 : police � utiliser pour les annotations sur les axes du rep�re
-*/
 
 FenetreGrapheSFMLAvecAxesRepereMonde(const string & titre, unsigned int fondCarte,
 								const Vecteur2D & coinBG, const Vecteur2D & coinHD,

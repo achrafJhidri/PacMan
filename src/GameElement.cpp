@@ -1,19 +1,19 @@
 #include "GameElement.hpp"
 
-GameElement::GameElement(const Sommet<VSommet> &position, const sf::Texture &texture,int largeur,int hauteur,int nbTextures)
+GameElement::GameElement( Sommet<VSommet> *position, const sf::Texture &texture,int largeur,int hauteur,int nbTextures)
     : position(position), texture(texture),sprite(texture,largeur,hauteur,nbTextures)
 {
-   sprite.setPosition(position.v.p.x,position.v.p.y);
+   sprite.setPosition(position->v.p.x,position->v.p.y);
    
  }
 
 GameElement::~GameElement() {}
 
-double GameElement::getX() const { return position.v.p.x; }
-double GameElement::getY() const {return position.v.p.y;}
+double GameElement::getX() const { return position->v.p.x; }
+double GameElement::getY() const {return position->v.p.y;}
 
-void GameElement::setX(double x) {position.v.p.x = x;}
-void GameElement::setY(double y) {position.v.p.y = y;}
+void GameElement::setX(double x) {position->v.p.x = x;}
+void GameElement::setY(double y) {position->v.p.y = y;}
 
 sf::Texture& GameElement::getTexture() {return texture;}
 
@@ -31,11 +31,11 @@ void GameElement::setOrientation(Orientation orientation) {
    
 }
 
-Sommet<VSommet>& GameElement::getSommet() {
+Sommet<VSommet>* GameElement::getSommet() {
     return position;
 }
 
-void GameElement::setSommet(Sommet<VSommet> const &pos) {
+void GameElement::setSommet(Sommet<VSommet>  *pos) {
     position = pos;
 }
 void GameElement::animate(){

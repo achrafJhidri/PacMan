@@ -9,13 +9,13 @@ private:
     double speed;
 public:
 
-    DynamicGameElement(const Sommet<VSommet> &, const sf::Texture &, double speed,int largeur,int hauteur,int nbTextures);
+    DynamicGameElement( Sommet<VSommet> *, const sf::Texture &, double speed,int largeur,int hauteur,int nbTextures);
     virtual ~DynamicGameElement();
 
     double getSpeed() const;
     void setSpeed(double);
 
-    virtual void move( Orientation orientation );
+    virtual void move( Orientation orientation = Orientation::NORTH);
 
     void positionRelative( DynamicGameElement & element,const double deg,bool (*checkOrientationFunction)(const Sommet<VSommet> & a,const Sommet<VSommet> & voisin));
 

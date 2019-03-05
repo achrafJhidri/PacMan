@@ -7,7 +7,7 @@ private:
     
 public:
     int nbPieceGagnee;
-    Pacman(const Sommet<VSommet> &, const sf::Texture &, double ,int largeur,int hauteur,int nbTextures);
+    Pacman( Sommet<VSommet> *, const sf::Texture &, double ,int largeur,int hauteur,int nbTextures);
     virtual ~Pacman();
 
     void move( Orientation orientation );

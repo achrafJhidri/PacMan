@@ -1,6 +1,7 @@
 #include "DynamicGameElement.hpp"
+#include "Pacman.hpp"
 
-DynamicGameElement::DynamicGameElement(const Sommet<VSommet> &sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
+DynamicGameElement::DynamicGameElement( Sommet<VSommet> *sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
     : GameElement(sommet, texture,largeur,hauteur,nbTextures), speed(speed)
 {}
 
@@ -37,22 +38,23 @@ void DynamicGameElement::move( Orientation orientation ){
              positionRelative(*this,45,estAuSudEst);}
         if ( orientation == Orientation::SOUTH_WEST){
              positionRelative(*this,135,estAuSudOuest);}
+             
 }
 
 
 
 void DynamicGameElement::positionRelative( DynamicGameElement & element,const double deg,bool (*checkOrientationFunction)(const Sommet<VSommet> & voisin,const Sommet<VSommet> & a)){
-    PElement<Sommet<VSommet>> * copieListVoisin =  PElement<Sommet<VSommet>>::copie1(position.listVoisin);
+    PElement<Sommet<VSommet>> * copieListVoisin =  position->listVoisin;
             while(copieListVoisin ){    
-                if ( checkOrientationFunction(*(copieListVoisin->v),position) ){
-                    position=*(copieListVoisin->v);
+                if ( checkOrientationFunction(*(copieListVoisin->v),*position) ){
+                    position=copieListVoisin->v;
                     //sprite.move()
                     sprite.setRotation(deg);
                     copieListVoisin = NULL;
                 }else 
                     copieListVoisin=copieListVoisin->s;
             }
-         PElement<Sommet<VSommet>>::efface1(copieListVoisin);
+         
 }
 
 /*static*/ bool DynamicGameElement::estAuNord(const Sommet<VSommet> & voisin,const Sommet<VSommet> & a) // renvoi true si le voisin est au nord de a cad  y du voisin < au y de a 

@@ -17,14 +17,12 @@ enum class Orientation {
 class GameElement
 { 
 public:
-    Sommet<VSommet> position;
+    Sommet<VSommet>  * position;
     sf::Texture texture;
     Orientation orientation = Orientation::WEST;
-    
-
     AnimatedSprite sprite;
     
-    GameElement(const Sommet<VSommet> &, const sf::Texture &,int largeur,int hauteur,int nbTextures);
+    GameElement( Sommet<VSommet> *, const sf::Texture &,int largeur,int hauteur,int nbTextures);
     virtual ~GameElement();
 
     double getX() const;
@@ -38,8 +36,8 @@ public:
     Orientation getOrientation() const;
     void setOrientation(Orientation);
 
-    Sommet<VSommet>& getSommet();
-    void setSommet(Sommet<VSommet> const&);
+    Sommet<VSommet>* getSommet();
+    void setSommet(Sommet<VSommet> *);
 
     void animate();
 

@@ -15,11 +15,14 @@
 #include "Coin.hpp"
 #include "Pacman.hpp"
 #include "AnimatedSprite.hpp"
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>   
+
 using namespace std;
 using namespace sf;
 
 int main() {
-
+	srand(time(NULL));
     string titre = "PacMan Demo" ;
     Font font;
     font.loadFromFile("src/Action Man Bold.ttf");
@@ -163,15 +166,15 @@ int main() {
 
 g1.majSommets() ;
 
-Pacman pacman = Pacman(*s22,usine.getTexturePacman(),1,16,16,6);
-Ghost ghost = Ghost(*s44,usine.getTextureRedFantome(),1,true,16,16,1);
+Pacman pacman = Pacman(s22,usine.getTexturePacman(),1,16,16,6);
+Ghost ghost = Ghost(s44,usine.getTextureRedFantome(),1,true,16,16,1);
 
-Coin coin = Coin(*s14,usine.getTextureCoin());
+Coin coin = Coin(s14,usine.getTextureCoin());
 
 #pragma endregion gestionGraphe
 #pragma region FentetreMainLoop
     // Affichage de la fenetre
-    while (f.fenetre.isOpen()) {
+    while (f.fenetre.isOpen()  ) {
 		
 	    // Traitement des evenements
         Event event;
@@ -186,34 +189,42 @@ Coin coin = Coin(*s14,usine.getTextureCoin());
                 if (event.key.code == Keyboard::Up)
                 {
 					pacman.move(Orientation::NORTH );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::Down)
                 {
 					pacman.move(Orientation::SOUTH );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::Left)
                 {
 					pacman.move(Orientation::WEST );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::Right)
                 {
 					pacman.move(Orientation::EAST );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::E)
                 {
 					pacman.move(Orientation::NORTH_EAST );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::A)
                 {
 					pacman.move(Orientation::NORTH_WEST );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::C)
                 {
 					pacman.move(Orientation::SOUTH_EAST );
+					ghost.move();
                 }
 				if (event.key.code == Keyboard::W)
                 {
 					pacman.move(Orientation::SOUTH_WEST );
+					ghost.move();
                 }
             }
         }
