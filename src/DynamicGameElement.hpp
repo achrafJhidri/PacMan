@@ -11,7 +11,7 @@ private:
     double speed;
 public:
 
-    DynamicGameElement( Sommet<VSommet> *, const sf::Texture &, double speed,int largeur,int hauteur,int nbTextures);
+    DynamicGameElement( Sommet<InfoSommet> *, const sf::Texture &, double speed,int largeur,int hauteur,int nbTextures);
     virtual ~DynamicGameElement();
 
     double getSpeed() const;

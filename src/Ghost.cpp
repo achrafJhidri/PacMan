@@ -4,7 +4,7 @@
 
 
 
-Ghost::Ghost( Sommet<VSommet> * s, const sf::Texture & t ,double speed ,bool offensif,int largeur,int hauteur,int nbTextures )
+Ghost::Ghost( Sommet<InfoSommet> * s, const sf::Texture & t ,double speed ,bool offensif,int largeur,int hauteur,int nbTextures )
 :DynamicGameElement(s,t,speed,largeur,hauteur,nbTextures),offensif(offensif)
 {
 
@@ -24,10 +24,10 @@ void Ghost::aPeur(bool etat ){
  void Ghost::move( Orientation orientation  ){
      
      
-    PElement<Sommet<VSommet>> * copieListVoisin  = position->listVoisin;
+    PElement<Sommet<InfoSommet>> * copieListVoisin  = position->listVoisin;
 
 
-    int taille =  PElement<Sommet<VSommet>>::taille(copieListVoisin);
+    int taille =  PElement<Sommet<InfoSommet>>::taille(copieListVoisin);
     int i = rand() % taille ;
         //  i = 4 
     while (copieListVoisin  ){

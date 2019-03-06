@@ -21,12 +21,17 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>   
 
+#include "InfoSommet.h"
+#include "InfoArete.h"
+#include "InfoArete.h"
+
+
 using namespace std;
 using namespace sf;
 
 #define GRAPH_W 5
 #define GRAPH_H 5
-#define GRAPH_SPACE_W 70
+#define GRAPH_SPACE_W 40
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
 int main() {
@@ -38,18 +43,20 @@ int main() {
     unsigned int magenta = Color::Black.toInteger();
     TextureFactory  usine;
 
-    Graphe<Peinture, VSommet> g1;
-    Sommet<VSommet> *graphMatrix[GRAPH_H][GRAPH_W];
+    
+    
+
+    Graphe<Peinture, InfoSommet> g1;
+    Sommet<InfoSommet> *graphMatrix[GRAPH_H][GRAPH_W];
     for (int i = 0; i < GRAPH_H; ++i) {
 	for (int j = 0; j < GRAPH_W; ++j) {
 	    std::stringstream s;
 	    int a = GRAPH_SPACE_W * (j + 1), b = GRAPH_SPACE_H * (i + 1);
 	    s << i << j;
-	    graphMatrix[i][j] = g1.creeSommet(VSommet(s.str(), Vecteur2D(a, b), magenta));
+	    graphMatrix[i][j] = g1.creeSommet(InfoSommet(VSommet(s.str(), Vecteur2D(a, b), magenta),InfoAStar()));
 	}
     }
-    graphMatrix[0][0]->pacGomme = true;
-
+   
     // Fill map
     Peinture paint(222244444,1111111);
     int i_offset, j_offset;
@@ -73,6 +80,8 @@ int main() {
     }
     g1.majSommets();
 
+
+
     Pacman pacman = Pacman(graphMatrix[1][1],usine.getTexturePacman(),1,32,32,6);
     Ghost ghost = Ghost(graphMatrix[3][3],usine.getTextureRedFantome(),1,true,32,32,1);
     Coin coin = Coin(graphMatrix[3][0],usine.getTextureCoin());
@@ -81,40 +90,52 @@ int main() {
     while (f.fenetre.isOpen()) {
         Event event;
         while (f.fenetre.pollEvent(event)) {
-	    switch (event.type) {
-	    default: break;
-	    case event.Closed:
-		f.fenetre.close(); break;
-	    case event.KeyPressed:
-		ghost.move();
-#define C(a) case Keyboard::a:
-#define K(a) { pacman.move(Orientation::a); break; }
-              switch (event.key.code) {
-                C(Up); C(Z); K(NORTH);
-                C(Down); C(X); K(SOUTH);
-                C(Left); C(Q); K(WEST);
-                C(Right); C(D); K(EAST);
+            switch (event.type) {
+                default: break;
+                case event.Closed:
+                f.fenetre.close(); break;
+                case event.KeyPressed:
+                ghost.move();
+                #define C(a) case Keyboard::a:
+                #define K(a) { pacman.move(Orientation::a); break; }
+                            switch (event.key.code) {
+                                C(Up); C(Z); K(NORTH);
+                                C(Down); C(X); K(SOUTH);
+                                C(Left); C(Q); K(WEST);
+                                C(Right); C(D); K(EAST);
 
-                C(E); K(NORTH_EAST);
-                C(A); K(NORTH_WEST);
-                C(W); K(SOUTH_WEST);
-                C(C); K(SOUTH_EAST);
-              default:
-                break;
-              }
-#undef C
-#undef K
-	    }
+                                C(E); K(NORTH_EAST);
+                                C(A); K(NORTH_WEST);
+                                C(W); K(SOUTH_WEST);
+                                C(C); K(SOUTH_EAST);
+                            default:
+                                break;
+                            }
+                #undef C
+                #undef K
+            }
         }
 		
         // Affichage
         f.fenetre.clear();
         g1.dessine(f);
-	coin.dessine(f);
-	pacman.dessine(f);
-	ghost.dessine(f);
+	    coin.dessine(f);
+	    pacman.dessine(f);
+	    ghost.dessine(f);
         f.fenetre.display();
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     return EXIT_SUCCESS;
 }

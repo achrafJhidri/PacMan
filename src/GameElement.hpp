@@ -1,6 +1,6 @@
 #pragma once 
 #include "Vecteur2D.h"
-#include "VSommet.h"
+#include "InfoSommet.h"
 #include "Sommet.h"
 #include "Orientation.hpp"
 
@@ -10,12 +10,12 @@
 class GameElement
 { 
 public:
-    Sommet<VSommet>  * position;
+    Sommet<InfoSommet>  * position;
     sf::Texture texture;
     // Orientation orientation = Orientation::WEST;
     AnimatedSprite sprite;
 
-    GameElement( Sommet<VSommet> *, const sf::Texture &,int largeur,int hauteur,int nbTextures);
+    GameElement( Sommet<InfoSommet> *, const sf::Texture &,int largeur,int hauteur,int nbTextures);
     virtual ~GameElement();
 
     double getX() const;
@@ -29,12 +29,12 @@ public:
     // Orientation getOrientation() const;
     // void setOrientation(Orientation);
 
-    Sommet<VSommet>* getSommet();
-    void setSommet(Sommet<VSommet> *);
+    Sommet<InfoSommet>* getSommet();
+    void setSommet(Sommet<InfoSommet> *);
 
     void animate();
 
-    bool checkAlignement(Orientation, Sommet<VSommet> const&);
+    bool checkAlignement(Orientation, Sommet<InfoSommet> const&);
     
     template <class Fenetre>
     bool dessine( Fenetre & f ) {

@@ -1,7 +1,7 @@
 #include "DynamicGameElement.hpp"
 #include "Pacman.hpp"
 
-DynamicGameElement::DynamicGameElement( Sommet<VSommet> *sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
+DynamicGameElement::DynamicGameElement( Sommet<InfoSommet> *sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
     : GameElement(sommet, texture,largeur,hauteur,nbTextures), speed(speed)
 {}
 
@@ -33,14 +33,14 @@ void DynamicGameElement::move(Orientation orientation) {
     this->sprite.setRotation(angle);
 
     // Iterate through neighbours
-    PElement<Sommet<VSommet> > *ns;
-    Sommet<VSommet> *neighbour;
+    PElement<Sommet<InfoSommet> > *ns;
+    Sommet<InfoSommet> *neighbour;
     for (ns = this->position->listVoisin; ns != nullptr; ns = ns->s) {
 	neighbour = ns->v;
 	// Move if neighbour is in the right orientation
         if (checkAlignement(orientation, *neighbour)) {
-	    position = neighbour;
-	    break;
+	        position = neighbour;
+	        break;
         }
     }
 }

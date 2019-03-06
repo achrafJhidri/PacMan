@@ -169,7 +169,7 @@ bool dessine( GameElement * gameElement);
 bool FenetreGrapheSFML::dessine( GameElement * gameElement){
 	
 	gameElement->animate();
-	Vecteur2D position = t.applique(gameElement->position->v.p);
+	Vecteur2D position = t.applique(gameElement->position->v.vSommet.p);
 	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
 	Vector2f p1 =  vecteur2DToVector2f(position1);
 
@@ -186,7 +186,7 @@ bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> * sommet)
 	if( sommet->pacGomme ){
 	TextureFactory usine ;
 	sf::Texture texture = usine.getTextureCoin();
-	sf::RectangleShape rect(sf::Vector2f(16,16));
+	sf::RectangleShape rect(sf::Vector2f(32,32));
 	rect.setTexture(&texture);
 
 	Vecteur2D position = t.applique(sommet->v.p);
@@ -194,12 +194,31 @@ bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> * sommet)
 	Vector2f p1 =  vecteur2DToVector2f(position1);
 
 	rect.setPosition(p1);
-	rect.setOrigin(VSommet::rayonDisquePixels,VSommet::rayonDisquePixels);
+	rect.setOrigin(16,16);
 	fenetre.draw(rect);
 }
 return true;
 }
 
+template <>
+bool FenetreGrapheSFML::dessine<InfoSommet>(const Sommet<InfoSommet> * sommet)
+{ dessinePetitRond(this->fenetre,this->t, sommet->v.vSommet, this->font);	// m�thode ordinaire. cf. d�but de ce fichier
+	if( sommet->pacGomme ){
+	TextureFactory usine ;
+	sf::Texture texture = usine.getTextureCoin();
+	sf::RectangleShape rect(sf::Vector2f(32,32));
+	rect.setTexture(&texture);
+
+	Vecteur2D position = t.applique(sommet->v.vSommet.p);
+	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
+	Vector2f p1 =  vecteur2DToVector2f(position1);
+
+	rect.setPosition(p1);
+	rect.setOrigin(16,16);
+	fenetre.draw(rect);
+}
+return true;
+}
 
 
 template <>
@@ -209,7 +228,12 @@ bool FenetreGrapheSFML::dessine<Peinture,VSommet>(const Arete<Peinture,VSommet> 
 return dessineSegment( this->fenetre, this->t, arete->v.devant, arete->debut->v.p, arete->fin->v.p);
 }
 
-
+template <>
+bool FenetreGrapheSFML::dessine<Peinture,InfoSommet>(const Arete<Peinture,InfoSommet> * arete)
+{
+	   dessineSegment( this->fenetre, this->t,   arete->v.fond, arete->debut->v.vSommet.p, arete->fin->v.vSommet.p);
+return dessineSegment( this->fenetre, this->t, arete->v.devant, arete->debut->v.vSommet.p, arete->fin->v.vSommet.p);
+}
 class FenetreGrapheSFMLAvecAxesRepereMonde : public FenetreGrapheSFML
 {
 const Font & font2;
