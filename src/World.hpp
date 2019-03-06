@@ -2,22 +2,38 @@
 
 #include "DynamicGameElement.hpp"
 #include "Graphe.h"
-#include "Sommet.h"
-#include "Arete.h"
-#include "VSommet.h"
-
+#include <vector>
+#include "Pacman.hpp"
+#include "Ghost.hpp"
+#include "Peinture.h"
+#include "InfoSommet.h"
 class World
 {
 private:
-    // type PacMan ou Dynamic.... ? 
-    DynamicGameElement *hero; 
-    DynamicGameElement *ghosts;
-    // graphe <S,T>
+    
+    Pacman * hero; 
+    vector<Ghost *> ghosts ;
+    Graphe <Peinture,InfoSommet> * laby;
     
 public:
-    World();
+    World( Pacman * pacman,const vector<Ghost *> & ghosts ,   Graphe<Peinture,InfoSommet> * graphe );
     virtual ~World();
 
-    DynamicGameElement const& getHero();
-    DynamicGameElement* const& getGhosts();
+     Pacman *  getHero() const ;
+    const vector<Ghost * > & getGhosts() const  ; 
+     Graphe< Peinture,InfoSommet> * getLaby() const ;
+
+
+    template <class FENETRE>
+    bool dessine(FENETRE & fenetre)  ;
+
+
+    void moveGhosts()const;
+    void checkCollision()const;
 };
+
+template <class FENETRE>
+bool World::dessine(FENETRE & fenetre){
+    fenetre.dessine(this);
+    return true ;
+}

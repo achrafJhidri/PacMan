@@ -13,6 +13,7 @@
 #include "Sommet.h"
 #include "VSommet.h"
 #include "Arete.h"
+#include "World.hpp"
 #include "InfosGrapheDessin.h"
 
 #include "TransfoAffine2D.h"
@@ -164,6 +165,7 @@ template <class S, class T>
 bool dessine(const Arete<S,T> * arete) ;
 
 bool dessine( GameElement * gameElement);
+bool dessine( World * world);
 };
 
 bool FenetreGrapheSFML::dessine( GameElement * gameElement){
@@ -178,6 +180,32 @@ bool FenetreGrapheSFML::dessine( GameElement * gameElement){
 	fenetre.draw(gameElement->sprite);
 	return true ;	
 }
+
+bool FenetreGrapheSFML::dessine( World * world){
+	
+
+	world->getLaby()->dessine(*this);
+	dessine(world->getHero());
+	vector<Ghost * >::const_iterator it ;
+	for (it = world->getGhosts().begin() ; it != world->getGhosts().end(); it++ )
+		{	
+			dessine(*it);
+			
+		}
+
+
+	return true ;	
+}
+
+
+
+
+
+
+
+
+
+
 
 
 template <>

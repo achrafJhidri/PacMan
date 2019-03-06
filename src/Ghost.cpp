@@ -39,9 +39,8 @@ void Ghost::aPeur(bool etat ){
                 position=copieListVoisin->v;
                 copieListVoisin=NULL;
             }
-
-
     }
 
+    cout << position->v.vSommet << endl ;
 
  }

@@ -14,3 +14,18 @@ void Pacman::move(Orientation orientation){
     }
     DynamicGameElement::move(orientation);
 }
+
+void Pacman::check(const Ghost * ghost)
+{
+	if (this->position == ghost->position)
+	{
+		if (ghost->estOffensif())
+		{
+			cout << "pacman est mort " << endl;
+		}
+		else
+		{
+			cout << "fantome est mort" << endl;
+		}
+	}
+}

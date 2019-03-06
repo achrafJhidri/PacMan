@@ -1,5 +1,6 @@
 #pragma once
 #include "DynamicGameElement.hpp"
+#include "Ghost.hpp"
 
 class Pacman : public DynamicGameElement
 {
@@ -11,4 +12,5 @@ public:
     virtual ~Pacman();
 
     void move( Orientation orientation );
+    void check(const Ghost * ghost);
 };

@@ -40,6 +40,7 @@ void DynamicGameElement::move(Orientation orientation) {
 	// Move if neighbour is in the right orientation
         if (checkAlignement(orientation, *neighbour)) {
 	        position = neighbour;
+            cout << position->v.vSommet << endl;
 	        break;
         }
     }
