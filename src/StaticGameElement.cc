@@ -1,4 +1,4 @@
-#include "StaticGameElement.hpp"
+#include "StaticGameElement.h"
 
 StaticGameElement::StaticGameElement( Sommet<InfoSommet> *pos, const sf::Texture &tex, int pts,int largeur,int hauteur,int nbTextures)
     : GameElement(pos, tex,largeur,hauteur,nbTextures), points(pts)

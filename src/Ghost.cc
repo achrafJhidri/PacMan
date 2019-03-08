@@ -1,4 +1,4 @@
-#include "Ghost.hpp"
+#include "Ghost.h"
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>   
 

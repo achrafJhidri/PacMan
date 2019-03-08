@@ -1,6 +1,6 @@
 #pragma once
 
-#include "StaticGameElement.hpp"
+#include "StaticGameElement.h"
 
 class Coin : public StaticGameElement
 {

@@ -13,12 +13,12 @@
 #include "Sommet.h"
 #include "VSommet.h"
 #include "Arete.h"
-#include "World.hpp"
+#include "World.h"
 #include "InfosGrapheDessin.h"
 
 #include "TransfoAffine2D.h"
 #include "Peinture.h"
-#include "GameElement.hpp"
+#include "GameElement.h"
 #include "TextureFactory.h"
 using namespace sf;
 using namespace std;
@@ -197,41 +197,11 @@ bool FenetreGrapheSFML::dessine( World * world){
 	return true ;	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-template <>
-bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> * sommet)
-{ dessinePetitRond(this->fenetre,this->t, sommet->v, this->font);	// m�thode ordinaire. cf. d�but de ce fichier
-	if( sommet->pacGomme ){
-	TextureFactory usine ;
-	sf::Texture texture = usine.getTextureCoin();
-	sf::RectangleShape rect(sf::Vector2f(32,32));
-	rect.setTexture(&texture);
-
-	Vecteur2D position = t.applique(sommet->v.p);
-	Vecteur2D position1 = position -VSommet::rayonDisquePixels*Vecteur2D(1,1);
-	Vector2f p1 =  vecteur2DToVector2f(position1);
-
-	rect.setPosition(p1);
-	rect.setOrigin(16,16);
-	fenetre.draw(rect);
-}
-return true;
-}
-
 template <>
 bool FenetreGrapheSFML::dessine<InfoSommet>(const Sommet<InfoSommet> * sommet)
-{ dessinePetitRond(this->fenetre,this->t, sommet->v.vSommet, this->font);	// m�thode ordinaire. cf. d�but de ce fichier
-	if( sommet->pacGomme ){
+{
+    dessinePetitRond(this->fenetre,this->t, sommet->v.vSommet, this->font);	// m�thode ordinaire. cf. d�but de ce fichier
+    if( sommet->pacGomme ){
 	TextureFactory usine ;
 	sf::Texture texture = usine.getTextureCoin();
 	sf::RectangleShape rect(sf::Vector2f(32,32));
@@ -244,7 +214,7 @@ bool FenetreGrapheSFML::dessine<InfoSommet>(const Sommet<InfoSommet> * sommet)
 	rect.setPosition(p1);
 	rect.setOrigin(16,16);
 	fenetre.draw(rect);
-}
+    }
 return true;
 }
 

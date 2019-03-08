@@ -2,10 +2,10 @@
 #include "Vecteur2D.h"
 #include "InfoSommet.h"
 #include "Sommet.h"
-#include "Orientation.hpp"
+#include "Orientation.h"
 
 #include <SFML/Graphics.hpp>
-#include "AnimatedSprite.hpp"
+#include "AnimatedSprite.h"
 
 class GameElement
 { 

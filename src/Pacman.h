@@ -1,6 +1,6 @@
 #pragma once
-#include "DynamicGameElement.hpp"
-#include "Ghost.hpp"
+#include "DynamicGameElement.h"
+#include "Ghost.h"
 
 class Pacman : public DynamicGameElement
 {

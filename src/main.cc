@@ -11,11 +11,11 @@
 #include <vector>
 #include "TextureFactory.h"
 
-#include "Ghost.hpp"
-#include "Coin.hpp"
-#include "Pacman.hpp"
-#include "AnimatedSprite.hpp"
-#include "Orientation.hpp"
+#include "Ghost.h"
+#include "Coin.h"
+#include "Pacman.h"
+#include "AnimatedSprite.h"
+#include "Orientation.h"
 
 #include <functional>
 #include <stdlib.h>     /* srand, rand */
@@ -24,7 +24,7 @@
 #include "InfoSommet.h"
 #include "InfoArete.h"
 #include "InfoArete.h"
-#include "World.hpp"
+#include "World.h"
 #include <vector>
 
 
@@ -36,7 +36,108 @@ using namespace sf;
 #define GRAPH_SPACE_W 70
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
+typedef Graphe<Peinture, InfoSommet> graph;
+typedef Sommet<InfoSommet> node;
+
 int main() {
+    // Define window
+    srand(time(NULL));
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Pacman");
+    sf::Font font;
+    font.loadFromFile("assets/ActionManBold.ttf");
+    Color bg = Color::Black;
+    TextureFactory tf = TextureFactory::getInstance();
+
+    // Define graph
+    graph gr;
+    node *graphMatrix[GRAPH_H][GRAPH_W];
+    std::stringstream s;
+    sf::Uint32 uint_green = Color::Green.toInteger();
+    sf::Vector2f coord;
+    for (int i = 0; i < GRAPH_H; ++i) {
+	coord.y = GRAPH_SPACE_H * (i + 1);
+        for (int j = 0; j < GRAPH_W; ++j) {
+            coord.x = GRAPH_SPACE_W * (j + 1);
+	    s.clear();
+            s << i << j;
+            graphMatrix[i][j] = gr.creeSommet(InfoSommet(VSommet(s.str(), coord, uint_green),InfoAStar()));
+        }
+    }
+
+    // Fill map
+    Peinture paint(0xd3f2e5c,0x10f447);
+    int i_offset, j_offset;
+    for (int i = 0; i < GRAPH_H; ++i) {
+	i_offset = (i <= GRAPH_H / 2) ? +1 : -1;
+	for (int j = 0; j < GRAPH_W; ++j) {
+	    // Create horizontal vertex
+	    if (j < GRAPH_H - 1) {
+		gr.creeArete(paint, graphMatrix[i][j], graphMatrix[i][j + 1]);
+	    }
+	    // Create vertical vertex
+	    if (i < GRAPH_W - 1) {
+		gr.creeArete(paint, graphMatrix[i][j], graphMatrix[i + 1][j]);
+            }
+	    // Diagonals
+            if (i != (GRAPH_H - 1) / 2.f && j != (GRAPH_W - 1) / 2.f) {
+		j_offset = (j <= GRAPH_W / 2) ? +1 : -1;
+		gr.creeArete(paint, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
+            }
+        }
+    }
+    gr.majSommets();
+
+    // Characters
+    std::vector<Ghost *> ghosts;
+    Pacman pacman(graphMatrix[1][1], tf.getTexturePacman(), 1, 32, 32, 6);
+    Ghost ghost(graphMatrix[3][3], tf.getTextureRedFantome(), 1, false, 32, 32, 1);
+    ghosts.push_back(&ghost);
+
+    // World
+    World world(&pacman, ghosts, &gr);
+
+    // Game loop
+    while (window.isOpen()) {
+        Event event;
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+	    default:
+		break;
+	    case event.Closed:
+		window.close();
+		break;
+	    case event.KeyPressed:
+#define C(a) case Keyboard::a:
+#define K(a) { pacman->move(Orientation::a); break; }
+		switch (event.key.code) {
+		    C(Up); C(Z); K(NORTH);
+		    C(Down); C(X); K(SOUTH);
+		    C(Left); C(Q); K(WEST);
+		    C(Right); C(D); K(EAST);
+
+		    C(E); K(NORTH_EAST);
+		    C(A); K(NORTH_WEST);
+		    C(W); K(SOUTH_WEST);
+		    C(C); K(SOUTH_EAST);
+		default:
+		    break;
+		}
+		world.moveGhosts();
+		world.checkCollision();
+#undef C
+#undef K
+            }
+        }
+		
+        // Affichage
+        window.clear();
+        world.dessine(f); // FIXME
+        window.display();
+    }
+    return EXIT_SUCCESS;
+}
+
+int _main() {
     srand(time(NULL));
     string titre = "PacMan Demo" ;
     Font font;
@@ -60,7 +161,7 @@ int main() {
     }
    
     // Fill map
-    Peinture paint(222244444,1111111);
+    Peinture paint(0xd3f2e5c,0x10f447);
     int i_offset, j_offset;
     for (int i = 0; i < GRAPH_H; ++i) {
 	for (int j = 0; j < GRAPH_W; ++j) {

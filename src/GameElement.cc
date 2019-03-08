@@ -1,4 +1,4 @@
-#include "GameElement.hpp"
+#include "GameElement.h"
 
 GameElement::GameElement( Sommet<InfoSommet> *position, const sf::Texture &texture,int largeur,int hauteur,int nbTextures)
     : position(position), texture(texture),sprite(texture,largeur,hauteur,nbTextures)

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "DynamicGameElement.hpp"
+#include "DynamicGameElement.h"
 #include "Graphe.h"
 #include <vector>
-#include "Pacman.hpp"
-#include "Ghost.hpp"
+#include "Pacman.h"
+#include "Ghost.h"
 #include "Peinture.h"
 #include "InfoSommet.h"
 class World

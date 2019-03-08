@@ -1,4 +1,4 @@
-#include "AnimatedSprite.hpp"
+#include "AnimatedSprite.h"
 #include "iostream"
 using namespace std ;
 

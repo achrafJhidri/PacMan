@@ -1,40 +1,25 @@
 #pragma once
 #include<iostream>
 #include <SFML/Graphics.hpp>
-using namespace sf;
-using namespace std;
+
 class TextureFactory 
 {
 private:
-	Texture pacman;
-	Texture redFantome;
-	Texture yellowFantome;
-	Texture blueFantome;
-	Texture pomme;
-	Texture piece;
-	//static TextureFactory * textureFactory;
+    static TextureFactory const* instance;
+    TextureFactory();
+
+    sf::Texture pacman;
+    sf::Texture redFantome;
+    sf::Texture yellowFantome;
+    sf::Texture blueFantome;
+    sf::Texture pomme;
+    sf::Texture piece;
 public:
-	TextureFactory()
-	{
-		pacman.loadFromFile("src/pacman.png");
-			
-		pomme.loadFromFile("src/pomme.png");
-		redFantome.loadFromFile("src/redfantome.png");
-		yellowFantome.loadFromFile("src/yellowfantome.png");
-		blueFantome.loadFromFile("src/bluefantome.png");
-		piece.loadFromFile("src/coin.png");
-	}
-public:
-
-	//static TextureFactory * getInstance();
-	Texture & getTexturePacman();
-	Texture & getTextureRedFantome();
-	Texture & getTextureYellowFantome();
-	Texture & getTextureBlueFantome();
-	Texture & getTexturePomme();
-	Texture & getTextureCoin();
-
-
-
-
+    static TextureFactory const& getInstance();
+    sf::Texture const& getTexturePacman() const;
+    sf::Texture const& getTextureRedFantome() const;
+    sf::Texture const& getTextureYellowFantome() const;
+    sf::Texture const& getTextureBlueFantome() const;
+    sf::Texture const& getTexturePomme() const;
+    sf::Texture const& getTextureCoin() const;
 };

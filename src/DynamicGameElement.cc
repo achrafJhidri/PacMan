@@ -1,5 +1,5 @@
-#include "DynamicGameElement.hpp"
-#include "Pacman.hpp"
+#include "DynamicGameElement.h"
+#include "Pacman.h"
 
 DynamicGameElement::DynamicGameElement( Sommet<InfoSommet> *sommet, const sf::Texture &texture, double speed,int largeur,int hauteur,int nbTextures)
     : GameElement(sommet, texture,largeur,hauteur,nbTextures), speed(speed)
