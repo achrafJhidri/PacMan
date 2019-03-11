@@ -22,12 +22,23 @@
         return laby;
     } ;
 
-      void World::moveGhosts()const {
+      void World::moveGhosts(int niveau)const {
+          if ( niveau == 1 ){
          vector<Ghost * >::const_iterator it ;
         for (it=ghosts.begin(); it != ghosts.end() ; it++){
-            (*it)->move();
+            (*it)->moveRandom();
 
         }
+          }
+          else
+          {
+              vector<Ghost * >::const_iterator it ;
+        for (it=ghosts.begin(); it != ghosts.end() ; it++){
+            Orientation o = DynamicGameElement::vaVersOrientation(*(hero->position),*((*it)->position));
+            (*it)->moveNiveau2(o);
+
+        }
+          }
     }
      void World::checkCollision()const{
         vector<Ghost * >::const_iterator it ;

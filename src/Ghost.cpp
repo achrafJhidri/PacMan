@@ -21,15 +21,13 @@ void Ghost::aPeur(bool etat ){
 }
 
 
- void Ghost::move( Orientation orientation  ){
+ void Ghost::moveRandom( Orientation orientation  ){
      
      
     PElement<Sommet<InfoSommet>> * copieListVoisin  = position->listVoisin;
-
-
     int taille =  PElement<Sommet<InfoSommet>>::taille(copieListVoisin);
     int i = rand() % taille ;
-        //  i = 4 
+
     while (copieListVoisin  ){
             if (i != 0){
                 i--;
@@ -41,6 +39,37 @@ void Ghost::aPeur(bool etat ){
             }
     }
 
-    cout << position->v.vSommet << endl ;
-
  }
+
+  void Ghost::moveNiveau2(Orientation orientation){
+      
+
+      if (orientation == Orientation::EAST){
+           DynamicGameElement::move(Orientation::EAST);
+            return ;
+       }
+        if (orientation == Orientation::WEST){
+           DynamicGameElement::move(Orientation::WEST);
+            return ;
+       }
+        if (orientation == Orientation::NORTH){
+           DynamicGameElement::move(Orientation::NORTH);
+            return ;
+       }
+        if (orientation == Orientation::SOUTH){
+           DynamicGameElement::move(Orientation::SOUTH);
+            return ;
+       }
+      if(orientation == Orientation::NORTH_EAST || orientation == Orientation::NORTH_WEST)
+       {
+            if (! DynamicGameElement::move(orientation))
+              DynamicGameElement::move(Orientation::NORTH);
+              return ;
+       }
+       if(orientation == Orientation::SOUTH_EAST || orientation == Orientation::SOUTH_WEST){
+         if (! DynamicGameElement::move(orientation))
+              DynamicGameElement::move(Orientation::SOUTH);
+              return ;
+       }
+
+  }

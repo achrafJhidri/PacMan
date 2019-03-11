@@ -17,5 +17,20 @@ public:
     double getSpeed() const;
     void setSpeed(double);
 
-    virtual void move( Orientation orientation );
+    virtual bool move( Orientation orientation );
+
+    static bool estAuNord(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool estAuSud(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool estAuEst(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool estAuOuest(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool memeX(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool memeY(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool estAuNordEst(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool estAuNordOuest(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+
+    static bool estAuSudEst(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+    static bool estAuSudOuest(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+
+
+    static Orientation vaVersOrientation(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
 };

@@ -28,7 +28,7 @@ public:
     bool dessine(FENETRE & fenetre)  ;
 
 
-    void moveGhosts()const;
+    void moveGhosts(int niveau)const;
     void checkCollision()const;
 };
 

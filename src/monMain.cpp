@@ -18,11 +18,10 @@
 #include "Orientation.hpp"
 
 #include <functional>
-#include <stdlib.h>     /* srand, rand */
+#include <stdlib.h>     
 #include <time.h>   
 
 #include "InfoSommet.h"
-#include "InfoArete.h"
 #include "InfoArete.h"
 #include "World.hpp"
 #include <vector>
@@ -85,18 +84,18 @@ int main() {
 
     
     Pacman  * pacman =  new Pacman(graphMatrix[1][1],usine.getTexturePacman(),1,32,32,6);
-    Ghost * ghost =  new Ghost(graphMatrix[3][3],usine.getTextureRedFantome(),1,false,32,32,1);
-    // Ghost * ghost1 =  new Ghost(graphMatrix[4][4],usine.getTextureBlueFantome(),1,true,32,32,1);
-    // Ghost * ghost2 = new  Ghost(graphMatrix[0][2],usine.getTextureYellowFantome(),1,true,32,32,1);
+    Ghost * ghost =  new Ghost(graphMatrix[4][0],usine.getTextureRedFantome(),1,true,32,32,1);
+    Ghost * ghost1 =  new Ghost(graphMatrix[4][4],usine.getTextureBlueFantome(),1,true,32,32,1);
+    Ghost * ghost2 = new  Ghost(graphMatrix[0][4],usine.getTextureYellowFantome(),1,true,32,32,1);
     vector<Ghost *> v ;
     v.push_back(ghost);
-    // v.push_back(ghost1);
-    // v.push_back(ghost2);
+    v.push_back(ghost1);
+    v.push_back(ghost2);
     World world(pacman,v,g1);
 
 
     // Main loop
-    while (f.fenetre.isOpen() ) {
+   while (f.fenetre.isOpen()  && pacman->estVivant() && pacman->getNbPieceGagnee()!=GRAPH_H*GRAPH_W ){
         Event event;
         while (f.fenetre.pollEvent(event)) {
             switch (event.type) {
@@ -119,7 +118,7 @@ int main() {
                             default:
                                 break;
                             }
-                            world.moveGhosts();
+                            world.moveGhosts(2);
                             world.checkCollision();
                 #undef C
                 #undef K
@@ -128,25 +127,9 @@ int main() {
 		
         // Affichage
         f.fenetre.clear();
-        // g1.dessine(f);
-
-	    // pacman.dessine(f);
-	    // ghost.dessine(f);
         world.dessine(f);
         f.fenetre.display();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     return EXIT_SUCCESS;
 }

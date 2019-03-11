@@ -16,11 +16,11 @@ class Ghost : public DynamicGameElement {
     void aPeur(bool etat = false  );
 
 
-     void move( Orientation orientation = Orientation::NORTH );
+     void moveRandom( Orientation orientation = Orientation::NORTH );
 
 
     
-
+    void moveNiveau2(Orientation orientation);
 
 
 
