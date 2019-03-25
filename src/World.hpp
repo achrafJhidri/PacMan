@@ -8,6 +8,8 @@
 #include "Peinture.h"
 #include "InfoSommet.h"
 #include "InfoArete.h"
+#include "AstarT.h"
+#include "OutilsCarte.h"
 class World
 {
 private:

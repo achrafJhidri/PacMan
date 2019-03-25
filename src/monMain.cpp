@@ -68,6 +68,7 @@ int main() {
 	    // Create horizontal vertex
 	    if (j < GRAPH_H - 1) {
 		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i][j + 1]);
+
         OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i][j + 1], g1);
 	    }
 	    // Create vertical vertex
@@ -124,7 +125,7 @@ int main() {
                             default:
                                 break;
                             }
-                            world.moveGhosts(2);
+                            world.moveGhosts(4);
                             world.checkCollision();
                 #undef C
                 #undef K
