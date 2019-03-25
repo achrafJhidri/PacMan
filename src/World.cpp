@@ -4,7 +4,7 @@
 
 
 
-    World::World( Pacman * pacman, const vector<Ghost *> & ghosts ,   Graphe<Peinture,InfoSommet> * graphe )
+    World::World( Pacman * pacman, const vector<Ghost *> & ghosts ,   Graphe<InfoArete,InfoSommet> * graphe )
     :hero(pacman),ghosts(ghosts),laby(graphe){
             
     }
@@ -18,7 +18,7 @@
     const vector<Ghost *> & World::getGhosts()const   {
         return ghosts;
     }; 
-     Graphe< Peinture,InfoSommet> * World::getLaby() const{
+     Graphe< InfoArete,InfoSommet> * World::getLaby() const{
         return laby;
     } ;
 

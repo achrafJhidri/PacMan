@@ -7,21 +7,22 @@
 #include "Ghost.hpp"
 #include "Peinture.h"
 #include "InfoSommet.h"
+#include "InfoArete.h"
 class World
 {
 private:
     
     Pacman * hero; 
     vector<Ghost *> ghosts ;
-    Graphe <Peinture,InfoSommet> * laby;
+    Graphe <InfoArete,InfoSommet> * laby;
     
 public:
-    World( Pacman * pacman,const vector<Ghost *> & ghosts ,   Graphe<Peinture,InfoSommet> * graphe );
+    World( Pacman * pacman,const vector<Ghost *> & ghosts ,   Graphe<InfoArete,InfoSommet> * graphe );
     virtual ~World();
 
      Pacman *  getHero() const ;
     const vector<Ghost * > & getGhosts() const  ; 
-     Graphe< Peinture,InfoSommet> * getLaby() const ;
+     Graphe< InfoArete,InfoSommet> * getLaby() const ;
 
 
     template <class FENETRE>

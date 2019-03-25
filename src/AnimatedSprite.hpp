@@ -4,7 +4,7 @@
 #include <list>
 using namespace std ;
 
-// a faire
+
 class AnimatedSprite : public sf::Sprite {
     sf::Clock clock;
     list<sf::IntRect> cadres;

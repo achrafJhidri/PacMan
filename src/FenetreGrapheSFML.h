@@ -262,6 +262,13 @@ bool FenetreGrapheSFML::dessine<Peinture,InfoSommet>(const Arete<Peinture,InfoSo
 return dessineSegment( this->fenetre, this->t, arete->v.devant, arete->debut->v.vSommet.p, arete->fin->v.vSommet.p);
 }
 
+template <>
+bool FenetreGrapheSFML::dessine<InfoArete,InfoSommet>(const Arete<InfoArete,InfoSommet> * arete)
+{
+	   
+return dessineSegment( this->fenetre, this->t,   arete->v.couleur, arete->debut->v.vSommet.p, arete->fin->v.vSommet.p);
+}
+
 
 
 #endif // FENETRE_H

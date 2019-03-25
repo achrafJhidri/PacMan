@@ -30,9 +30,9 @@
 using namespace std;
 using namespace sf;
 
-#define GRAPH_W 5
-#define GRAPH_H 5
-#define GRAPH_SPACE_W 70
+#define GRAPH_W 7
+#define GRAPH_H 7
+#define GRAPH_SPACE_W 40
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
 int main() {
@@ -47,7 +47,7 @@ int main() {
     
     
 
-    Graphe<Peinture, InfoSommet>  * g1 = new Graphe <Peinture,InfoSommet>() ;
+    Graphe<InfoArete, InfoSommet>  * g1 = new Graphe <InfoArete,InfoSommet>() ;
     Sommet<InfoSommet> *graphMatrix[GRAPH_H][GRAPH_W];
     for (int i = 0; i < GRAPH_H; ++i) {
         for (int j = 0; j < GRAPH_W; ++j) {
@@ -60,22 +60,23 @@ int main() {
    
     // Fill map
     Peinture paint(222244444,1111111);
+    InfoArete info(10);
     int i_offset, j_offset;
     for (int i = 0; i < GRAPH_H; ++i) {
 	for (int j = 0; j < GRAPH_W; ++j) {
 	    // Create horizontal vertex
 	    if (j < GRAPH_H - 1) {
-		g1->creeArete(paint, graphMatrix[i][j], graphMatrix[i][j + 1]);
+		g1->creeArete(info, graphMatrix[i][j], graphMatrix[i][j + 1]);
 	    }
 	    // Create vertical vertex
 	    if (i < GRAPH_W - 1) {
-		g1->creeArete(paint, graphMatrix[i][j], graphMatrix[i + 1][j]);
+		g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + 1][j]);
             }
 	    // Diagonals
             if (i != (GRAPH_H - 1) / 2.f && j != (GRAPH_W - 1) / 2.f) {
 		i_offset = (i <= GRAPH_H / 2) ? +1 : -1;
 		j_offset = (j <= GRAPH_W / 2) ? +1 : -1;
-		g1->creeArete(paint, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
+		g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
             }
         }
     }
@@ -89,8 +90,8 @@ int main() {
     Ghost * ghost2 = new  Ghost(graphMatrix[0][4],usine.getTextureYellowFantome(),1,true,32,32,1);
     vector<Ghost *> v ;
     v.push_back(ghost);
-    v.push_back(ghost1);
-    v.push_back(ghost2);
+    // v.push_back(ghost1);
+    // v.push_back(ghost2);
     World world(pacman,v,g1);
 
 
