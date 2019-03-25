@@ -31,6 +31,9 @@ public:
     static bool estAuSudEst(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
     static bool estAuSudOuest(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
 
+    static Orientation DiagonalOrientation(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
+
+    static bool estEnDiagonal (const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
 
     static Orientation vaVersOrientation(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a);
 };
