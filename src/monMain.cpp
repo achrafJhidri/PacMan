@@ -25,6 +25,7 @@
 #include "InfoArete.h"
 #include "World.hpp"
 #include <vector>
+#include "OutilsCarte.h"
 
 
 using namespace std;
@@ -47,14 +48,14 @@ int main() {
     
     
 
-    Graphe<InfoArete, InfoSommet>  * g1 = new Graphe <InfoArete,InfoSommet>() ;
+    Graphe<InfoArete, InfoSommet>   g1 = Graphe <InfoArete,InfoSommet>() ;
     Sommet<InfoSommet> *graphMatrix[GRAPH_H][GRAPH_W];
     for (int i = 0; i < GRAPH_H; ++i) {
         for (int j = 0; j < GRAPH_W; ++j) {
             std::stringstream s;
             int a = GRAPH_SPACE_W * (j + 1), b = GRAPH_SPACE_H * (i + 1);
             s << i << j;
-            graphMatrix[i][j] = g1->creeSommet(InfoSommet(VSommet(s.str(), Vecteur2D(a, b), magenta),InfoAStar()));
+            graphMatrix[i][j] = g1.creeSommet(InfoSommet(VSommet(s.str(), Vecteur2D(a, b), magenta),InfoAStar()));
         }
     }
    
@@ -66,21 +67,25 @@ int main() {
 	for (int j = 0; j < GRAPH_W; ++j) {
 	    // Create horizontal vertex
 	    if (j < GRAPH_H - 1) {
-		g1->creeArete(info, graphMatrix[i][j], graphMatrix[i][j + 1]);
+		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i][j + 1]);
+        OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i][j + 1], g1);
 	    }
 	    // Create vertical vertex
 	    if (i < GRAPH_W - 1) {
-		g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + 1][j]);
+		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + 1][j]);
+        OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i + 1][j], g1);
             }
 	    // Diagonals
             if (i != (GRAPH_H - 1) / 2.f && j != (GRAPH_W - 1) / 2.f) {
 		i_offset = (i <= GRAPH_H / 2) ? +1 : -1;
 		j_offset = (j <= GRAPH_W / 2) ? +1 : -1;
-		g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
+		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
+         OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset], g1);
+        
             }
         }
     }
-    g1->majSommets();
+    g1.majSommets();
 
 
     
@@ -92,7 +97,7 @@ int main() {
     v.push_back(ghost);
     // v.push_back(ghost1);
     // v.push_back(ghost2);
-    World world(pacman,v,g1);
+    World world(pacman,v,&g1);
 
 
     // Main loop
