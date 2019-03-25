@@ -65,6 +65,7 @@ int main() {
 	    // Create horizontal vertex
 	    if (j < GRAPH_H - 1) {
 		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i][j + 1]);
+
         OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i][j + 1], g1);
 	    }
 	    // Create vertical vertex
@@ -124,7 +125,7 @@ int main() {
 		    }
 		    // Update level if necessary
 		    if (pacman->getNbPieceGagnee() == GRAPH_H * GRAPH_W) {
-			if (gameLevel < 3) {
+			if (gameLevel < 4) {
 			    gameLevel++;
 			    world.resetContent();
 			    std::cout << "level up!" << std::endl;
