@@ -21,15 +21,6 @@ void GameElement::setTexture(const sf::Texture &t) {
     texture = t;
 }
 
-// Orientation GameElement::getOrientation() const {
-    
-//     return orientation;
-// }
-
-// void GameElement::setOrientation(Orientation orientation) {
-//     this->orientation = orientation;
-   
-// }
 
 Sommet<InfoSommet>* GameElement::getSommet() {
     return position;

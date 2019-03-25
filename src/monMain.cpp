@@ -31,9 +31,9 @@
 using namespace std;
 using namespace sf;
 
-#define GRAPH_W 7
-#define GRAPH_H 7
-#define GRAPH_SPACE_W 40
+#define GRAPH_W 11
+#define GRAPH_H 11
+#define GRAPH_SPACE_W 30
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
 int main() {
@@ -64,20 +64,20 @@ int main() {
 	for (int j = 0; j < GRAPH_W; ++j) {
 	    // Create horizontal vertex
 	    if (j < GRAPH_H - 1) {
-		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i][j + 1]);
+		
 
         OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i][j + 1], g1);
 	    }
 	    // Create vertical vertex
 	    if (i < GRAPH_W - 1) {
-		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + 1][j]);
+		
         OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i + 1][j], g1);
             }
 	    // Diagonals
             if (i != (GRAPH_H - 1) / 2.f && j != (GRAPH_W - 1) / 2.f) {
 		i_offset = (i <= GRAPH_H / 2) ? +1 : -1;
 		j_offset = (j <= GRAPH_W / 2) ? +1 : -1;
-		//g1->creeArete(info, graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset]);
+		
          OutilsCarte::creeArete( graphMatrix[i][j], graphMatrix[i + i_offset][j + j_offset], g1);
         
             }
@@ -87,14 +87,14 @@ int main() {
 
 
     
-    Pacman  * pacman =  new Pacman(graphMatrix[1][1],usine.getTexturePacman(),1,32,32,6);
-    Ghost * ghost =  new Ghost(graphMatrix[4][0],usine.getTextureRedFantome(),1,true,32,32,1);
-    Ghost * ghost1 =  new Ghost(graphMatrix[4][4],usine.getTextureBlueFantome(),1,true,32,32,1);
-    Ghost * ghost2 = new  Ghost(graphMatrix[0][4],usine.getTextureYellowFantome(),1,true,32,32,1);
+    Pacman  * pacman =  new Pacman(graphMatrix[4][4],usine.getTexturePacman(),1,32,32,6);
+    Ghost * ghost =  new Ghost(graphMatrix[1][0],usine.getTextureRedFantome(),1,true,32,32,1);
+    Ghost * ghost1 =  new Ghost(graphMatrix[3][4],usine.getTextureBlueFantome(),1,true,32,32,1);
+    Ghost * ghost2 = new  Ghost(graphMatrix[3][0],usine.getTextureYellowFantome(),1,true,32,32,1);
     vector<Ghost *> v ;
     v.push_back(ghost);
-    // v.push_back(ghost1);
-    // v.push_back(ghost2);
+    v.push_back(ghost1);
+    v.push_back(ghost2);
     World world(pacman,v,&g1);
 
 
@@ -125,7 +125,7 @@ int main() {
 		    }
 		    // Update level if necessary
 		    if (pacman->getNbPieceGagnee() == GRAPH_H * GRAPH_W) {
-			if (gameLevel < 4) {
+			if (gameLevel < 3) {
 			    gameLevel++;
 			    world.resetContent();
 			    std::cout << "level up!" << std::endl;

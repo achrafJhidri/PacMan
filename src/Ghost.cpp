@@ -21,7 +21,7 @@ void Ghost::aPeur(bool etat ){
 }
 
 
- void Ghost::moveRandom( Orientation orientation  ){
+ void Ghost::moveRandom( ){
      
      
     PElement<Sommet<InfoSommet>> * copieListVoisin  = position->listVoisin;
@@ -62,13 +62,13 @@ void Ghost::aPeur(bool etat ){
        }
       if(orientation == Orientation::NORTH_EAST || orientation == Orientation::NORTH_WEST)
        {
-            if (! DynamicGameElement::move(orientation))
-              DynamicGameElement::move(Orientation::NORTH);
+            DynamicGameElement::move(orientation);
+    
               return ;
        }
        if(orientation == Orientation::SOUTH_EAST || orientation == Orientation::SOUTH_WEST){
-         if (! DynamicGameElement::move(orientation))
-              DynamicGameElement::move(Orientation::SOUTH);
+              DynamicGameElement::move(orientation);
+              
               return ;
        }
 

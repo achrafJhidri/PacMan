@@ -43,6 +43,7 @@ bool DynamicGameElement::move(Orientation orientation) {
             return true ;
         }
     }
+    
     return false ;
 }
 
@@ -79,37 +80,30 @@ bool DynamicGameElement::move(Orientation orientation) {
     return (  abs(voisin.v.vSommet.p.x - a.v.vSommet.p.x) ==  abs(voisin.v.vSommet.p.y - a.v.vSommet.p.y));
 }
 
- /*static*/  Orientation DynamicGameElement::DiagonalOrientation(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & pac){
-     if (  abs(voisin.v.vSommet.p.x - pac.v.vSommet.p.x) ==  abs(voisin.v.vSommet.p.y - pac.v.vSommet.p.y) ){
-         {
-             if ( voisin.v.vSommet.p.x <  pac.v.vSommet.p.x  && voisin.v.vSommet.p.y <  pac.v.vSommet.p.y )
-                return Orientation::SOUTH_EAST;
-             if ( voisin.v.vSommet.p.x <  pac.v.vSommet.p.x  && voisin.v.vSommet.p.y >  pac.v.vSommet.p.y )
-                return Orientation::NORTH_EAST;
-             if ( voisin.v.vSommet.p.x >  pac.v.vSommet.p.x  && voisin.v.vSommet.p.y >  pac.v.vSommet.p.y )
-                return Orientation::NORTH_WEST;
-                if ( voisin.v.vSommet.p.x >  pac.v.vSommet.p.x  && voisin.v.vSommet.p.y <  pac.v.vSommet.p.y )
-                return Orientation::NORTH_WEST;
-         }
-     }else {
-
-     }
+/*static*/  Orientation DynamicGameElement::DiagonalOrientation(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & pac){
+    
+             if ( estAuNordOuest(voisin,pac) )
+                {   cout << "pacman est en haut gauche" << endl ;
+                    return Orientation::NORTH_WEST;
+                } 
+             if ( estAuSudOuest(voisin,pac) )
+                {   cout << "pacman est en bas gauche" << endl ;
+                    return Orientation::SOUTH_WEST;
+                } 
+             if ( estAuSudEst(voisin,pac) )
+                {   cout << "pacman est en bas droite" << endl ;
+                    return Orientation::SOUTH_EAST;
+                } 
+                if ( estAuNordEst(voisin,pac) )
+                {   cout << "pacman est en haut droit" << endl ;
+                    return Orientation:: NORTH_EAST;
+                } 
  }
 /*static */   Orientation  DynamicGameElement::vaVersOrientation(const Sommet<InfoSommet> & voisin,const Sommet<InfoSommet> & a){
 
     if ( estEnDiagonal(voisin,a) ){
         return DiagonalOrientation(voisin,a);
     }
-    if (estAuNordEst(voisin,a))
-            return Orientation::NORTH_EAST;
-
-    if (estAuNordOuest(voisin,a))
-            return Orientation::NORTH_WEST;
-
-    if(estAuSudEst(voisin,a))
-            return Orientation::SOUTH_EAST;
-    if(estAuSudOuest(voisin,a))
-            return Orientation::SOUTH_WEST;
     
     if(estAuNord(voisin,a))
             return Orientation::NORTH;
@@ -121,6 +115,9 @@ bool DynamicGameElement::move(Orientation orientation) {
     
     if (estAuSud(voisin,a))
             return Orientation::SOUTH;
+
+    return Orientation::NONE;
+    
     
    
 

@@ -16,7 +16,7 @@ class Ghost : public DynamicGameElement {
     void aPeur(bool etat = false  );
 
 
-     void moveRandom( Orientation orientation = Orientation::NORTH );
+     void moveRandom( );
 
 
     

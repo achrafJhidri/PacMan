@@ -3,6 +3,8 @@
 #pragma GCC diagnostic ignored "-Wunused-function"
 
 enum class Orientation {
+    NONE = 0,
+    
     // Basic
     NORTH = 1 << 0,
     SOUTH = 1 << 1,
