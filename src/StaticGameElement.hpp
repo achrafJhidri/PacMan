@@ -1,7 +1,6 @@
 #pragma once
 #include "GameElement.hpp"
 
-
 class StaticGameElement : public GameElement
 {
 private:

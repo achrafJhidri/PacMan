@@ -45,9 +45,6 @@ int main() {
     unsigned int magenta = Color::Black.toInteger();
     TextureFactory  usine;
 
-    
-    
-
     Graphe<InfoArete, InfoSommet>   g1 = Graphe <InfoArete,InfoSommet>() ;
     Sommet<InfoSommet> *graphMatrix[GRAPH_H][GRAPH_W];
     for (int i = 0; i < GRAPH_H; ++i) {
@@ -101,7 +98,8 @@ int main() {
 
 
     // Main loop
-   while (f.fenetre.isOpen()  && pacman->estVivant() && pacman->getNbPieceGagnee()!=GRAPH_H*GRAPH_W ){
+    int gameLevel = 1;
+    while (f.fenetre.isOpen() && pacman->estVivant() && gameLevel <= 3){
         Event event;
         while (f.fenetre.pollEvent(event)) {
             switch (event.type) {
@@ -111,21 +109,33 @@ int main() {
                 case event.KeyPressed:
                 #define C(a) case Keyboard::a:
                 #define K(a) { pacman->move(Orientation::a); break; }
-                            switch (event.key.code) {
-                                C(Up); C(Z); K(NORTH);
-                                C(Down); C(X); K(SOUTH);
-                                C(Left); C(Q); K(WEST);
-                                C(Right); C(D); K(EAST);
+		    switch (event.key.code) {
+			C(Up); C(Z); K(NORTH);
+			C(Down); C(X); K(SOUTH);
+			C(Left); C(Q); K(WEST);
+			C(Right); C(D); K(EAST);
 
-                                C(E); K(NORTH_EAST);
-                                C(A); K(NORTH_WEST);
-                                C(W); K(SOUTH_WEST);
-                                C(C); K(SOUTH_EAST);
-                            default:
-                                break;
-                            }
-                            world.moveGhosts(2);
-                            world.checkCollision();
+			C(E); K(NORTH_EAST);
+			C(A); K(NORTH_WEST);
+			C(W); K(SOUTH_WEST);
+			C(C); K(SOUTH_EAST);
+		    default:
+			break;
+		    }
+		    // Update level if necessary
+		    if (pacman->getNbPieceGagnee() == GRAPH_H * GRAPH_W) {
+			if (gameLevel < 3) {
+			    gameLevel++;
+			    world.resetContent();
+			    std::cout << "level up!" << std::endl;
+			} else {
+			    std::cout << "hey good job" << std::endl;
+			    // return; // logic moved to while loop condition
+			}
+		    }
+		    // Animate world
+		    world.moveGhosts(gameLevel);
+		    world.checkCollision();
                 #undef C
                 #undef K
             }
@@ -139,4 +149,3 @@ int main() {
 
     return EXIT_SUCCESS;
 }
-

@@ -1,8 +1,6 @@
 #pragma once
 #include "AElement.h"
 #include <iostream>
-using namespace  std;
-
 
 constexpr int LIBRE = 0;
 constexpr int OUVERT = 1;
@@ -18,12 +16,12 @@ public:
 	double g;
 
 
-	InfoAStar(AElement * p = NULL, int e = LIBRE, const double & c   = 0 ,const double & h = 0 ,const double &  g = 0) 
+	InfoAStar(AElement * p = nullptr, int e = LIBRE, const double & c   = 0 ,const double & h = 0 ,const double &  g = 0) 
 		: pere(p),etat(e),c(c),h(h),g(g)
 	{
 	};
 	
-	 operator string()  const {
+    operator std::string()  const {
 		 ostringstream oss;
 
 		 oss << "clef pere = ";

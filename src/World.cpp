@@ -46,3 +46,11 @@
             hero->check(*it);
         }
     }
+
+    void World::resetContent() {
+	PElement<Sommet<InfoSommet>> *xs;
+        for (xs = this->getLaby()->lSommets; xs != nullptr; xs = xs->s) {
+	    Sommet<InfoSommet> *s = xs->v;
+	    s->pacGomme = true;
+        }
+    }

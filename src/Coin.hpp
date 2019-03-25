@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Sommet.h"
+#include "InfoSommet.h"
 #include "StaticGameElement.hpp"
 
 class Coin : public StaticGameElement

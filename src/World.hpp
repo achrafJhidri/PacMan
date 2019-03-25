@@ -31,6 +31,8 @@ public:
 
     void moveGhosts(int niveau)const;
     void checkCollision()const;
+
+    void resetContent();
 };
 
 template <class FENETRE>
