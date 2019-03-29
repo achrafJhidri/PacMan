@@ -61,11 +61,7 @@ void Pacman::check(const Ghost * ghost)
 		else
 
 		{
-
 			cout << "fantome est mort" << endl;
-
 		}
-
 	}
-
 }

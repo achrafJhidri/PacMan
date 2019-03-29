@@ -22,8 +22,8 @@
         return laby;
     } ;
 
-    void World::moveGhosts(int niveau)const {
-          if ( niveau == 1 ) // Random
+    void World::moveGhosts(int niveau)const {// maladroit
+          if ( niveau == 3 ) // Random
           {
                 vector<Ghost * >::const_iterator it ;
                 for (it=ghosts.begin(); it != ghosts.end() ; it++)

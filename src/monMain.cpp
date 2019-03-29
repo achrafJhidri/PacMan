@@ -31,9 +31,9 @@
 using namespace std;
 using namespace sf;
 
-#define GRAPH_W 11
-#define GRAPH_H 11
-#define GRAPH_SPACE_W 30
+#define GRAPH_W 9
+#define GRAPH_H 9
+#define GRAPH_SPACE_W 35
 #define GRAPH_SPACE_H GRAPH_SPACE_W
 
 int main() {
@@ -87,14 +87,14 @@ int main() {
 
 
     
-    Pacman  * pacman =  new Pacman(graphMatrix[4][4],usine.getTexturePacman(),1,32,32,6);
+    Pacman  * pacman =  new Pacman(graphMatrix[8 ][8],usine.getTexturePacman(),1,32,32,6);
     Ghost * ghost =  new Ghost(graphMatrix[1][0],usine.getTextureRedFantome(),1,true,32,32,1);
     Ghost * ghost1 =  new Ghost(graphMatrix[3][4],usine.getTextureBlueFantome(),1,true,32,32,1);
-    Ghost * ghost2 = new  Ghost(graphMatrix[3][0],usine.getTextureYellowFantome(),1,true,32,32,1);
+    //Ghost * ghost2 = new  Ghost(graphMatrix[3][0],usine.getTextureYellowFantome(),1,true,32,32,1);
     vector<Ghost *> v ;
     v.push_back(ghost);
     v.push_back(ghost1);
-    v.push_back(ghost2);
+   // v.push_back(ghost2);
     World world(pacman,v,&g1);
 
 

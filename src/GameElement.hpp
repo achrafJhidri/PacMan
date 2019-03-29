@@ -11,7 +11,7 @@ class GameElement
 { 
 public:
     Sommet<InfoSommet>  * position;
-    sf::Texture texture;
+    sf::Texture texture;//maladroit
     // Orientation orientation = Orientation::WEST;
     AnimatedSprite sprite;
 

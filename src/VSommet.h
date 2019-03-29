@@ -19,7 +19,7 @@ VSommet comme "valeur associée à un sommet"
 class VSommet
 {
 public:
-	constexpr static  int rayonDisquePixels = 30;
+	constexpr static  int rayonDisquePixels = 10;
 	constexpr static unsigned int couleurBord = 0xA10684FF; // couleur violine opaque
 	string nom;
 	Vecteur2D p;		  	// position
