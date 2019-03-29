@@ -1,8 +1,12 @@
+# macOS
+.DS_Store
+
 # CMake traces
 build/
 
 # LSP
-.ccls-cache/
+.ccls-*
+
 compile_commands.json
 
 # Prerequisites
@@ -37,3 +41,7 @@ compile_commands.json
 *.exe
 *.out
 *.app
+
+.vs
+.vscode
+*.json
