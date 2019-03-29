@@ -6,6 +6,7 @@ build/
 
 # LSP
 .ccls-*
+
 compile_commands.json
 
 # Prerequisites

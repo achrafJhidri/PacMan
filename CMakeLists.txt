@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
+
 # Project
 set(PROJECT_NAME pacman)
 project(${PROJECT_NAME})
@@ -9,8 +10,10 @@ add_compile_options(-std=c++11)
 add_compile_options(-Wno-unknown-pragmas)
 add_compile_options(-g)
 
+
 # Where to find sources
 file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+
 
 # To do before linking
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -23,3 +26,4 @@ if(${SFML_FOUND})
   target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-graphics)
 endif()
 find_package(PNG REQUIRED)
+
